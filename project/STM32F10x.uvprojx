@@ -14,7 +14,7 @@
         <TargetCommonOption>
           <Device>STM32F103VB</Device>
           <Vendor>STMicroelectronics</Vendor>
-          <PackID>Keil.STM32F1xx_DFP.2.0.0</PackID>
+          <PackID>Keil.STM32F1xx_DFP.2.2.0</PackID>
           <PackURL>http://www.keil.com/pack/</PackURL>
           <Cpu>IROM(0x08000000,0x20000) IRAM(0x20000000,0x5000) CPUTYPE("Cortex-M3") CLOCK(12000000) ELITTLE</Cpu>
           <FlashUtilSpec></FlashUtilSpec>
@@ -369,7 +369,7 @@
               <MiscControls></MiscControls>
               <Define>USE_STDPERIPH_DRIVER, USE_FULL_ASSERT,</Define>
               <Undefine></Undefine>
-              <IncludePath>..\lib\cmsis;..\lib\cmsis\startup;..\lib\fwlib\inc;..\lib\FreeRTOS\Source\include;..\lib\FreeRTOS\Source\portable\RVDS\ARM_CM3;..\..\STM32F103</IncludePath>
+              <IncludePath>..\src;..\lib\st_lib\cmsis;..\lib\st_lib\cmsis\startup;..\lib\st_lib\fwlib\inc;..\lib\FreeRTOS\Source\include;..\lib\FreeRTOS\Source\portable\RVDS\ARM_CM3;..\lib\ioLibrary_Driver-master\Ethernet;..\lib\ioLibrary_Driver-master\Ethernet\W5500;..\lib\ioLibrary_Driver-master\Internet\DHCP;..\lib\freemodbus\stm32f103_port;..\lib\freemodbus\modbus\include;..\lib\freemodbus\modbus\tcp</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -410,65 +410,109 @@
       </TargetOption>
       <Groups>
         <Group>
-          <GroupName>st_lib</GroupName>
+          <GroupName>ioLibrary_Driver/Ethernet</GroupName>
           <Files>
             <File>
-              <FileName>core_cm3.c</FileName>
+              <FileName>socket.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\lib\cmsis\core_cm3.c</FilePath>
+              <FilePath>..\lib\ioLibrary_Driver-master\Ethernet\socket.c</FilePath>
             </File>
             <File>
-              <FileName>system_stm32f10x.c</FileName>
+              <FileName>wizchip_conf.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\lib\cmsis\system_stm32f10x.c</FilePath>
+              <FilePath>..\lib\ioLibrary_Driver-master\Ethernet\wizchip_conf.c</FilePath>
             </File>
             <File>
-              <FileName>startup_stm32f10x_hd.s</FileName>
-              <FileType>2</FileType>
-              <FilePath>..\lib\cmsis\startup\startup_stm32f10x_hd.s</FilePath>
-            </File>
-            <File>
-              <FileName>misc.c</FileName>
+              <FileName>w5500.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\lib\fwlib\src\misc.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f10x_gpio.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\lib\fwlib\src\stm32f10x_gpio.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f10x_i2c.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\lib\fwlib\src\stm32f10x_i2c.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f10x_rcc.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\lib\fwlib\src\stm32f10x_rcc.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f10x_spi.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\lib\fwlib\src\stm32f10x_spi.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f10x_tim.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\lib\fwlib\src\stm32f10x_tim.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f10x_usart.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\lib\fwlib\src\stm32f10x_usart.c</FilePath>
+              <FilePath>..\lib\ioLibrary_Driver-master\Ethernet\W5500\w5500.c</FilePath>
             </File>
           </Files>
         </Group>
         <Group>
-          <GroupName>W5500</GroupName>
+          <GroupName>ioLibrary_Driver/Internet</GroupName>
+          <Files>
+            <File>
+              <FileName>dhcp.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\lib\ioLibrary_Driver-master\Internet\DHCP\dhcp.c</FilePath>
+            </File>
+          </Files>
         </Group>
         <Group>
-          <GroupName>board</GroupName>
+          <GroupName>freeModbus_port</GroupName>
+          <Files>
+            <File>
+              <FileName>mbconfig.h</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\lib\freemodbus\modbus\include\mbconfig.h</FilePath>
+            </File>
+            <File>
+              <FileName>port.h</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\lib\freemodbus\stm32f103_port\port.h</FilePath>
+            </File>
+            <File>
+              <FileName>portevent.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\lib\freemodbus\stm32f103_port\portevent.c</FilePath>
+            </File>
+            <File>
+              <FileName>porttcp.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\lib\freemodbus\stm32f103_port\porttcp.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>freeModbus_lib</GroupName>
+          <Files>
+            <File>
+              <FileName>mb.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\lib\freemodbus\modbus\mb.c</FilePath>
+            </File>
+            <File>
+              <FileName>mbtcp.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\lib\freemodbus\modbus\tcp\mbtcp.c</FilePath>
+            </File>
+            <File>
+              <FileName>mbfunccoils.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\lib\freemodbus\modbus\functions\mbfunccoils.c</FilePath>
+            </File>
+            <File>
+              <FileName>mbfuncdiag.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\lib\freemodbus\modbus\functions\mbfuncdiag.c</FilePath>
+            </File>
+            <File>
+              <FileName>mbfuncdisc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\lib\freemodbus\modbus\functions\mbfuncdisc.c</FilePath>
+            </File>
+            <File>
+              <FileName>mbfuncholding.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\lib\freemodbus\modbus\functions\mbfuncholding.c</FilePath>
+            </File>
+            <File>
+              <FileName>mbfuncinput.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\lib\freemodbus\modbus\functions\mbfuncinput.c</FilePath>
+            </File>
+            <File>
+              <FileName>mbfuncother.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\lib\freemodbus\modbus\functions\mbfuncother.c</FilePath>
+            </File>
+            <File>
+              <FileName>mbutils.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\lib\freemodbus\modbus\functions\mbutils.c</FilePath>
+            </File>
+          </Files>
         </Group>
         <Group>
           <GroupName>FreeRTOS</GroupName>
@@ -506,17 +550,97 @@
           </Files>
         </Group>
         <Group>
+          <GroupName>AT24C08</GroupName>
+          <Files>
+            <File>
+              <FileName>24c08.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\src\BSP\24c08.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>st_lib</GroupName>
+          <Files>
+            <File>
+              <FileName>startup_stm32f10x_hd.s</FileName>
+              <FileType>2</FileType>
+              <FilePath>..\lib\st_lib\cmsis\startup\startup_stm32f10x_hd.s</FilePath>
+            </File>
+            <File>
+              <FileName>misc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\lib\st_lib\fwlib\src\misc.c</FilePath>
+            </File>
+            <File>
+              <FileName>core_cm3.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\lib\st_lib\cmsis\core_cm3.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f10x_gpio.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\lib\st_lib\fwlib\src\stm32f10x_gpio.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f10x_i2c.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\lib\st_lib\fwlib\src\stm32f10x_i2c.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f10x_rcc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\lib\st_lib\fwlib\src\stm32f10x_rcc.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f10x_spi.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\lib\st_lib\fwlib\src\stm32f10x_spi.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f10x_tim.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\lib\st_lib\fwlib\src\stm32f10x_tim.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f10x_usart.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\lib\st_lib\fwlib\src\stm32f10x_usart.c</FilePath>
+            </File>
+            <File>
+              <FileName>system_stm32f10x.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\lib\st_lib\cmsis\system_stm32f10x.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
           <GroupName>main</GroupName>
           <Files>
             <File>
               <FileName>main.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\main.c</FilePath>
+              <FilePath>..\src\main.c</FilePath>
             </File>
             <File>
               <FileName>stm32f10x_it.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\stm32f10x_it.c</FilePath>
+              <FilePath>..\src\stm32f10x_it.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>board</GroupName>
+          <Files>
+            <File>
+              <FileName>delay.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\src\BSP\delay.c</FilePath>
+            </File>
+            <File>
+              <FileName>w5500_port.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\src\BSP\w5500_port.c</FilePath>
             </File>
           </Files>
         </Group>

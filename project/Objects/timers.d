@@ -3,7 +3,7 @@
 .\objects\timers.o: ..\lib\FreeRTOS\Source\include\FreeRTOS.h
 .\objects\timers.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h
 .\objects\timers.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
-.\objects\timers.o: ..\..\STM32F103\FreeRTOSConfig.h
+.\objects\timers.o: ..\src\FreeRTOSConfig.h
 .\objects\timers.o: ..\lib\FreeRTOS\Source\include\projdefs.h
 .\objects\timers.o: ..\lib\FreeRTOS\Source\include\portable.h
 .\objects\timers.o: ..\lib\FreeRTOS\Source\include\deprecated_definitions.h

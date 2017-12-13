@@ -4,7 +4,7 @@
 .\objects\tasks.o: ..\lib\FreeRTOS\Source\include\FreeRTOS.h
 .\objects\tasks.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h
 .\objects\tasks.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
-.\objects\tasks.o: ..\..\STM32F103\FreeRTOSConfig.h
+.\objects\tasks.o: ..\src\FreeRTOSConfig.h
 .\objects\tasks.o: ..\lib\FreeRTOS\Source\include\projdefs.h
 .\objects\tasks.o: ..\lib\FreeRTOS\Source\include\portable.h
 .\objects\tasks.o: ..\lib\FreeRTOS\Source\include\deprecated_definitions.h

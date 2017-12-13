@@ -3,7 +3,7 @@
 .\objects\list.o: ..\lib\FreeRTOS\Source\include\FreeRTOS.h
 .\objects\list.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h
 .\objects\list.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
-.\objects\list.o: ..\..\STM32F103\FreeRTOSConfig.h
+.\objects\list.o: ..\src\FreeRTOSConfig.h
 .\objects\list.o: ..\lib\FreeRTOS\Source\include\projdefs.h
 .\objects\list.o: ..\lib\FreeRTOS\Source\include\portable.h
 .\objects\list.o: ..\lib\FreeRTOS\Source\include\deprecated_definitions.h

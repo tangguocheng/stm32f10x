@@ -1,5 +1,4 @@
 #include "stm32f10x.h"
-#include "timer.h"
 
 /**
  * @brief soft delay N * 1us
