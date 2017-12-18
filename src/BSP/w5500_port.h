@@ -13,8 +13,11 @@
 #define SERVER_PORT             5000
 #define LOCAL_PORT              6000
 
-void w5500_dhcp_thread(void* param);
-void w5500_tcp_thread(void* param);
+extern u8 w5500_buffer[]; 
+
+void network_init(void);
+void w5500_init(void);
+
 
 #endif
 

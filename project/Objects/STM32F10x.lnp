@@ -36,6 +36,8 @@
 ".\objects\stm32f10x_it.o"
 ".\objects\delay.o"
 ".\objects\w5500_port_1.o"
+".\objects\task_modbus.o"
+".\objects\task_w5500.o"
 --strict --scatter ".\Objects\STM32F10x.sct"
 --summary_stderr --info summarysizes --map --xref --callgraph --symbols
 --info sizes --info totals --info unused --info veneers

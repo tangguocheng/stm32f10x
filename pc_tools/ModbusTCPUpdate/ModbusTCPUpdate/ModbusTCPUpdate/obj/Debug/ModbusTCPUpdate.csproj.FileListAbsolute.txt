@@ -1,0 +1,14 @@
+E:\woosiyuan\smarthome\stm32f10x\pc_tools\ModbusTCPUpdate\ModbusTCPUpdate\ModbusTCPUpdate\bin\Debug\ModbusTCPUpdate.exe.config
+E:\woosiyuan\smarthome\stm32f10x\pc_tools\ModbusTCPUpdate\ModbusTCPUpdate\ModbusTCPUpdate\bin\Debug\ModbusTCPUpdate.exe
+E:\woosiyuan\smarthome\stm32f10x\pc_tools\ModbusTCPUpdate\ModbusTCPUpdate\ModbusTCPUpdate\bin\Debug\ModbusTCPUpdate.pdb
+E:\woosiyuan\smarthome\stm32f10x\pc_tools\ModbusTCPUpdate\ModbusTCPUpdate\ModbusTCPUpdate\bin\Debug\HslCommunication.dll
+E:\woosiyuan\smarthome\stm32f10x\pc_tools\ModbusTCPUpdate\ModbusTCPUpdate\ModbusTCPUpdate\bin\Debug\Newtonsoft.Json.dll
+E:\woosiyuan\smarthome\stm32f10x\pc_tools\ModbusTCPUpdate\ModbusTCPUpdate\ModbusTCPUpdate\bin\Debug\HslCommunication.xml
+E:\woosiyuan\smarthome\stm32f10x\pc_tools\ModbusTCPUpdate\ModbusTCPUpdate\ModbusTCPUpdate\bin\Debug\Newtonsoft.Json.xml
+E:\woosiyuan\smarthome\stm32f10x\pc_tools\ModbusTCPUpdate\ModbusTCPUpdate\ModbusTCPUpdate\obj\Debug\ModbusTCPUpdate.csprojResolveAssemblyReference.cache
+E:\woosiyuan\smarthome\stm32f10x\pc_tools\ModbusTCPUpdate\ModbusTCPUpdate\ModbusTCPUpdate\obj\Debug\ModbusTCPUpdate.Form1.resources
+E:\woosiyuan\smarthome\stm32f10x\pc_tools\ModbusTCPUpdate\ModbusTCPUpdate\ModbusTCPUpdate\obj\Debug\ModbusTCPUpdate.Properties.Resources.resources
+E:\woosiyuan\smarthome\stm32f10x\pc_tools\ModbusTCPUpdate\ModbusTCPUpdate\ModbusTCPUpdate\obj\Debug\ModbusTCPUpdate.csproj.GenerateResource.Cache
+E:\woosiyuan\smarthome\stm32f10x\pc_tools\ModbusTCPUpdate\ModbusTCPUpdate\ModbusTCPUpdate\obj\Debug\ModbusTCPUpdate.exe
+E:\woosiyuan\smarthome\stm32f10x\pc_tools\ModbusTCPUpdate\ModbusTCPUpdate\ModbusTCPUpdate\obj\Debug\ModbusTCPUpdate.pdb
+E:\woosiyuan\smarthome\stm32f10x\pc_tools\ModbusTCPUpdate\ModbusTCPUpdate\ModbusTCPUpdate\obj\Debug\ModbusTCPUpdate.csproj.CoreCompileInputs.cache

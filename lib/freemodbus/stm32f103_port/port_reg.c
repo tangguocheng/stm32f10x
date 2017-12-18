@@ -47,7 +47,7 @@
 eMBErrorCode    eMBRegInputCB( UCHAR * pucRegBuffer, USHORT usAddress,
                                USHORT usNRegs )
 {
-
+        return (MB_ENOERR);
 }
 
 /*! \ingroup modbus_registers
@@ -85,7 +85,7 @@ eMBErrorCode    eMBRegInputCB( UCHAR * pucRegBuffer, USHORT usAddress,
 eMBErrorCode    eMBRegHoldingCB( UCHAR * pucRegBuffer, USHORT usAddress,
                                  USHORT usNRegs, eMBRegisterMode eMode )
 {
-
+        return (MB_ENOERR);
 }
 
 /*! \ingroup modbus_registers
@@ -123,7 +123,7 @@ eMBErrorCode    eMBRegHoldingCB( UCHAR * pucRegBuffer, USHORT usAddress,
 eMBErrorCode    eMBRegCoilsCB( UCHAR * pucRegBuffer, USHORT usAddress,
                                USHORT usNCoils, eMBRegisterMode eMode )
 {
-
+        return (MB_ENOERR);
 }
 
 /*! \ingroup modbus_registers
@@ -155,5 +155,5 @@ eMBErrorCode    eMBRegCoilsCB( UCHAR * pucRegBuffer, USHORT usAddress,
 eMBErrorCode    eMBRegDiscreteCB( UCHAR * pucRegBuffer, USHORT usAddress,
                                   USHORT usNDiscrete )
 {
-
+        return (MB_ENOERR);
 }

@@ -34,18 +34,11 @@ void vMBPortEventClose( void )
         }
 }
 
-void sys_mbox_post( QueueHandle_t mbox, void *data )
-{
-    portBASE_TYPE   xQueueSent;
-
-    /* Queue must not be full - Otherwise it is an error. */
-    xQueueSent = xQueueSend( mbox, &data, 0 );
-}
-
 BOOL xMBPortEventPost( eMBEventType eEvent )
 {
         eMailBoxEvent = eEvent;
-        sys_mbox_post( xMailBox, &eMailBoxEvent );
+        void *data = &eMailBoxEvent;
+        xQueueSend( xMailBox, &data, 0 );
         return TRUE;
 }
 

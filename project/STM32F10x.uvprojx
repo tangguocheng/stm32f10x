@@ -14,7 +14,7 @@
         <TargetCommonOption>
           <Device>STM32F103VB</Device>
           <Vendor>STMicroelectronics</Vendor>
-          <PackID>Keil.STM32F1xx_DFP.2.0.0</PackID>
+          <PackID>Keil.STM32F1xx_DFP.2.2.0</PackID>
           <PackURL>http://www.keil.com/pack/</PackURL>
           <Cpu>IROM(0x08000000,0x20000) IRAM(0x20000000,0x5000) CPUTYPE("Cortex-M3") CLOCK(12000000) ELITTLE</Cpu>
           <FlashUtilSpec></FlashUtilSpec>
@@ -369,7 +369,7 @@
               <MiscControls></MiscControls>
               <Define>USE_STDPERIPH_DRIVER, USE_FULL_ASSERT,</Define>
               <Undefine></Undefine>
-              <IncludePath>..\src;..\lib\st_lib\cmsis;..\lib\st_lib\cmsis\startup;..\lib\st_lib\fwlib\inc;..\lib\FreeRTOS\Source\include;..\lib\FreeRTOS\Source\portable\RVDS\ARM_CM3;..\lib\ioLibrary_Driver-master\Ethernet;..\lib\ioLibrary_Driver-master\Ethernet\W5500;..\lib\ioLibrary_Driver-master\Internet\DHCP;..\lib\freemodbus\stm32f103_port;..\lib\freemodbus\modbus\include;..\lib\freemodbus\modbus\tcp</IncludePath>
+              <IncludePath>..\src;..\lib\st_lib\cmsis;..\lib\st_lib\cmsis\startup;..\lib\st_lib\fwlib\inc;..\lib\FreeRTOS\Source\include;..\lib\FreeRTOS\Source\portable\RVDS\ARM_CM3;..\lib\ioLibrary_Driver-master\Ethernet;..\lib\ioLibrary_Driver-master\Ethernet\W5500;..\lib\ioLibrary_Driver-master\Internet\DHCP;..\lib\freemodbus\stm32f103_port;..\lib\freemodbus\modbus\include;..\lib\freemodbus\modbus\tcp;..\src\task;..\src\BSP</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -636,6 +636,31 @@
               <FileName>w5500_port.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\src\BSP\w5500_port.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>task</GroupName>
+          <Files>
+            <File>
+              <FileName>task_modbus.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\src\task\task_modbus.c</FilePath>
+            </File>
+            <File>
+              <FileName>task_w5500.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\src\task\task_w5500.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>todo</GroupName>
+          <Files>
+            <File>
+              <FileName>todo.md</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\todo.md</FilePath>
             </File>
           </Files>
         </Group>
