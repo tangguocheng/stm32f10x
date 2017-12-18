@@ -1,0 +1,11 @@
+.\objects\porttcp.o: ..\lib\freemodbus\stm32f103_port\porttcp.c
+.\objects\porttcp.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
+.\objects\porttcp.o: ..\lib\ioLibrary_Driver-master\Ethernet\socket.h
+.\objects\porttcp.o: ..\lib\ioLibrary_Driver-master\Ethernet\wizchip_conf.h
+.\objects\porttcp.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+.\objects\porttcp.o: ..\lib\ioLibrary_Driver-master\Ethernet\W5500/w5500.h
+.\objects\porttcp.o: ..\lib\ioLibrary_Driver-master\Ethernet\wizchip_conf.h
+.\objects\porttcp.o: ..\lib\freemodbus\stm32f103_port\port.h
+.\objects\porttcp.o: ..\lib\freemodbus\modbus\include\mb.h
+.\objects\porttcp.o: ..\lib\freemodbus\modbus\include\mbport.h
+.\objects\porttcp.o: ..\lib\freemodbus\modbus\include\mbproto.h
