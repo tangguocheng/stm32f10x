@@ -31,4 +31,4 @@
 .\objects\main.o: ..\src\proj_conf.h
 .\objects\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdarg.h
 .\objects\main.o: ..\src\BSP\bsp_led.h
-.\objects\main.o: ..\lib\ioLibrary_Driver-master\Internet\DHCP\dhcp.h
+.\objects\main.o: ..\src\BSP\w5500_port.h

@@ -35,3 +35,4 @@
 .\objects\w5500_port_1.o: ..\lib\ioLibrary_Driver-master\Internet\DHCP\dhcp.h
 .\objects\w5500_port_1.o: ..\src\proj_conf.h
 .\objects\w5500_port_1.o: ..\src\BSP\w5500_port.h
+.\objects\w5500_port_1.o: ..\src\BSP\delay.h

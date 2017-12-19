@@ -9,14 +9,6 @@ void assert_failed(unsigned char *file, unsigned int line)
         LOG_OUT(LOG_ERR "ASSERT Failed -- [%s]:[%d]\r\n",file,line);
 }
 
-void bsp_init(void)
-{
-        led_init();
-}
-
-
-#include "dhcp.h"
-
 int main(void)
 {
         RCC_APB2PeriphClockCmd( RCC_APB2Periph_GPIOA |
@@ -44,12 +36,11 @@ int main(void)
         LOG_OUT(LOG_INFO "System Start\r\n");
         LOG_OUT(LOG_INFO "FreeRTOS Kernel V10.0.0\r\n");
         LOG_OUT(LOG_INFO "STM32LIB V3.5.0\r\n");
-        LOG_OUT(LOG_INFO "Xunjian Robot Initialization...\r\n");
 
-        bsp_init();
-
+        led_init();
+        
         while (1) {
-                LOG_OUT(LOG_ERR "FreeRTOS Start Failed, Maybe Stack Memeory Too Small\r\n");
+                w5500_socket_process(); 
         }
 
 }

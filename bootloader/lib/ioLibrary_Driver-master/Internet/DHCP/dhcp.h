@@ -107,7 +107,7 @@ void reg_dhcp_cbfunc(void(*ip_assign)(void), void(*ip_update)(void), void(*ip_co
  *            @ref DHCP_RUNNING    \n
  *            @ref DHCP_IP_ASSIGN  \n
  *            @ref DHCP_IP_CHANGED \n
- * 			  @ref DHCP_IP_LEASED  \n
+ * 	      @ref DHCP_IP_LEASED  \n
  *            @ref DHCP_STOPPED    \n
  *
  * @note This function is always called by you main task.

@@ -3,10 +3,25 @@
 #include "dhcp.h"
 #include "proj_conf.h"
 #include "w5500_port.h"
+#include "delay.h"
 
-u8 w5500_buffer[DATA_BUF_SIZE];                // maybe dynamic allocate
+static u8 w5500_buffer[DATA_BUF_SIZE];                
+static volatile u8 start_dhcp_timer = 0;
+static volatile u32 ms_ticks = 0;
+static u8 dhcp_ok = 0;
+static u8 w5500_state = W5500_STATE_INIT;
 
-void w5500_spi_init(void)
+wiz_NetInfo w5500_eth_info = {
+        .mac = {0x00, 0x08, 0xdc,0x00, 0xab, 0xcd},
+        .ip = {192, 168, 1, 123},
+        .sn = {255,255,255,0},
+        .gw = {192, 168, 1, 1},
+        .dns = {0,0,0,0},
+        .dhcp = NETINFO_DHCP
+};
+
+
+static void w5500_spi_init(void)
 {
         SPI_InitTypeDef SPI_InitStructure;
         GPIO_InitTypeDef GPIO_InitStructure;
@@ -42,47 +57,58 @@ void w5500_spi_init(void)
         SPI_Cmd(SPI2, ENABLE);
 }
 
-void w5500_cs_select(void)
+static void w5500_rst_pin_init(void)
+{
+        GPIO_InitTypeDef GPIO_InitStructure;
+        GPIO_InitStructure.GPIO_Pin = GPIO_Pin_7;
+        GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
+        GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP;
+        GPIO_Init(GPIOC, &GPIO_InitStructure);
+        GPIO_SetBits(GPIOC, GPIO_Pin_6);
+}
+
+static void w5500_hard_reset(void)
+{
+        GPIO_ResetBits(GPIOC, GPIO_Pin_6);
+        delay_nms(1);
+        GPIO_SetBits(GPIOC, GPIO_Pin_6);
+        delay_nms(1600);
+}
+
+static void w5500_cs_select(void)
 {
         GPIO_ResetBits(GPIOC, GPIO_Pin_9);
 }
 
-void w5500_cs_deselect(void)
+static void w5500_cs_deselect(void)
 {
         GPIO_SetBits(GPIOC, GPIO_Pin_9);
 }
 
-void w5500_spi_send_byte(u8 byte)
+static void w5500_spi_send_byte(u8 byte)
 {
         while (SPI_I2S_GetFlagStatus(SPI2, SPI_I2S_FLAG_TXE) == RESET);
 
         SPI_I2S_SendData(SPI2, byte);
 }
 
-u8 w5500_spi_read_byte(void)
+static u8 w5500_spi_read_byte(void)
 {
         while (SPI_I2S_GetFlagStatus(SPI2, SPI_I2S_FLAG_RXNE) == RESET);
 
         return SPI_I2S_ReceiveData(SPI2);
 }
 
-void ioLibrary_fun_register(void)
+static void ioLibrary_fun_register(void)
 {
 //        reg_wizchip_cris_cbfunc(vPortEnterCritical, vPortExitCritical);
         reg_wizchip_cs_cbfunc(w5500_cs_select, w5500_cs_deselect);
         reg_wizchip_spi_cbfunc(w5500_spi_read_byte, w5500_spi_send_byte);
 }
 
-wiz_NetInfo w5500_eth_info = {
-        .mac = {0x00, 0x08, 0xdc,0x00, 0xab, 0xcd},
-        .ip = {192, 168, 1, 123},
-        .sn = {255,255,255,0},
-        .gw = {192, 168, 1, 1},
-        .dns = {0,0,0,0},
-        .dhcp = NETINFO_DHCP
-};
 
-void network_init(void)
+
+static void network_init(void)
 {
         // Set Network information from netinfo structure
         ctlnetwork(CN_SET_NETINFO, (void*)&w5500_eth_info);
@@ -110,8 +136,42 @@ void network_init(void)
 #endif
 }
 
+
+static void dhcp_timer_start(void)
+{
+        start_dhcp_timer = 1;
+        ms_ticks = 0;
+}
+
+static void dhcp_timer_stop(void)
+{
+        start_dhcp_timer = 0;
+        ms_ticks = 0;
+}
+
+void w5500_timer_isr(void)
+{
+        ms_ticks++;
+        if (start_dhcp_timer == 1) {  
+                if (ms_ticks % 1000 == 0)
+                        DHCP_time_handler();
+        }
+        
+        if (ms_ticks % 1000 == 0) {
+                u8 tmp = PHY_LINK_OFF;
+                ctlwizchip(CW_GET_PHYLINK, (void*)&tmp);
+                if ((tmp == PHY_LINK_OFF) && (w5500_state != W5500_STATE_INIT))                // PHY连接异常
+                        w5500_state = W5500_STATE_INIT;
+        }
+}
+
+
 void w5500_ip_assign(void)
 {
+        dhcp_ok = 1;
+        DHCP_stop();
+        dhcp_timer_stop();
+
         getIPfromDHCP(w5500_eth_info.ip);
         getGWfromDHCP(w5500_eth_info.gw);
         getSNfromDHCP(w5500_eth_info.sn);
@@ -119,52 +179,162 @@ void w5500_ip_assign(void)
         w5500_eth_info.dhcp = NETINFO_DHCP;
         /* Network initialization */
         network_init();      // apply from dhcp
-#ifdef _MAIN_DEBUG_
+
         LOG_OUT(LOG_INFO "DHCP LEASED TIME : %ld Sec.\r\n", getDHCPLeasetime());
-#endif
+
 }
 
 void w5500_ip_conflict(void)
 {
-#ifdef _MAIN_DEBUG_
         LOG_OUT(LOG_ERR "CONFLICT IP from DHCP\r\n");
-#endif
-        //halt or reset or any...
-        while(1); // this example is halt.
-}
-
-void w5500_init(void)
-{
-        s8 rtl = 0;
-
-        w5500_spi_init();
-        
-        ioLibrary_fun_register();
-
-        u8 memsize[2][8] = { {2,2,2,2,2,2,2,2},{2,2,2,2,2,2,2,2}};
-        /* wizchip initialize*/
-        rtl = ctlwizchip(CW_INIT_WIZCHIP,(void*)memsize);
-        if(rtl == -1) {
-                LOG_OUT(LOG_ERR "WIZCHIP Initialized fail.\r\n");
-                while(1);
-        }
-
-        u8 tmp;
-        /* PHY link status check */
-        do {
-                rtl = ctlwizchip(CW_GET_PHYLINK, (void*)&tmp);
-                if(rtl == -1) {
-                        rtl = 0;                // replace by beep warnning
-                        LOG_OUT(LOG_ERR "Unknown PHY Link stauts.\r\n");
-                }
-        } while(tmp == PHY_LINK_OFF);
-
-        // must be set the default mac before DHCP started.
-        setSHAR(w5500_eth_info.mac);
 
         DHCP_init(SOCK_DHCP, w5500_buffer);
 
+        dhcp_timer_start();
+        dhcp_ok = 0;
+}
+
+static void start_dhcp_serve(void)
+{
+        dhcp_ok = 0;
         reg_dhcp_cbfunc(w5500_ip_assign, w5500_ip_assign, w5500_ip_conflict);
+        DHCP_init(SOCK_DHCP, w5500_buffer);
+        dhcp_timer_start();
+}
+
+static u8 w5500_init(void)
+{
+        w5500_spi_init();
+        w5500_rst_pin_init();
+        w5500_hard_reset();
+        ioLibrary_fun_register();
+
+        u8 memsize[2][8] = {{2,2,2,2,2,2,2,2},{2,2,2,2,2,2,2,2}};
+        while (ctlwizchip(CW_INIT_WIZCHIP, (void*)memsize) == -1) {
+                delay_nms(1000);
+                w5500_hard_reset();
+                LOG_OUT(LOG_ERR "WIZCHIP Initialized fail.\r\n");
+        }
+
+        // 检查PHY连接状态
+        u8 tmp = PHY_LINK_OFF;
+        do {
+                ctlwizchip(CW_GET_PHYLINK, (void*)&tmp);;
+                delay_nms(1000);                        // 等待PHY连接
+        } while(tmp == PHY_LINK_OFF);
+
+        return (1);
+}
+
+static void start_dhcp(void)
+{
+        // 开启DHCP服务之前，必须设定MAC地址.
+        // 在这里读取STM32的ID前40位作为MAC地址
+        w5500_eth_info.mac[0] = 0x00;
+        w5500_eth_info.mac[1] = *(u8*)(0x1FFFF7E8);
+        w5500_eth_info.mac[2] = *(u8*)(0x1FFFF7E9);
+        w5500_eth_info.mac[3] = *(u8*)(0x1FFFF7EA);
+        w5500_eth_info.mac[4] = *(u8*)(0x1FFFF7EB);
+        w5500_eth_info.mac[5] = *(u8*)(0x1FFFF7EC);
+        setSHAR(w5500_eth_info.mac);
+
+        start_dhcp_serve();
+}
+
+static u8 do_dhcp(void)
+{
+        static u8 my_dhcp_retry = 0;
+        if (dhcp_ok == 1)
+                return (1);
+
+        switch(DHCP_run()) {
+        case DHCP_IP_ASSIGN:
+        case DHCP_IP_CHANGED:
+                break;
+        case DHCP_IP_LEASED:
+                break;
+        case DHCP_FAILED:
+                my_dhcp_retry++;
+                if(my_dhcp_retry > 3) {
+                        my_dhcp_retry = 0;
+                        DHCP_init(SOCK_DHCP, w5500_buffer);
+                        dhcp_timer_start();
+                        dhcp_ok = 0;
+                }
+                break;
+        default:
+                break;
+        }
+
+        return (0);
 }
 
 
+static void w5500_tcp_client(void)
+{
+        u8 server_ip[4] = SERVER_IP;
+        s32 ret;
+        u16 size = 0, sentsize=0;
+        switch(getSn_SR(SOCK_TCP)) {
+        case SOCK_ESTABLISHED :
+                if(getSn_IR(SOCK_TCP) & Sn_IR_CON) {
+                        setSn_IR(SOCK_TCP,Sn_IR_CON);
+                }
+
+                if((size = getSn_RX_RSR(SOCK_TCP)) > 0) {
+                        if(size > DATA_BUF_SIZE) size = DATA_BUF_SIZE;
+                        ret = recv(SOCK_TCP,w5500_buffer,size);
+                        sentsize = 0;
+                        while(size != sentsize) {
+                                ret = send(SOCK_TCP,w5500_buffer + sentsize,size-sentsize);
+                                if(ret < 0) {
+                                        close(SOCK_TCP);
+                                }
+                                sentsize += ret;
+                        }
+                }
+                break;
+
+        case SOCK_CLOSE_WAIT:
+                close(SOCK_TCP);
+                break;
+
+        case SOCK_INIT:
+                connect(SOCK_TCP, server_ip, SERVER_PORT);
+                setSn_KPALVTR(SOCK_TCP, 0x01);                  // keepalive 5s
+                break;
+
+        case SOCK_CLOSED:
+                socket(SOCK_TCP,Sn_MR_TCP,LOCAL_PORT,Sn_MR_ND);
+                break;
+
+        default:
+                break;
+        }
+}
+
+void w5500_socket_process(void)
+{
+        switch (w5500_state) {
+        case W5500_STATE_INIT:
+                if (w5500_init() == 1) {
+                        start_dhcp();
+                        w5500_state = W5500_STATE_DHCP;
+                }
+                break;
+                
+        case W5500_STATE_DHCP:
+                if (do_dhcp() == 1)
+                        w5500_state = W5500_STATE_SOCKET;
+                break;
+
+        case W5500_STATE_SOCKET:
+                w5500_tcp_client(); 
+                break;
+                
+        default:
+                break;
+
+        }
+
+}

@@ -5,3 +5,4 @@
 - Modbus TCP 自己实现
 - 升级逻辑最后做
 
+stm32f103vct6 256k flash 48k ram

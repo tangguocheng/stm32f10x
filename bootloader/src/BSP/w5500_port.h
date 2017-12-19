@@ -13,12 +13,13 @@
 #define SERVER_PORT             5000
 #define LOCAL_PORT              6000
 
-extern u8 w5500_buffer[]; 
+#define W5500_STATE_INIT        0x00
+#define W5500_STATE_DHCP        0x01
+#define W5500_STATE_SOCKET      0x02
 
-void network_init(void);
-void w5500_init(void);
 
-
+void w5500_timer_isr(void);
+void w5500_socket_process(void);
 #endif
 
 

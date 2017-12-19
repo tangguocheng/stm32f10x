@@ -789,7 +789,7 @@ uint8_t DHCP_run(void)
         return ret;
 }
 
-void    DHCP_stop(void)
+void DHCP_stop(void)
 {
         close(DHCP_SOCKET);
         dhcp_state = STATE_DHCP_STOP;
