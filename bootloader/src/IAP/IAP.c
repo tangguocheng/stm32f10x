@@ -1,4 +1,5 @@
 #include "stm32f10x.h"
+#include "stm_flash.h"
 #include "IAP.h"
 
 void start_user_app(void)
@@ -32,5 +33,6 @@ void iap_update_app(u8 *appbuf,u32 appsize)
 			fwaddr+=2048;//偏移2048  16=2*8.所以要乘以2.
 		}
 	}
-	if(i)STMFLASH_Write(fwaddr,iapbuf,i);//将最后的一些内容字节写进去.  
+	if(i)  STMFLASH_Write(fwaddr,iapbuf,i);//将最后的一些内容字节写进去.  
 }
+

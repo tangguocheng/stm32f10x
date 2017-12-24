@@ -116,7 +116,7 @@ void WIZCHIP_WRITE(uint32_t AddrSel, uint8_t wb )
         WIZCHIP_CRITICAL_EXIT();
 }
 
-void     WIZCHIP_READ_BUF (uint32_t AddrSel, uint8_t* pBuf, uint16_t len)
+void WIZCHIP_READ_BUF (uint32_t AddrSel, uint8_t* pBuf, uint16_t len)
 {
         uint8_t spi_data[3];
         uint16_t i;
@@ -144,7 +144,7 @@ void     WIZCHIP_READ_BUF (uint32_t AddrSel, uint8_t* pBuf, uint16_t len)
         WIZCHIP_CRITICAL_EXIT();
 }
 
-void     WIZCHIP_WRITE_BUF(uint32_t AddrSel, uint8_t* pBuf, uint16_t len)
+void  WIZCHIP_WRITE_BUF(uint32_t AddrSel, uint8_t* pBuf, uint16_t len)
 {
         uint8_t spi_data[3];
         uint16_t i;

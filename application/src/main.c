@@ -7,32 +7,8 @@
 #include "semphr.h"
 
 #include "bsp_led.h"
-
-//static SemaphoreHandle_t  xMutex = NULL;
-
-// thread safe printf
-//void  App_Printf(char *format, ...)
-//{
-//        char  buf_str[200 + 1];
-//        va_list   v_args;
-
-//        va_start(v_args, format);
-//        (void)vsnprintf((char       *)&buf_str[0],
-//                        (size_t      ) sizeof(buf_str),
-//                        (char const *) format,
-//                        v_args);
-//        va_end(v_args);
-
-//        if (xMutex == NULL) {
-//                printf("%s", buf_str);
-//        } else {
-//                if (xSemaphoreTake(xMutex, 0)) {
-//                        printf("%s", buf_str);
-//                        xSemaphoreGive(xMutex);
-//                }
-//        }
-//}
-
+#include "task_w5500.h"
+#include "task_modbus.h"
 
 void assert_failed(unsigned char *file, unsigned int line)
 {
@@ -46,11 +22,17 @@ void bsp_init(void)
 
 void init_task(void * param)
 {
+        TaskHandle_t xHandle = NULL;
+        
         LOG_OUT(LOG_INFO "Init Task Start...\r\n");
 
         bsp_init();
-
-        xMutex = xSemaphoreCreateMutex();
+        
+        xTaskCreate( w5500_dhcp_thread, "dhcp_thread", configMINIMAL_STACK_SIZE, NULL, configDHCP_PRIORITIES, &xHandle );
+        configASSERT( xHandle );
+        
+        xTaskCreate( task_modbus, "task_modbus", configMINIMAL_STACK_SIZE, NULL, configMODBUS_PRIORITIES, &xHandle );
+        configASSERT( xHandle );
 
         vTaskDelete( NULL );
 }
@@ -61,7 +43,7 @@ void create_init_task( void )
 
         xTaskCreate( init_task, "init_task", configMINIMAL_STACK_SIZE, NULL, configMAX_PRIORITIES, &xHandle );
         configASSERT( xHandle );
-
+        
         if( xHandle == NULL ) {
                 LOG_OUT(LOG_ERR "Cannot Create Init Task...\r\n");
                 vTaskDelete( xHandle );

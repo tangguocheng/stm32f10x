@@ -28,4 +28,5 @@
 .\objects\iap.o: ..\lib\st_lib\fwlib\inc\stm32f10x_usart.h
 .\objects\iap.o: ..\lib\st_lib\fwlib\inc\stm32f10x_wwdg.h
 .\objects\iap.o: ..\lib\st_lib\fwlib\inc\misc.h
+.\objects\iap.o: ..\src\STM_FLASH\stm_flash.h
 .\objects\iap.o: ..\src\IAP\IAP.h

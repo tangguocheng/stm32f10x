@@ -5,6 +5,7 @@
 #include "dhcp.h"
 #include "proj_conf.h"
 #include "w5500_port.h"
+#include "delay.h"
 
 u8 w5500_buffer[DATA_BUF_SIZE];                // maybe dynamic allocate
 
@@ -13,7 +14,7 @@ void w5500_spi_init(void)
         SPI_InitTypeDef SPI_InitStructure;
         GPIO_InitTypeDef GPIO_InitStructure;
 
-        RCC_APB1PeriphClockCmd( RCC_APB1Periph_SPI2, ENABLE);
+        RCC_APB1PeriphClockCmd(RCC_APB1Periph_SPI2, ENABLE);
         RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOB | RCC_APB2Periph_GPIOC | RCC_APB2Periph_AFIO, ENABLE);
 
         /* Configure SPIy pins: SCK, MISO and MOSI */
@@ -28,6 +29,13 @@ void w5500_spi_init(void)
         GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP;
         GPIO_Init(GPIOC, &GPIO_InitStructure);
         GPIO_SetBits(GPIOC, GPIO_Pin_9);
+        
+        // RESET
+        GPIO_InitStructure.GPIO_Pin = GPIO_Pin_7;
+        GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
+        GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP;
+        GPIO_Init(GPIOC, &GPIO_InitStructure);
+        GPIO_SetBits(GPIOC, GPIO_Pin_7);
 
         /* SPI Config -------------------------------------------------------------*/
         SPI_InitStructure.SPI_Direction = SPI_Direction_2Lines_FullDuplex;
@@ -54,18 +62,29 @@ void w5500_cs_deselect(void)
         GPIO_SetBits(GPIOC, GPIO_Pin_9);
 }
 
-void w5500_spi_send_byte(u8 byte)
+u8 w5500_spi_mode_send_byte(u8 byte)
 {
+        /* Loop while DR register in not emplty */
         while (SPI_I2S_GetFlagStatus(SPI2, SPI_I2S_FLAG_TXE) == RESET);
 
+        /* Send byte through the SPI1 peripheral */
         SPI_I2S_SendData(SPI2, byte);
+
+        /* Wait to receive a byte */
+        while (SPI_I2S_GetFlagStatus(SPI2, SPI_I2S_FLAG_RXNE) == RESET);
+
+        /* Return the byte read from the SPI bus */
+        return SPI_I2S_ReceiveData(SPI2);
+}
+
+void w5500_spi_send_byte(u8 byte)
+{
+        w5500_spi_mode_send_byte(byte);
 }
 
 u8 w5500_spi_read_byte(void)
 {
-        while (SPI_I2S_GetFlagStatus(SPI2, SPI_I2S_FLAG_RXNE) == RESET);
-
-        return SPI_I2S_ReceiveData(SPI2);
+        return (w5500_spi_mode_send_byte(0xFF));
 }
 
 void ioLibrary_fun_register(void)
@@ -112,6 +131,11 @@ void network_init(void)
 #endif
 }
 
+#include "FreeRTOS.h"
+#include "task.h"
+#include "task_w5500.h"
+
+static TaskHandle_t tcp_task_handle = NULL;
 void w5500_ip_assign(void)
 {
         getIPfromDHCP(w5500_eth_info.ip);
@@ -124,6 +148,10 @@ void w5500_ip_assign(void)
 #ifdef _MAIN_DEBUG_
         LOG_OUT(LOG_INFO "DHCP LEASED TIME : %ld Sec.\r\n", getDHCPLeasetime());
 #endif
+        // start tcp thread
+        if (tcp_task_handle == NULL)
+                xTaskCreate(w5500_tcp_thread, "tcp_task", configMINIMAL_STACK_SIZE, NULL, configTCP_PRIORITIES, &tcp_task_handle );
+
 }
 
 void w5500_ip_conflict(void)
@@ -132,14 +160,14 @@ void w5500_ip_conflict(void)
         LOG_OUT(LOG_ERR "CONFLICT IP from DHCP\r\n");
 #endif
         //halt or reset or any...
-        while(1); // this example is halt.
 }
 
 void w5500_init(void)
 {
         s8 rtl = 0;
-
+        
         w5500_spi_init();
+        
         ioLibrary_fun_register();
 
         u8 memsize[2][8] = { {2,2,2,2,2,2,2,2},{2,2,2,2,2,2,2,2}};
@@ -161,6 +189,12 @@ void w5500_init(void)
         } while(tmp == PHY_LINK_OFF);
 
         // must be set the default mac before DHCP started.
+        w5500_eth_info.mac[0] = 0x00;
+        w5500_eth_info.mac[1] = *(u8*)(0x1FFFF7E8);
+        w5500_eth_info.mac[2] = *(u8*)(0x1FFFF7E9);
+        w5500_eth_info.mac[3] = *(u8*)(0x1FFFF7EA);
+        w5500_eth_info.mac[4] = *(u8*)(0x1FFFF7EB);
+        w5500_eth_info.mac[5] = *(u8*)(0x1FFFF7EC);
         setSHAR(w5500_eth_info.mac);
 
         DHCP_init(SOCK_DHCP, w5500_buffer);

@@ -381,7 +381,6 @@ int32_t recv(uint8_t sn, uint8_t * buf, uint16_t len)
         //sock_pack_info[sn] = PACK_COMPLETED;    // for clear
         if(sock_remained_size[sn] == 0) {
 #endif
-//
                 while(1) {
                         recvsize = getSn_RX_RSR(sn);
                         tmp = getSn_SR(sn);

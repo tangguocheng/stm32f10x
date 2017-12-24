@@ -41,6 +41,13 @@ static void w5500_spi_init(void)
         GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP;
         GPIO_Init(GPIOC, &GPIO_InitStructure);
         GPIO_SetBits(GPIOC, GPIO_Pin_9);
+        
+        // RESET
+        GPIO_InitStructure.GPIO_Pin = GPIO_Pin_7;
+        GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
+        GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP;
+        GPIO_Init(GPIOC, &GPIO_InitStructure);
+        GPIO_SetBits(GPIOC, GPIO_Pin_7);
 
         /* SPI Config -------------------------------------------------------------*/
         SPI_InitStructure.SPI_Direction = SPI_Direction_2Lines_FullDuplex;
@@ -57,24 +64,6 @@ static void w5500_spi_init(void)
         SPI_Cmd(SPI2, ENABLE);
 }
 
-static void w5500_rst_pin_init(void)
-{
-        GPIO_InitTypeDef GPIO_InitStructure;
-        GPIO_InitStructure.GPIO_Pin = GPIO_Pin_7;
-        GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
-        GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP;
-        GPIO_Init(GPIOC, &GPIO_InitStructure);
-        GPIO_SetBits(GPIOC, GPIO_Pin_6);
-}
-
-static void w5500_hard_reset(void)
-{
-        GPIO_ResetBits(GPIOC, GPIO_Pin_6);
-        delay_nms(1);
-        GPIO_SetBits(GPIOC, GPIO_Pin_6);
-        delay_nms(1600);
-}
-
 static void w5500_cs_select(void)
 {
         GPIO_ResetBits(GPIOC, GPIO_Pin_9);
@@ -85,19 +74,31 @@ static void w5500_cs_deselect(void)
         GPIO_SetBits(GPIOC, GPIO_Pin_9);
 }
 
-static void w5500_spi_send_byte(u8 byte)
+u8 w5500_spi_mode_send_byte(u8 byte)
 {
+        /* Loop while DR register in not emplty */
         while (SPI_I2S_GetFlagStatus(SPI2, SPI_I2S_FLAG_TXE) == RESET);
 
+        /* Send byte through the SPI1 peripheral */
         SPI_I2S_SendData(SPI2, byte);
-}
 
-static u8 w5500_spi_read_byte(void)
-{
+        /* Wait to receive a byte */
         while (SPI_I2S_GetFlagStatus(SPI2, SPI_I2S_FLAG_RXNE) == RESET);
 
+        /* Return the byte read from the SPI bus */
         return SPI_I2S_ReceiveData(SPI2);
 }
+
+void w5500_spi_send_byte(u8 byte)
+{
+        w5500_spi_mode_send_byte(byte);
+}
+
+u8 w5500_spi_read_byte(void)
+{
+        return (w5500_spi_mode_send_byte(0xFF));
+}
+
 
 static void ioLibrary_fun_register(void)
 {
@@ -205,14 +206,11 @@ static void start_dhcp_serve(void)
 static u8 w5500_init(void)
 {
         w5500_spi_init();
-        w5500_rst_pin_init();
-        w5500_hard_reset();
         ioLibrary_fun_register();
 
         u8 memsize[2][8] = {{2,2,2,2,2,2,2,2},{2,2,2,2,2,2,2,2}};
         while (ctlwizchip(CW_INIT_WIZCHIP, (void*)memsize) == -1) {
                 delay_nms(1000);
-                w5500_hard_reset();
                 LOG_OUT(LOG_ERR "WIZCHIP Initialized fail.\r\n");
         }
 

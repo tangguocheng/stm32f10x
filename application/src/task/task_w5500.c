@@ -6,18 +6,19 @@
 #include "dhcp.h"
 #include "proj_conf.h"
 #include "w5500_port.h"
+#include "mb.h"
+
+void w5500_tcp_thread(void* param);
 
 void w5500_dhcp_thread(void* param)
 {
         u8 dhcp_retry = 0;
         (void)param;
         w5500_init();
-
         while (1) {
                 switch(DHCP_run()) {
                 case DHCP_IP_ASSIGN:
                 case DHCP_IP_CHANGED:
-                        goto __final;
                         break;
                 case DHCP_FAILED:
                         /* ===== Example pseudo code =====  */
@@ -34,13 +35,21 @@ void w5500_dhcp_thread(void* param)
                 default:
                         break;
                 }
-        }
-
-__final:
-        vTaskDelete(NULL);
+                
+                vTaskDelay(100 * portTICK_PERIOD_MS);
+        }        
 }
 
+static u16 tcp_rec_data_len = 0;
 
+void get_tcp_rev_data(u8 **ppucMBTCPFrame, u16 *usTCPLength)
+{
+        vPortEnterCritical();
+        *ppucMBTCPFrame = (u8 *)&w5500_buffer[0];
+        *usTCPLength = tcp_rec_data_len;
+        tcp_rec_data_len = 0;
+        vPortExitCritical();
+}
 
 void w5500_tcp_thread(void* param)
 {
@@ -48,26 +57,17 @@ void w5500_tcp_thread(void* param)
         u8 server_ip[4] = SERVER_IP;			
         while (1) {
                 int32_t ret;
-                uint16_t size = 0, sentsize=0;
                 switch(getSn_SR(SOCK_TCP)) {
                 case SOCK_ESTABLISHED :
                         if(getSn_IR(SOCK_TCP) & Sn_IR_CON) {
-//                                printf("%d:Connected\r\n",SOCK_TCP);
                                 setSn_IR(SOCK_TCP,Sn_IR_CON);
                         }
                         
-                        if((size = getSn_RX_RSR(SOCK_TCP)) > 0) {
-                                if(size > DATA_BUF_SIZE) size = DATA_BUF_SIZE;
-                                ret = recv(SOCK_TCP,w5500_buffer,size);
-//                                if(ret <= 0) printf("ret < 0 \r\n");
-                                sentsize = 0;
-                                while(size != sentsize) {
-                                        ret = send(SOCK_TCP,w5500_buffer + sentsize,size-sentsize);
-                                        if(ret < 0) {
-                                                close(SOCK_TCP);
-//                                                printf("ret < 0 \r\n");
-                                        }
-                                        sentsize += ret; // Don't care SOCKERR_BUSY, because it is zero.
+                        if((tcp_rec_data_len = getSn_RX_RSR(SOCK_TCP)) > 0) {
+                                if(tcp_rec_data_len > DATA_BUF_SIZE) tcp_rec_data_len = DATA_BUF_SIZE;
+                                ret = recv(SOCK_TCP,w5500_buffer,tcp_rec_data_len);
+                                if (ret > 0) {
+                                        xMBPortEventPost(EV_FRAME_RECEIVED);
                                 }
                         }
                         break;

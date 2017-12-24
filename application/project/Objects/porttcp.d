@@ -47,3 +47,5 @@
 .\objects\porttcp.o: ..\lib\freemodbus\modbus\include\mb.h
 .\objects\porttcp.o: ..\lib\freemodbus\modbus\include\mbport.h
 .\objects\porttcp.o: ..\lib\freemodbus\modbus\include\mbproto.h
+.\objects\porttcp.o: ..\src\BSP\w5500_port.h
+.\objects\porttcp.o: ..\src\task\task_w5500.h

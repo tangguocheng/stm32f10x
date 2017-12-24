@@ -14,5 +14,6 @@ void task_modbus(void *param)
         
         while (1) {
                 eMBPoll();
+//                vTaskDelay(100 * portTICK_PERIOD_MS);
         }        
 }

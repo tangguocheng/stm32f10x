@@ -46,3 +46,7 @@
 .\objects\task_w5500.o: ..\lib\ioLibrary_Driver-master\Internet\DHCP\dhcp.h
 .\objects\task_w5500.o: ..\src\proj_conf.h
 .\objects\task_w5500.o: ..\src\BSP\w5500_port.h
+.\objects\task_w5500.o: ..\lib\freemodbus\modbus\include\mb.h
+.\objects\task_w5500.o: ..\lib\freemodbus\stm32f103_port\port.h
+.\objects\task_w5500.o: ..\lib\freemodbus\modbus\include\mbport.h
+.\objects\task_w5500.o: ..\lib\freemodbus\modbus\include\mbproto.h

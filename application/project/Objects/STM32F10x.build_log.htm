@@ -21,28 +21,21 @@ Target DLL:      CMSIS_AGDI.dll V1.21.12.0
 Dialog DLL:      TCM.DLL V1.14.5.0
  
 <h2>Project:</h2>
-C:\Users\Administrator\Desktop\STM32F103\project\STM32F10x.uvprojx
-Project File Date:  12/18/2017
+C:\Users\Administrator\Desktop\STM32F103\application\project\STM32F10x.uvprojx
+Project File Date:  12/23/2017
 
 <h2>Output:</h2>
 *** Using Compiler 'V5.05 update 2 (build 169)', folder: 'C:\Keil_v5\ARM\ARMCC\Bin'
 Build target 'smart_home'
-compiling main.c...
-..\src\main.c(11): warning:  #550-D: variable "xMutex" was set but never used
-  static SemaphoreHandle_t  xMutex = NULL;
-..\src\main.c: 1 warning, 0 errors
-compiling w5500_port.c...
-compiling task_w5500.c...
-..\src\task\task_w5500.c(21): warning:  #111-D: statement is unreachable
-                          break;
-..\src\task\task_w5500.c: 1 warning, 0 errors
+compiling portevent.c...
+compiling task_modbus.c...
 linking...
-Program Size: Code=19224 RO-data=268 RW-data=280 ZI-data=18752  
-After Build - User command #1: fromelf.exe --bin -o "C:\Users\Administrator\Desktop\STM32F103\project\Objects\STM32F10x.bin" "C:\Users\Administrator\Desktop\STM32F103\project\Objects\STM32F10x.axf"
-".\Objects\STM32F10x.axf" - 0 Error(s), 2 Warning(s).
+Program Size: Code=31172 RO-data=352 RW-data=500 ZI-data=20732  
+After Build - User command #1: fromelf.exe --bin -o "C:\Users\Administrator\Desktop\STM32F103\application\project\Objects\STM32F10x.bin" "C:\Users\Administrator\Desktop\STM32F103\application\project\Objects\STM32F10x.axf"
+".\Objects\STM32F10x.axf" - 0 Error(s), 0 Warning(s).
 
 <h2>Collection of Component include folders:</h2>
-  C:\Users\Administrator\Desktop\STM32F103\project\RTE
+  C:\Users\Administrator\Desktop\STM32F103\application\project\RTE
   C:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.0.0\Device\Include
 
 <h2>Collection of Component Files used:</h2>

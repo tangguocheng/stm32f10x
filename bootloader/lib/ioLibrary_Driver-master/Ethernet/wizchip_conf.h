@@ -124,8 +124,8 @@
  *       
  */
 #ifndef _WIZCHIP_IO_MODE_
-   //#define _WIZCHIP_IO_MODE_           _WIZCHIP_IO_MODE_SPI_FDM_
-   #define _WIZCHIP_IO_MODE_           _WIZCHIP_IO_MODE_SPI_VDM_
+   #define _WIZCHIP_IO_MODE_           _WIZCHIP_IO_MODE_SPI_FDM_
+   //#define _WIZCHIP_IO_MODE_           _WIZCHIP_IO_MODE_SPI_VDM_
 #endif
 //A20150601 : Define the unit of IO DATA.   
    typedef   uint8_t   iodata_t;

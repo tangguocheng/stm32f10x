@@ -47,7 +47,7 @@
 #define configUSE_TICK_HOOK		       	1
 #define configCPU_CLOCK_HZ		       	( ( unsigned long ) SystemCoreClock )	
 #define configTICK_RATE_HZ		       	( ( TickType_t ) 1000 )
-#define configMAX_PRIORITIES		        ( 10 )
+#define configMAX_PRIORITIES		        ( 5 )
 #define configMINIMAL_STACK_SIZE	        ( ( unsigned short ) 254 )
 #define configTOTAL_HEAP_SIZE		        ( ( size_t ) ( 17 * 1024 ) )
 #define configMAX_TASK_NAME_LEN		        ( 16 )
@@ -55,6 +55,10 @@
 #define configUSE_16_BIT_TICKS		        0
 #define configIDLE_SHOULD_YIELD		        1
 #define configUSE_MUTEXES                       1
+
+#define configTCP_PRIORITIES                    configMAX_PRIORITIES - 2
+#define configDHCP_PRIORITIES                   configMAX_PRIORITIES - 1
+#define configMODBUS_PRIORITIES                 configMAX_PRIORITIES 
 
 /* Co-routine definitions. */
 #define configUSE_CO_ROUTINES 		        0
