@@ -6,6 +6,7 @@
 
 #include "stm32f10x.h"
 #include "bsp_i2c_gpio.h"
+#include "delay.h"
 
 #define RCC_I2C_PORT 		RCC_APB2Periph_GPIOB		
 
@@ -57,19 +58,7 @@ void i2c_gpio_init(void)
 */
 static void i2c_Delay(void)
 {
-	uint8_t i;
-
-	/*　
-		CPU主频168MHz时，在内部Flash运行, MDK工程不优化。用台式示波器观测波形。
-		循环次数为5时，SCL频率 = 1.78MHz (读耗时: 92ms, 读写正常，但是用示波器探头碰上就读写失败。时序接近临界)
-		循环次数为10时，SCL频率 = 1.1MHz (读耗时: 138ms, 读速度: 118724B/s)
-		循环次数为30时，SCL频率 = 440KHz， SCL高电平时间1.0us，SCL低电平时间1.2us
-
-		上拉电阻选择2.2K欧时，SCL上升沿时间约0.5us，如果选4.7K欧，则上升沿约1us
-
-		实际应用选择400KHz左右的速率即可
-	*/
-	for (i = 0; i < 30; i++);
+        delay_nus(2);
 }
 
 /*
@@ -119,9 +108,9 @@ void i2c_stop(void)
 *	返 回 值: 无
 *********************************************************************************************************
 */
-void i2c_send_byte(uint8_t _ucByte)
+void i2c_send_byte(u8 _ucByte)
 {
-	uint8_t i;
+	u8 i;
 
 	/* 先发送字节的高位bit7 */
 	for (i = 0; i < 8; i++)
@@ -155,10 +144,10 @@ void i2c_send_byte(uint8_t _ucByte)
 *	返 回 值: 读到的数据
 *********************************************************************************************************
 */
-uint8_t i2c_read_byte(void)
+u8 i2c_read_byte(void)
 {
-	uint8_t i;
-	uint8_t value;
+	u8 i;
+	u8 value;
 
 	/* 读到第1个bit为数据的bit7 */
 	value = 0;
@@ -185,9 +174,9 @@ uint8_t i2c_read_byte(void)
 *	返 回 值: 返回0表示正确应答，1表示无器件响应
 *********************************************************************************************************
 */
-uint8_t i2c_wait_ack(void)
+u8 i2c_wait_ack(void)
 {
-	uint8_t re;
+	u8 re;
 
 	I2C_SDA_1();	/* CPU释放SDA总线 */
 	i2c_Delay();
@@ -251,10 +240,12 @@ void i2c_nack(void)
 *	返 回 值: 返回值 0 表示正确， 返回1表示未探测到
 *********************************************************************************************************
 */
-uint8_t i2c_check_connect(uint8_t _Address)
+u8 i2c_check_connect(u8 _Address)
 {
-	uint8_t ucAck;
-
+	u8 ucAck;
+        
+        i2c_gpio_init();
+        
 	if (I2C_SDA_READ_STATE() && I2C_SCL_READ_STATE())
 	{
 		i2c_start();		/* 发送启动信号 */
@@ -269,4 +260,5 @@ uint8_t i2c_check_connect(uint8_t _Address)
 	}
 	return 1;	/* I2C总线异常 */
 }
+
 

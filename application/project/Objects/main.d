@@ -45,4 +45,6 @@
 .\objects\main.o: ..\src\BSP\bsp_led.h
 .\objects\main.o: ..\src\task\task_w5500.h
 .\objects\main.o: ..\src\task\task_modbus.h
+.\objects\main.o: ..\src\BSP\bsp_led_display.h
+.\objects\main.o: ..\src\APP\eeprom_mem.h
 .\objects\main.o: ..\lib\ioLibrary_Driver-master\Internet\DHCP\dhcp.h

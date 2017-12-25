@@ -21,7 +21,6 @@
 ".\objects\timers.o"
 ".\objects\port_1.o"
 ".\objects\heap_2.o"
-".\objects\24c08.o"
 ".\objects\misc.o"
 ".\objects\core_cm3.o"
 ".\objects\system_stm32f10x.o"
@@ -35,10 +34,14 @@
 ".\objects\main.o"
 ".\objects\stm32f10x_it.o"
 ".\objects\delay.o"
-".\objects\w5500_port_1.o"
 ".\objects\bsp_led.o"
+".\objects\bsp_i2c_gpio.o"
+".\objects\bsp_eeprom_24xx.o"
+".\objects\bsp_w5500_port.o"
+".\objects\bsp_led_display.o"
 ".\objects\task_modbus.o"
 ".\objects\task_w5500.o"
+".\objects\eeprom_mem.o"
 --library_type=microlib --strict --scatter ".\Objects\STM32F10x.sct"
 --summary_stderr --info summarysizes --map --xref --callgraph --symbols
 --info sizes --info totals --info unused --info veneers

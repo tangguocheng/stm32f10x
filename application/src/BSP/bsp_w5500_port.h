@@ -1,5 +1,5 @@
-#ifndef _W5500_PORT_H
-#define _W5500_PORT_H
+#ifndef _BSP_W5500_PORT_H
+#define _BSP_W5500_PORT_H
 
 #define DATA_BUF_SIZE           2048
 #define DHCP_RETRY_TIMES	3
@@ -7,7 +7,7 @@
 #define SOCK_DHCP               0
 #define SOCK_TCP                1
 
-#define SERVER_IP               {192,168,31,61}
+#define SERVER_IP               {192,168,0,102}
 #define SERVER_PORT             502
 #define LOCAL_PORT              6000
 

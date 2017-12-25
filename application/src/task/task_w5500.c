@@ -4,9 +4,10 @@
 #include "queue.h"
 #include "socket.h"
 #include "dhcp.h"
-#include "proj_conf.h"
-#include "w5500_port.h"
 #include "mb.h"
+#include "proj_conf.h"
+#include "bsp_w5500_port.h"
+#include "eeprom_mem.h"
 
 void w5500_tcp_thread(void* param);
 
@@ -54,7 +55,10 @@ void get_tcp_rev_data(u8 **ppucMBTCPFrame, u16 *usTCPLength)
 void w5500_tcp_thread(void* param)
 {
         (void)param;
-        u8 server_ip[4] = SERVER_IP;			
+        u8 server_ip[4] = SERVER_IP;	
+        u16 server_port = SERVER_PORT;
+        read_server_ip(server_ip,&server_port);
+        
         while (1) {
                 int32_t ret;
                 switch(getSn_SR(SOCK_TCP)) {
@@ -75,7 +79,7 @@ void w5500_tcp_thread(void* param)
                         close(SOCK_TCP);
                         break;
                 case SOCK_INIT :													
-                        connect(SOCK_TCP, server_ip, SERVER_PORT);			
+                        connect(SOCK_TCP, server_ip, server_port);			
                         break;
                 case SOCK_CLOSED:
                         socket(SOCK_TCP,Sn_MR_TCP,LOCAL_PORT,Sn_MR_ND);

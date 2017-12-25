@@ -4,7 +4,7 @@
 #include "socket.h"
 #include "dhcp.h"
 #include "proj_conf.h"
-#include "w5500_port.h"
+#include "bsp_w5500_port.h"
 #include "delay.h"
 
 u8 w5500_buffer[DATA_BUF_SIZE];                // maybe dynamic allocate
@@ -189,12 +189,13 @@ void w5500_init(void)
         } while(tmp == PHY_LINK_OFF);
 
         // must be set the default mac before DHCP started.
-        w5500_eth_info.mac[0] = 0x00;
-        w5500_eth_info.mac[1] = *(u8*)(0x1FFFF7E8);
-        w5500_eth_info.mac[2] = *(u8*)(0x1FFFF7E9);
-        w5500_eth_info.mac[3] = *(u8*)(0x1FFFF7EA);
-        w5500_eth_info.mac[4] = *(u8*)(0x1FFFF7EB);
-        w5500_eth_info.mac[5] = *(u8*)(0x1FFFF7EC);
+        w5500_eth_info.mac[0] = *(u8*)(0x1FFFF7EA);
+        w5500_eth_info.mac[0] &= 0xFE;
+        w5500_eth_info.mac[1] = *(u8*)(0x1FFFF7EB);
+        w5500_eth_info.mac[2] = *(u8*)(0x1FFFF7EC);
+        w5500_eth_info.mac[3] = *(u8*)(0x1FFFF7ED);
+        w5500_eth_info.mac[4] = *(u8*)(0x1FFFF7EE);
+        w5500_eth_info.mac[5] = *(u8*)(0x1FFFF7EF);
         setSHAR(w5500_eth_info.mac);
 
         DHCP_init(SOCK_DHCP, w5500_buffer);

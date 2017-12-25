@@ -9,6 +9,8 @@
 #include "bsp_led.h"
 #include "task_w5500.h"
 #include "task_modbus.h"
+#include "bsp_led_display.h"
+#include "eeprom_mem.h"
 
 void assert_failed(unsigned char *file, unsigned int line)
 {
@@ -18,6 +20,8 @@ void assert_failed(unsigned char *file, unsigned int line)
 void bsp_init(void)
 {
         led_init();
+        led_display_init();
+        eeprom_first_burn();
 }
 
 void init_task(void * param)
@@ -58,6 +62,7 @@ void vApplicationTickHook (void)
         ms_cnt++;
         if ((ms_cnt % 1000) == 0) {
                 STATE_LED_TOGGLE();
+                led_cnt();
                 DHCP_time_handler();
         }
 }
