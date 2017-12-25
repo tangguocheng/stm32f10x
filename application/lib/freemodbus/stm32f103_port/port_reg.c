@@ -1,24 +1,5 @@
 #include "mb.h"
 
-/* ----------------------- Callback -----------------------------------------*/
-
-/*! \defgroup modbus_registers Modbus Registers
- * \code #include "mb.h" \endcode
- * The protocol stack does not internally allocate any memory for the
- * registers. This makes the protocol stack very small and also usable on
- * low end targets. In addition the values don't have to be in the memory
- * and could for example be stored in a flash.<br>
- * Whenever the protocol stack requires a value it calls one of the callback
- * function with the register address and the number of registers to read
- * as an argument. The application should then read the actual register values
- * (for example the ADC voltage) and should store the result in the supplied
- * buffer.<br>
- * If the protocol stack wants to update a register value because a write
- * register function was received a buffer with the new register values is
- * passed to the callback function. The function should then use these values
- * to update the application register values.
- */
-
 /*! \ingroup modbus_registers
  * \brief Callback function used if the value of a <em>Input Register</em>
  *   is required by the protocol stack. The starting register address is given
@@ -82,9 +63,12 @@ eMBErrorCode    eMBRegInputCB( UCHAR * pucRegBuffer, USHORT usAddress,
  *   - eMBErrorCode::MB_EIO If an unrecoverable error occurred. In this case
  *       a <b>SLAVE DEVICE FAILURE</b> exception is sent as a response.
  */
+#define MB_PASSWD_REG           0x65
+#define MB_PASSWD_DATA          0xFFFF
 eMBErrorCode    eMBRegHoldingCB( UCHAR * pucRegBuffer, USHORT usAddress,
                                  USHORT usNRegs, eMBRegisterMode eMode )
 {
+//        if ((usNRegs == MB_PASSWD_REG) && (u16)pucRegBuffer)
         return (MB_ENOERR);
 }
 
