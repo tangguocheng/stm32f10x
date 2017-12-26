@@ -11,7 +11,7 @@
 #define SERVER_PORT             502
 #define LOCAL_PORT              6000
 
-extern u8 w5500_buffer[]; 
+extern u8 w5500_buffer[];
 
 void network_init(void);
 void w5500_init(void);

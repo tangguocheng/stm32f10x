@@ -81,21 +81,26 @@
       <Books>
         <Book>
           <Number>0</Number>
-          <Title>Base Board Schematics (MCBSTM32E)</Title>
-          <Path>C:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.0.0\Documents\mcbstm32e-base-board-schematics.pdf</Path>
+          <Title>Quick Start Guide (MCBSTM32E)</Title>
+          <Path>C:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Boards\Keil\MCBSTM32E\Documentation\STM32E_QSG.pdf</Path>
         </Book>
         <Book>
           <Number>1</Number>
-          <Title>Display Board Schematics (MCBSTM32E)</Title>
-          <Path>C:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.0.0\Documents\mcbstm32e-display-board-schematics.pdf</Path>
+          <Title>Base Board Schematics (MCBSTM32E)</Title>
+          <Path>C:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Boards\Keil\MCBSTM32E\Documentation\mcbstm32e-base-board-schematics.pdf</Path>
         </Book>
         <Book>
           <Number>2</Number>
-          <Title>User Manual (MCBSTM32E)</Title>
-          <Path>C:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.0.0\Documents\mcbstm32e.chm</Path>
+          <Title>Display Board Schematics (MCBSTM32E)</Title>
+          <Path>C:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Boards\Keil\MCBSTM32E\Documentation\mcbstm32e-display-board-schematics.pdf</Path>
         </Book>
         <Book>
           <Number>3</Number>
+          <Title>User Manual (MCBSTM32E)</Title>
+          <Path>C:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Boards\Keil\MCBSTM32E\Documentation\mcbstm32e.chm</Path>
+        </Book>
+        <Book>
+          <Number>4</Number>
           <Title>MCBSTM32E Evaluation Board Web Page (MCBSTM32E)</Title>
           <Path>http://www.keil.com/mcbstm32e/</Path>
         </Book>
@@ -853,7 +858,7 @@
   </Group>
 
   <Group>
-    <GroupName>todo</GroupName>
+    <GroupName>APP</GroupName>
     <tvExp>1</tvExp>
     <tvExpOptDlg>0</tvExpOptDlg>
     <cbSel>0</cbSel>
@@ -861,27 +866,6 @@
     <File>
       <GroupNumber>10</GroupNumber>
       <FileNumber>43</FileNumber>
-      <FileType>5</FileType>
-      <tvExp>0</tvExp>
-      <Focus>0</Focus>
-      <tvExpOptDlg>0</tvExpOptDlg>
-      <bDave2>0</bDave2>
-      <PathWithFileName>..\todo.md</PathWithFileName>
-      <FilenameWithoutPath>todo.md</FilenameWithoutPath>
-      <RteFlg>0</RteFlg>
-      <bShared>0</bShared>
-    </File>
-  </Group>
-
-  <Group>
-    <GroupName>APP</GroupName>
-    <tvExp>1</tvExp>
-    <tvExpOptDlg>0</tvExpOptDlg>
-    <cbSel>0</cbSel>
-    <RteFlg>0</RteFlg>
-    <File>
-      <GroupNumber>11</GroupNumber>
-      <FileNumber>44</FileNumber>
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
@@ -889,6 +873,27 @@
       <bDave2>0</bDave2>
       <PathWithFileName>..\src\APP\eeprom_mem.c</PathWithFileName>
       <FilenameWithoutPath>eeprom_mem.c</FilenameWithoutPath>
+      <RteFlg>0</RteFlg>
+      <bShared>0</bShared>
+    </File>
+  </Group>
+
+  <Group>
+    <GroupName>todo</GroupName>
+    <tvExp>1</tvExp>
+    <tvExpOptDlg>0</tvExpOptDlg>
+    <cbSel>0</cbSel>
+    <RteFlg>0</RteFlg>
+    <File>
+      <GroupNumber>11</GroupNumber>
+      <FileNumber>44</FileNumber>
+      <FileType>5</FileType>
+      <tvExp>0</tvExp>
+      <Focus>0</Focus>
+      <tvExpOptDlg>0</tvExpOptDlg>
+      <bDave2>0</bDave2>
+      <PathWithFileName>..\todo.md</PathWithFileName>
+      <FilenameWithoutPath>todo.md</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>

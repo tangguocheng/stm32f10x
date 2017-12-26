@@ -29,7 +29,7 @@ void w5500_spi_init(void)
         GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP;
         GPIO_Init(GPIOC, &GPIO_InitStructure);
         GPIO_SetBits(GPIOC, GPIO_Pin_9);
-        
+
         // RESET
         GPIO_InitStructure.GPIO_Pin = GPIO_Pin_7;
         GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
@@ -165,9 +165,9 @@ void w5500_ip_conflict(void)
 void w5500_init(void)
 {
         s8 rtl = 0;
-        
+
         w5500_spi_init();
-        
+
         ioLibrary_fun_register();
 
         u8 memsize[2][8] = { {2,2,2,2,2,2,2,2},{2,2,2,2,2,2,2,2}};
