@@ -26,3 +26,17 @@ E:\woosiyuan\smarthome\stm32f10x\stm32f10x\pc_tools\ModbusTCPUpdate\ModbusTCPUpd
 E:\woosiyuan\smarthome\stm32f10x\stm32f10x\pc_tools\ModbusTCPUpdate\ModbusTCPUpdate\ModbusTCPUpdate\obj\Debug\ModbusTCPUpdate.csproj.CoreCompileInputs.cache
 E:\woosiyuan\smarthome\stm32f10x\stm32f10x\pc_tools\ModbusTCPUpdate\ModbusTCPUpdate\ModbusTCPUpdate\obj\Debug\ModbusTCPUpdate.exe
 E:\woosiyuan\smarthome\stm32f10x\stm32f10x\pc_tools\ModbusTCPUpdate\ModbusTCPUpdate\ModbusTCPUpdate\obj\Debug\ModbusTCPUpdate.pdb
+C:\Users\Administrator\Desktop\STM32F103\pc_tools\ModbusTCPUpdate\ModbusTCPUpdate\ModbusTCPUpdate\bin\Debug\ModbusTCPUpdate.exe.config
+C:\Users\Administrator\Desktop\STM32F103\pc_tools\ModbusTCPUpdate\ModbusTCPUpdate\ModbusTCPUpdate\bin\Debug\ModbusTCPUpdate.exe
+C:\Users\Administrator\Desktop\STM32F103\pc_tools\ModbusTCPUpdate\ModbusTCPUpdate\ModbusTCPUpdate\bin\Debug\ModbusTCPUpdate.pdb
+C:\Users\Administrator\Desktop\STM32F103\pc_tools\ModbusTCPUpdate\ModbusTCPUpdate\ModbusTCPUpdate\bin\Debug\HslCommunication.dll
+C:\Users\Administrator\Desktop\STM32F103\pc_tools\ModbusTCPUpdate\ModbusTCPUpdate\ModbusTCPUpdate\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Administrator\Desktop\STM32F103\pc_tools\ModbusTCPUpdate\ModbusTCPUpdate\ModbusTCPUpdate\bin\Debug\HslCommunication.xml
+C:\Users\Administrator\Desktop\STM32F103\pc_tools\ModbusTCPUpdate\ModbusTCPUpdate\ModbusTCPUpdate\bin\Debug\Newtonsoft.Json.xml
+C:\Users\Administrator\Desktop\STM32F103\pc_tools\ModbusTCPUpdate\ModbusTCPUpdate\ModbusTCPUpdate\obj\Debug\ModbusTCPUpdate.csprojResolveAssemblyReference.cache
+C:\Users\Administrator\Desktop\STM32F103\pc_tools\ModbusTCPUpdate\ModbusTCPUpdate\ModbusTCPUpdate\obj\Debug\ModbusTCPUpdate.Form1.resources
+C:\Users\Administrator\Desktop\STM32F103\pc_tools\ModbusTCPUpdate\ModbusTCPUpdate\ModbusTCPUpdate\obj\Debug\ModbusTCPUpdate.Properties.Resources.resources
+C:\Users\Administrator\Desktop\STM32F103\pc_tools\ModbusTCPUpdate\ModbusTCPUpdate\ModbusTCPUpdate\obj\Debug\ModbusTCPUpdate.csproj.GenerateResource.Cache
+C:\Users\Administrator\Desktop\STM32F103\pc_tools\ModbusTCPUpdate\ModbusTCPUpdate\ModbusTCPUpdate\obj\Debug\ModbusTCPUpdate.csproj.CoreCompileInputs.cache
+C:\Users\Administrator\Desktop\STM32F103\pc_tools\ModbusTCPUpdate\ModbusTCPUpdate\ModbusTCPUpdate\obj\Debug\ModbusTCPUpdate.exe
+C:\Users\Administrator\Desktop\STM32F103\pc_tools\ModbusTCPUpdate\ModbusTCPUpdate\ModbusTCPUpdate\obj\Debug\ModbusTCPUpdate.pdb

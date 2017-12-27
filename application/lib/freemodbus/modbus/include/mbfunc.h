@@ -73,6 +73,9 @@ eMBException    eMBFuncReadDiscreteInputs( UCHAR * pucFrame, USHORT * usLen );
 #if MB_FUNC_READWRITE_HOLDING_ENABLED > 0
 eMBException    eMBFuncReadWriteMultipleHoldingRegister( UCHAR * pucFrame, USHORT * usLen );
 #endif
+#if MB_FUNC_USER_DEFINE_ENABLED > 0
+eMBException    eMBFuncUserDefine( UCHAR * pucFrame, USHORT * usLen );
+#endif
 
 #ifdef __cplusplus
 PR_END_EXTERN_C
