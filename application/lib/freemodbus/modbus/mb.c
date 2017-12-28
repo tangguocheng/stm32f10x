@@ -321,6 +321,8 @@ eMBPoll( void )
                         break;
 
                 case EV_FRAME_RECEIVED:
+                        // ucMBFrame -- PDU Data Pointer
+                        // usLength -- PDU Length
                         eStatus = peMBFrameReceiveCur( &ucRcvAddress, &ucMBFrame, &usLength );
                         if( eStatus == MB_ENOERR ) {
                                 /* Check if the frame is for us. If not ignore the frame. */

@@ -5,7 +5,7 @@
 #include "dhcp.h"
 #include "proj_conf.h"
 #include "bsp_w5500_port.h"
-#include "delay.h"
+#include "bsp_delay.h"
 
 u8 w5500_buffer[DATA_BUF_SIZE];                // maybe dynamic allocate
 

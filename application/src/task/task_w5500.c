@@ -58,13 +58,18 @@ void w5500_tcp_thread(void* param)
         u8 server_ip[4] = SERVER_IP;	
         u16 server_port = SERVER_PORT;
         read_server_ip(server_ip,&server_port);
-        
+        u8 socket_first_burn = 0;
         while (1) {
                 int32_t ret;
                 switch(getSn_SR(SOCK_TCP)) {
                 case SOCK_ESTABLISHED :
                         if(getSn_IR(SOCK_TCP) & Sn_IR_CON) {
                                 setSn_IR(SOCK_TCP,Sn_IR_CON);
+                        }
+                        
+                        if (socket_first_burn == 1) {
+                                socket_first_burn = 0;
+                                // send system information to server
                         }
                         
                         if((tcp_rec_data_len = getSn_RX_RSR(SOCK_TCP)) > 0) {
@@ -78,7 +83,8 @@ void w5500_tcp_thread(void* param)
                 case SOCK_CLOSE_WAIT :
                         close(SOCK_TCP);
                         break;
-                case SOCK_INIT :													
+                case SOCK_INIT :
+                        socket_first_burn = 1;                        
                         connect(SOCK_TCP, server_ip, server_port);			
                         break;
                 case SOCK_CLOSED:

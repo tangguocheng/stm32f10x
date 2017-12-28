@@ -3,11 +3,11 @@
 <title>Static Call Graph - [.\Objects\STM32F10x.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\Objects\STM32F10x.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5050169: Last Updated: Thu Dec 28 01:00:23 2017
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5050169: Last Updated: Thu Dec 28 18:37:27 2017
 <BR><P>
-<H3>Maximum Stack Usage =        200 bytes + Unknown(Cycles, Untraceable Function Pointers)</H3><H3>
+<H3>Maximum Stack Usage =        208 bytes + Unknown(Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
-main &rArr; vTaskStartScheduler &rArr; xTaskCreate &rArr; pvPortMalloc &rArr; xTaskResumeAll &rArr; xTaskIncrementTick &rArr; vApplicationTickHook &rArr; GPIO_ResetBits
+main &rArr; vTaskStartScheduler &rArr; xTaskCreate &rArr; pvPortMalloc &rArr; xTaskResumeAll &rArr; xTaskIncrementTick &rArr; vApplicationTickHook &rArr; led_display &rArr; GPIO_ResetBits
 <P>
 <H3>
 Mutually Recursive functions
@@ -149,25 +149,25 @@ Global Symbols
 <P><STRONG><a name="[62]"></a>__main</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry.o(.ARM.Collect$$$$00000000))
 <BR>[Address Reference Count : 1]<UL><LI> startup_stm32f10x_hd.o(.text)
 </UL>
-<P><STRONG><a name="[184]"></a>_main_stk</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry2.o(.ARM.Collect$$$$00000001))
+<P><STRONG><a name="[185]"></a>_main_stk</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry2.o(.ARM.Collect$$$$00000001))
 
 <P><STRONG><a name="[68]"></a>_main_scatterload</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry5.o(.ARM.Collect$$$$00000004))
 <BR><BR>[Calls]<UL><LI><a href="#[69]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__scatterload
 </UL>
 
-<P><STRONG><a name="[183]"></a>__main_after_scatterload</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry5.o(.ARM.Collect$$$$00000004))
+<P><STRONG><a name="[184]"></a>__main_after_scatterload</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry5.o(.ARM.Collect$$$$00000004))
 <BR><BR>[Called By]<UL><LI><a href="#[69]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__scatterload
 </UL>
 
-<P><STRONG><a name="[185]"></a>_main_clock</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry7b.o(.ARM.Collect$$$$00000008))
+<P><STRONG><a name="[186]"></a>_main_clock</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry7b.o(.ARM.Collect$$$$00000008))
 
-<P><STRONG><a name="[186]"></a>_main_cpp_init</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry8b.o(.ARM.Collect$$$$0000000A))
+<P><STRONG><a name="[187]"></a>_main_cpp_init</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry8b.o(.ARM.Collect$$$$0000000A))
 
-<P><STRONG><a name="[187]"></a>_main_init</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry9a.o(.ARM.Collect$$$$0000000B))
+<P><STRONG><a name="[188]"></a>_main_init</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry9a.o(.ARM.Collect$$$$0000000B))
 
-<P><STRONG><a name="[188]"></a>__rt_final_cpp</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry10a.o(.ARM.Collect$$$$0000000D))
+<P><STRONG><a name="[189]"></a>__rt_final_cpp</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry10a.o(.ARM.Collect$$$$0000000D))
 
-<P><STRONG><a name="[189]"></a>__rt_final_exit</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry11a.o(.ARM.Collect$$$$0000000F))
+<P><STRONG><a name="[18a]"></a>__rt_final_exit</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry11a.o(.ARM.Collect$$$$0000000F))
 
 <P><STRONG><a name="[1a]"></a>SVC_Handler</STRONG> (Thumb, 32 bytes, Stack size 0 bytes, port_1.o(.emb_text))
 <BR>[Address Reference Count : 1]<UL><LI> startup_stm32f10x_hd.o(RESET)
@@ -181,7 +181,7 @@ Global Symbols
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> startup_stm32f10x_hd.o(RESET)
 </UL>
-<P><STRONG><a name="[18a]"></a>vPortGetIPSR</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, port_1.o(.emb_text), UNUSED)
+<P><STRONG><a name="[18b]"></a>vPortGetIPSR</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, port_1.o(.emb_text), UNUSED)
 
 <P><STRONG><a name="[6b]"></a>close</STRONG> (Thumb, 142 bytes, Stack size 8 bytes, socket.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = close &rArr; WIZCHIP_WRITE
@@ -349,13 +349,13 @@ Global Symbols
 <BR><BR>[Called By]<UL><LI><a href="#[16f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ioLibrary_fun_register
 </UL>
 
-<P><STRONG><a name="[18b]"></a>reg_wizchip_bus_cbfunc</STRONG> (Thumb, 44 bytes, Stack size 0 bytes, wizchip_conf.o(.text), UNUSED)
+<P><STRONG><a name="[18c]"></a>reg_wizchip_bus_cbfunc</STRONG> (Thumb, 44 bytes, Stack size 0 bytes, wizchip_conf.o(.text), UNUSED)
 
 <P><STRONG><a name="[172]"></a>reg_wizchip_spi_cbfunc</STRONG> (Thumb, 44 bytes, Stack size 0 bytes, wizchip_conf.o(.text))
 <BR><BR>[Called By]<UL><LI><a href="#[16f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ioLibrary_fun_register
 </UL>
 
-<P><STRONG><a name="[18c]"></a>reg_wizchip_spiburst_cbfunc</STRONG> (Thumb, 42 bytes, Stack size 0 bytes, wizchip_conf.o(.text), UNUSED)
+<P><STRONG><a name="[18d]"></a>reg_wizchip_spiburst_cbfunc</STRONG> (Thumb, 42 bytes, Stack size 0 bytes, wizchip_conf.o(.text), UNUSED)
 
 <P><STRONG><a name="[84]"></a>wizphy_getphylink</STRONG> (Thumb, 26 bytes, Stack size 8 bytes, wizchip_conf.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = wizphy_getphylink &rArr; WIZCHIP_READ
@@ -871,10 +871,10 @@ Global Symbols
 <BR><BR>[Called By]<UL><LI><a href="#[174]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;w5500_ip_assign
 </UL>
 
-<P><STRONG><a name="[18d]"></a>getDHCPLeasetime</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, dhcp.o(.text), UNUSED)
+<P><STRONG><a name="[18e]"></a>getDHCPLeasetime</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, dhcp.o(.text), UNUSED)
 
 <P><STRONG><a name="[a4]"></a>xMBPortEventInit</STRONG> (Thumb, 36 bytes, Stack size 8 bytes, portevent.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 128<LI>Call Chain = xMBPortEventInit &rArr; xQueueGenericCreate &rArr; pvPortMalloc &rArr; xTaskResumeAll &rArr; xTaskIncrementTick &rArr; vApplicationTickHook &rArr; GPIO_ResetBits
+<BR><BR>[Stack]<UL><LI>Max Depth = 136<LI>Call Chain = xMBPortEventInit &rArr; xQueueGenericCreate &rArr; pvPortMalloc &rArr; xTaskResumeAll &rArr; xTaskIncrementTick &rArr; vApplicationTickHook &rArr; led_display &rArr; GPIO_ResetBits
 </UL>
 <BR>[Calls]<UL><LI><a href="#[a5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;xQueueGenericCreate
 </UL>
@@ -891,7 +891,7 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[aa]"></a>xMBPortEventPost</STRONG> (Thumb, 28 bytes, Stack size 16 bytes, portevent.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 136<LI>Call Chain = xMBPortEventPost &rArr; xQueueGenericSend &rArr; xTaskResumeAll &rArr; xTaskIncrementTick &rArr; vApplicationTickHook &rArr; GPIO_ResetBits
+<BR><BR>[Stack]<UL><LI>Max Depth = 144<LI>Call Chain = xMBPortEventPost &rArr; xQueueGenericSend &rArr; xTaskResumeAll &rArr; xTaskIncrementTick &rArr; vApplicationTickHook &rArr; led_display &rArr; GPIO_ResetBits
 </UL>
 <BR>[Calls]<UL><LI><a href="#[ab]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;xQueueGenericSend
 </UL>
@@ -900,7 +900,7 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[ac]"></a>sys_arch_mbox_fetch</STRONG> (Thumb, 94 bytes, Stack size 40 bytes, portevent.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 152<LI>Call Chain = sys_arch_mbox_fetch &rArr; xQueueReceive &rArr; xTaskResumeAll &rArr; xTaskIncrementTick &rArr; vApplicationTickHook &rArr; GPIO_ResetBits
+<BR><BR>[Stack]<UL><LI>Max Depth = 160<LI>Call Chain = sys_arch_mbox_fetch &rArr; xQueueReceive &rArr; xTaskResumeAll &rArr; xTaskIncrementTick &rArr; vApplicationTickHook &rArr; led_display &rArr; GPIO_ResetBits
 </UL>
 <BR>[Calls]<UL><LI><a href="#[ad]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;xTaskGetTickCount
 <LI><a href="#[a7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;xQueueReceive
@@ -909,7 +909,7 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[ae]"></a>xMBPortEventGet</STRONG> (Thumb, 42 bytes, Stack size 24 bytes, portevent.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 176<LI>Call Chain = xMBPortEventGet &rArr; sys_arch_mbox_fetch &rArr; xQueueReceive &rArr; xTaskResumeAll &rArr; xTaskIncrementTick &rArr; vApplicationTickHook &rArr; GPIO_ResetBits
+<BR><BR>[Stack]<UL><LI>Max Depth = 184<LI>Call Chain = xMBPortEventGet &rArr; sys_arch_mbox_fetch &rArr; xQueueReceive &rArr; xTaskResumeAll &rArr; xTaskIncrementTick &rArr; vApplicationTickHook &rArr; led_display &rArr; GPIO_ResetBits
 </UL>
 <BR>[Calls]<UL><LI><a href="#[ac]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sys_arch_mbox_fetch
 </UL>
@@ -970,7 +970,7 @@ Global Symbols
 <BR><BR>[Called By]<UL><LI><a href="#[12]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;eMBFuncReadDiscreteInputs
 </UL>
 
-<P><STRONG><a name="[13]"></a>eMBFuncUserDefine</STRONG> (Thumb, 72 bytes, Stack size 8 bytes, port_reg.o(.text))
+<P><STRONG><a name="[13]"></a>eMBFuncUserDefine</STRONG> (Thumb, 80 bytes, Stack size 8 bytes, port_reg.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = eMBFuncUserDefine
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> mb.o(.data)
@@ -980,7 +980,7 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[b4]"></a>eMBTCPInit</STRONG> (Thumb, 86 bytes, Stack size 16 bytes, mb.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 144<LI>Call Chain = eMBTCPInit &rArr; xMBPortEventInit &rArr; xQueueGenericCreate &rArr; pvPortMalloc &rArr; xTaskResumeAll &rArr; xTaskIncrementTick &rArr; vApplicationTickHook &rArr; GPIO_ResetBits
+<BR><BR>[Stack]<UL><LI>Max Depth = 152<LI>Call Chain = eMBTCPInit &rArr; xMBPortEventInit &rArr; xQueueGenericCreate &rArr; pvPortMalloc &rArr; xTaskResumeAll &rArr; xTaskIncrementTick &rArr; vApplicationTickHook &rArr; led_display &rArr; GPIO_ResetBits
 </UL>
 <BR>[Calls]<UL><LI><a href="#[b5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;eMBTCPDoInit
 <LI><a href="#[a4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;xMBPortEventInit
@@ -993,18 +993,18 @@ Global Symbols
 <LI><a href="#[66]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vPortEnterCritical
 </UL>
 
-<P><STRONG><a name="[18e]"></a>eMBClose</STRONG> (Thumb, 32 bytes, Stack size 8 bytes, mb.o(.text), UNUSED)
+<P><STRONG><a name="[18f]"></a>eMBClose</STRONG> (Thumb, 32 bytes, Stack size 8 bytes, mb.o(.text), UNUSED)
 
-<P><STRONG><a name="[17e]"></a>eMBEnable</STRONG> (Thumb, 32 bytes, Stack size 8 bytes, mb.o(.text))
+<P><STRONG><a name="[17f]"></a>eMBEnable</STRONG> (Thumb, 32 bytes, Stack size 8 bytes, mb.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = eMBEnable
 </UL>
 <BR>[Called By]<UL><LI><a href="#[64]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;task_modbus
 </UL>
 
-<P><STRONG><a name="[18f]"></a>eMBDisable</STRONG> (Thumb, 42 bytes, Stack size 8 bytes, mb.o(.text), UNUSED)
+<P><STRONG><a name="[190]"></a>eMBDisable</STRONG> (Thumb, 42 bytes, Stack size 8 bytes, mb.o(.text), UNUSED)
 
 <P><STRONG><a name="[b7]"></a>eMBPoll</STRONG> (Thumb, 268 bytes, Stack size 16 bytes, mb.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 192<LI>Call Chain = eMBPoll &rArr; xMBPortEventGet &rArr; sys_arch_mbox_fetch &rArr; xQueueReceive &rArr; xTaskResumeAll &rArr; xTaskIncrementTick &rArr; vApplicationTickHook &rArr; GPIO_ResetBits
+<BR><BR>[Stack]<UL><LI>Max Depth = 200<LI>Call Chain = eMBPoll &rArr; xMBPortEventGet &rArr; sys_arch_mbox_fetch &rArr; xQueueReceive &rArr; xTaskResumeAll &rArr; xTaskIncrementTick &rArr; vApplicationTickHook &rArr; led_display &rArr; GPIO_ResetBits
 </UL>
 <BR>[Calls]<UL><LI><a href="#[ae]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;xMBPortEventGet
 <LI><a href="#[aa]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;xMBPortEventPost
@@ -1127,9 +1127,9 @@ Global Symbols
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> mb.o(.data)
 </UL>
-<P><STRONG><a name="[190]"></a>xMBUtilSetBits</STRONG> (Thumb, 96 bytes, Stack size 28 bytes, mbutils.o(.text), UNUSED)
+<P><STRONG><a name="[191]"></a>xMBUtilSetBits</STRONG> (Thumb, 96 bytes, Stack size 28 bytes, mbutils.o(.text), UNUSED)
 
-<P><STRONG><a name="[191]"></a>xMBUtilGetBits</STRONG> (Thumb, 42 bytes, Stack size 20 bytes, mbutils.o(.text), UNUSED)
+<P><STRONG><a name="[192]"></a>xMBUtilGetBits</STRONG> (Thumb, 42 bytes, Stack size 20 bytes, mbutils.o(.text), UNUSED)
 
 <P><STRONG><a name="[bb]"></a>prveMBError2Exception</STRONG> (Thumb, 34 bytes, Stack size 0 bytes, mbutils.o(.text))
 <BR><BR>[Called By]<UL><LI><a href="#[c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;eMBFuncWriteMultipleHoldingRegister
@@ -1212,7 +1212,7 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[a5]"></a>xQueueGenericCreate</STRONG> (Thumb, 56 bytes, Stack size 32 bytes, queue.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 120<LI>Call Chain = xQueueGenericCreate &rArr; pvPortMalloc &rArr; xTaskResumeAll &rArr; xTaskIncrementTick &rArr; vApplicationTickHook &rArr; GPIO_ResetBits
+<BR><BR>[Stack]<UL><LI>Max Depth = 128<LI>Call Chain = xQueueGenericCreate &rArr; pvPortMalloc &rArr; xTaskResumeAll &rArr; xTaskIncrementTick &rArr; vApplicationTickHook &rArr; led_display &rArr; GPIO_ResetBits
 </UL>
 <BR>[Calls]<UL><LI><a href="#[c5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pvPortMalloc
 <LI><a href="#[c4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;prvInitialiseNewQueue
@@ -1222,7 +1222,7 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[ab]"></a>xQueueGenericSend</STRONG> (Thumb, 276 bytes, Stack size 56 bytes, queue.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 120<LI>Call Chain = xQueueGenericSend &rArr; xTaskResumeAll &rArr; xTaskIncrementTick &rArr; vApplicationTickHook &rArr; GPIO_ResetBits
+<BR><BR>[Stack]<UL><LI>Max Depth = 128<LI>Call Chain = xQueueGenericSend &rArr; xTaskResumeAll &rArr; xTaskIncrementTick &rArr; vApplicationTickHook &rArr; led_display &rArr; GPIO_ResetBits
 </UL>
 <BR>[Calls]<UL><LI><a href="#[cf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;xTaskResumeAll
 <LI><a href="#[c2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;xTaskRemoveFromEventList
@@ -1255,7 +1255,7 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[a7]"></a>xQueueReceive</STRONG> (Thumb, 256 bytes, Stack size 48 bytes, queue.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 112<LI>Call Chain = xQueueReceive &rArr; xTaskResumeAll &rArr; xTaskIncrementTick &rArr; vApplicationTickHook &rArr; GPIO_ResetBits
+<BR><BR>[Stack]<UL><LI>Max Depth = 120<LI>Call Chain = xQueueReceive &rArr; xTaskResumeAll &rArr; xTaskIncrementTick &rArr; vApplicationTickHook &rArr; led_display &rArr; GPIO_ResetBits
 </UL>
 <BR>[Calls]<UL><LI><a href="#[cf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;xTaskResumeAll
 <LI><a href="#[c2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;xTaskRemoveFromEventList
@@ -1325,7 +1325,7 @@ Global Symbols
 <LI><a href="#[66]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vPortEnterCritical
 </UL>
 
-<P><STRONG><a name="[192]"></a>uxQueueMessagesWaitingFromISR</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, queue.o(.text), UNUSED)
+<P><STRONG><a name="[193]"></a>uxQueueMessagesWaitingFromISR</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, queue.o(.text), UNUSED)
 
 <P><STRONG><a name="[a9]"></a>vQueueDelete</STRONG> (Thumb, 14 bytes, Stack size 16 bytes, queue.o(.text), UNUSED)
 <BR><BR>[Calls]<UL><LI><a href="#[df]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vPortFree
@@ -1333,12 +1333,12 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[a6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vMBPortEventClose
 </UL>
 
-<P><STRONG><a name="[193]"></a>xQueueIsQueueEmptyFromISR</STRONG> (Thumb, 14 bytes, Stack size 0 bytes, queue.o(.text), UNUSED)
+<P><STRONG><a name="[194]"></a>xQueueIsQueueEmptyFromISR</STRONG> (Thumb, 14 bytes, Stack size 0 bytes, queue.o(.text), UNUSED)
 
-<P><STRONG><a name="[194]"></a>xQueueIsQueueFullFromISR</STRONG> (Thumb, 18 bytes, Stack size 0 bytes, queue.o(.text), UNUSED)
+<P><STRONG><a name="[195]"></a>xQueueIsQueueFullFromISR</STRONG> (Thumb, 18 bytes, Stack size 0 bytes, queue.o(.text), UNUSED)
 
 <P><STRONG><a name="[e6]"></a>xTaskCreate</STRONG> (Thumb, 96 bytes, Stack size 72 bytes, tasks.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 160<LI>Call Chain = xTaskCreate &rArr; pvPortMalloc &rArr; xTaskResumeAll &rArr; xTaskIncrementTick &rArr; vApplicationTickHook &rArr; GPIO_ResetBits
+<BR><BR>[Stack]<UL><LI>Max Depth = 168<LI>Call Chain = xTaskCreate &rArr; pvPortMalloc &rArr; xTaskResumeAll &rArr; xTaskIncrementTick &rArr; vApplicationTickHook &rArr; led_display &rArr; GPIO_ResetBits
 </UL>
 <BR>[Calls]<UL><LI><a href="#[e3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;prvInitialiseNewTask
 <LI><a href="#[e1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;prvAddNewTaskToReadyList
@@ -1352,7 +1352,7 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[e8]"></a>vTaskDelete</STRONG> (Thumb, 166 bytes, Stack size 16 bytes, tasks.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 104<LI>Call Chain = vTaskDelete &rArr; prvDeleteTCB &rArr; vPortFree &rArr; xTaskResumeAll &rArr; xTaskIncrementTick &rArr; vApplicationTickHook &rArr; GPIO_ResetBits
+<BR><BR>[Stack]<UL><LI>Max Depth = 112<LI>Call Chain = vTaskDelete &rArr; prvDeleteTCB &rArr; vPortFree &rArr; xTaskResumeAll &rArr; xTaskIncrementTick &rArr; vApplicationTickHook &rArr; led_display &rArr; GPIO_ResetBits
 </UL>
 <BR>[Calls]<UL><LI><a href="#[e7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;prvDeleteTCB
 <LI><a href="#[ea]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;prvResetNextTaskUnblockTime
@@ -1366,7 +1366,7 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[eb]"></a>xTaskIncrementTick</STRONG> (Thumb, 252 bytes, Stack size 24 bytes, tasks.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 48<LI>Call Chain = xTaskIncrementTick &rArr; vApplicationTickHook &rArr; GPIO_ResetBits
+<BR><BR>[Stack]<UL><LI>Max Depth = 56<LI>Call Chain = xTaskIncrementTick &rArr; vApplicationTickHook &rArr; led_display &rArr; GPIO_ResetBits
 </UL>
 <BR>[Calls]<UL><LI><a href="#[ec]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vApplicationTickHook
 <LI><a href="#[ea]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;prvResetNextTaskUnblockTime
@@ -1378,7 +1378,7 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[cf]"></a>xTaskResumeAll</STRONG> (Thumb, 282 bytes, Stack size 16 bytes, tasks.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 64<LI>Call Chain = xTaskResumeAll &rArr; xTaskIncrementTick &rArr; vApplicationTickHook &rArr; GPIO_ResetBits
+<BR><BR>[Stack]<UL><LI>Max Depth = 72<LI>Call Chain = xTaskResumeAll &rArr; xTaskIncrementTick &rArr; vApplicationTickHook &rArr; led_display &rArr; GPIO_ResetBits
 </UL>
 <BR>[Calls]<UL><LI><a href="#[eb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;xTaskIncrementTick
 <LI><a href="#[ea]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;prvResetNextTaskUnblockTime
@@ -1415,7 +1415,7 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[f0]"></a>vTaskDelay</STRONG> (Thumb, 46 bytes, Stack size 16 bytes, tasks.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 80<LI>Call Chain = vTaskDelay &rArr; xTaskResumeAll &rArr; xTaskIncrementTick &rArr; vApplicationTickHook &rArr; GPIO_ResetBits
+<BR><BR>[Stack]<UL><LI>Max Depth = 88<LI>Call Chain = vTaskDelay &rArr; xTaskResumeAll &rArr; xTaskIncrementTick &rArr; vApplicationTickHook &rArr; led_display &rArr; GPIO_ResetBits
 </UL>
 <BR>[Calls]<UL><LI><a href="#[ed]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;prvAddCurrentTaskToDelayedList
 <LI><a href="#[cf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;xTaskResumeAll
@@ -1429,7 +1429,7 @@ Global Symbols
 <LI><a href="#[66]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vPortEnterCritical
 </UL>
 
-<P><STRONG><a name="[195]"></a>uxTaskPriorityGetFromISR</STRONG> (Thumb, 52 bytes, Stack size 16 bytes, tasks.o(.text), UNUSED)
+<P><STRONG><a name="[196]"></a>uxTaskPriorityGetFromISR</STRONG> (Thumb, 52 bytes, Stack size 16 bytes, tasks.o(.text), UNUSED)
 
 <P><STRONG><a name="[f2]"></a>vTaskPrioritySet</STRONG> (Thumb, 226 bytes, Stack size 32 bytes, tasks.o(.text), UNUSED)
 <BR><BR>[Calls]<UL><LI><a href="#[e9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uxListRemove
@@ -1467,7 +1467,7 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[f8]"></a>vTaskStartScheduler</STRONG> (Thumb, 72 bytes, Stack size 16 bytes, tasks.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 176<LI>Call Chain = vTaskStartScheduler &rArr; xTaskCreate &rArr; pvPortMalloc &rArr; xTaskResumeAll &rArr; xTaskIncrementTick &rArr; vApplicationTickHook &rArr; GPIO_ResetBits
+<BR><BR>[Stack]<UL><LI>Max Depth = 184<LI>Call Chain = vTaskStartScheduler &rArr; xTaskCreate &rArr; pvPortMalloc &rArr; xTaskResumeAll &rArr; xTaskIncrementTick &rArr; vApplicationTickHook &rArr; led_display &rArr; GPIO_ResetBits
 </UL>
 <BR>[Calls]<UL><LI><a href="#[f9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;xPortStartScheduler
 <LI><a href="#[e6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;xTaskCreate
@@ -1483,11 +1483,11 @@ Global Symbols
 <BR><BR>[Called By]<UL><LI><a href="#[ac]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sys_arch_mbox_fetch
 </UL>
 
-<P><STRONG><a name="[196]"></a>xTaskGetTickCountFromISR</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, tasks.o(.text), UNUSED)
+<P><STRONG><a name="[197]"></a>xTaskGetTickCountFromISR</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, tasks.o(.text), UNUSED)
 
-<P><STRONG><a name="[197]"></a>uxTaskGetNumberOfTasks</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, tasks.o(.text), UNUSED)
+<P><STRONG><a name="[198]"></a>uxTaskGetNumberOfTasks</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, tasks.o(.text), UNUSED)
 
-<P><STRONG><a name="[198]"></a>pcTaskGetName</STRONG> (Thumb, 20 bytes, Stack size 0 bytes, tasks.o(.text), UNUSED)
+<P><STRONG><a name="[199]"></a>pcTaskGetName</STRONG> (Thumb, 20 bytes, Stack size 0 bytes, tasks.o(.text), UNUSED)
 
 <P><STRONG><a name="[ce]"></a>vTaskPlaceOnEventList</STRONG> (Thumb, 28 bytes, Stack size 16 bytes, tasks.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 48<LI>Call Chain = vTaskPlaceOnEventList &rArr; prvAddCurrentTaskToDelayedList &rArr; vListInsert
@@ -1558,7 +1558,7 @@ Global Symbols
 <BR><BR>[Called By]<UL><LI><a href="#[c6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;prvUnlockQueue
 </UL>
 
-<P><STRONG><a name="[199]"></a>xTaskGetCurrentTaskHandle</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, tasks.o(.text), UNUSED)
+<P><STRONG><a name="[19a]"></a>xTaskGetCurrentTaskHandle</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, tasks.o(.text), UNUSED)
 
 <P><STRONG><a name="[d8]"></a>xTaskPriorityInherit</STRONG> (Thumb, 264 bytes, Stack size 16 bytes, tasks.o(.text), UNUSED)
 <BR><BR>[Calls]<UL><LI><a href="#[e9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uxListRemove
@@ -1583,7 +1583,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[d6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;xQueueSemaphoreTake
 </UL>
 
-<P><STRONG><a name="[19a]"></a>uxTaskResetEventItemValue</STRONG> (Thumb, 24 bytes, Stack size 0 bytes, tasks.o(.text), UNUSED)
+<P><STRONG><a name="[19b]"></a>uxTaskResetEventItemValue</STRONG> (Thumb, 24 bytes, Stack size 0 bytes, tasks.o(.text), UNUSED)
 
 <P><STRONG><a name="[d7]"></a>pvTaskIncrementMutexHeldCount</STRONG> (Thumb, 26 bytes, Stack size 0 bytes, tasks.o(.text), UNUSED)
 <BR><BR>[Called By]<UL><LI><a href="#[d6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;xQueueSemaphoreTake
@@ -1671,8 +1671,8 @@ Global Symbols
 <LI><a href="#[a7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;xQueueReceive
 <LI><a href="#[ab]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;xQueueGenericSend
 <LI><a href="#[a8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uxQueueMessagesWaiting
-<LI><a href="#[181]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ee_read_bytes_os
-<LI><a href="#[180]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ee_write_bytes_os
+<LI><a href="#[182]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ee_read_bytes_os
+<LI><a href="#[181]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ee_write_bytes_os
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> bsp_w5500_port.o(.text)
 </UL>
@@ -1703,20 +1703,20 @@ Global Symbols
 <LI><a href="#[a7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;xQueueReceive
 <LI><a href="#[ab]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;xQueueGenericSend
 <LI><a href="#[a8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uxQueueMessagesWaiting
-<LI><a href="#[181]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ee_read_bytes_os
-<LI><a href="#[180]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ee_write_bytes_os
+<LI><a href="#[182]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ee_read_bytes_os
+<LI><a href="#[181]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ee_write_bytes_os
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> bsp_w5500_port.o(.text)
 </UL>
 <P><STRONG><a name="[1d]"></a>SysTick_Handler</STRONG> (Thumb, 48 bytes, Stack size 8 bytes, port_1.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 56<LI>Call Chain = SysTick_Handler &rArr; xTaskIncrementTick &rArr; vApplicationTickHook &rArr; GPIO_ResetBits
+<BR><BR>[Stack]<UL><LI>Max Depth = 64<LI>Call Chain = SysTick_Handler &rArr; xTaskIncrementTick &rArr; vApplicationTickHook &rArr; led_display &rArr; GPIO_ResetBits
 </UL>
 <BR>[Calls]<UL><LI><a href="#[eb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;xTaskIncrementTick
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> startup_stm32f10x_hd.o(RESET)
 </UL>
 <P><STRONG><a name="[c5]"></a>pvPortMalloc</STRONG> (Thumb, 166 bytes, Stack size 24 bytes, heap_2.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 88<LI>Call Chain = pvPortMalloc &rArr; xTaskResumeAll &rArr; xTaskIncrementTick &rArr; vApplicationTickHook &rArr; GPIO_ResetBits
+<BR><BR>[Stack]<UL><LI>Max Depth = 96<LI>Call Chain = pvPortMalloc &rArr; xTaskResumeAll &rArr; xTaskIncrementTick &rArr; vApplicationTickHook &rArr; led_display &rArr; GPIO_ResetBits
 </UL>
 <BR>[Calls]<UL><LI><a href="#[107]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;prvHeapInit
 <LI><a href="#[cf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;xTaskResumeAll
@@ -1727,7 +1727,7 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[df]"></a>vPortFree</STRONG> (Thumb, 56 bytes, Stack size 16 bytes, heap_2.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 80<LI>Call Chain = vPortFree &rArr; xTaskResumeAll &rArr; xTaskIncrementTick &rArr; vApplicationTickHook &rArr; GPIO_ResetBits
+<BR><BR>[Stack]<UL><LI>Max Depth = 88<LI>Call Chain = vPortFree &rArr; xTaskResumeAll &rArr; xTaskIncrementTick &rArr; vApplicationTickHook &rArr; led_display &rArr; GPIO_ResetBits
 </UL>
 <BR>[Calls]<UL><LI><a href="#[cf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;xTaskResumeAll
 <LI><a href="#[cc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vTaskSuspendAll
@@ -1737,9 +1737,9 @@ Global Symbols
 <LI><a href="#[a9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vQueueDelete
 </UL>
 
-<P><STRONG><a name="[19b]"></a>xPortGetFreeHeapSize</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, heap_2.o(.text), UNUSED)
+<P><STRONG><a name="[19c]"></a>xPortGetFreeHeapSize</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, heap_2.o(.text), UNUSED)
 
-<P><STRONG><a name="[19c]"></a>vPortInitialiseBlocks</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, heap_2.o(.text), UNUSED)
+<P><STRONG><a name="[19d]"></a>vPortInitialiseBlocks</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, heap_2.o(.text), UNUSED)
 
 <P><STRONG><a name="[108]"></a>NVIC_PriorityGroupConfig</STRONG> (Thumb, 54 bytes, Stack size 8 bytes, misc.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = NVIC_PriorityGroupConfig
@@ -1753,8 +1753,12 @@ Global Symbols
 <BR><BR>[Calls]<UL><LI><a href="#[109]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;assert_failed
 </UL>
 
-<P><STRONG><a name="[10b]"></a>NVIC_SetVectorTable</STRONG> (Thumb, 60 bytes, Stack size 16 bytes, misc.o(.text), UNUSED)
-<BR><BR>[Calls]<UL><LI><a href="#[109]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;assert_failed
+<P><STRONG><a name="[10b]"></a>NVIC_SetVectorTable</STRONG> (Thumb, 60 bytes, Stack size 16 bytes, misc.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = NVIC_SetVectorTable
+</UL>
+<BR>[Calls]<UL><LI><a href="#[109]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;assert_failed
+</UL>
+<BR>[Called By]<UL><LI><a href="#[5a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
 <P><STRONG><a name="[10c]"></a>NVIC_SystemLPConfig</STRONG> (Thumb, 78 bytes, Stack size 16 bytes, misc.o(.text), UNUSED)
@@ -1772,7 +1776,7 @@ Global Symbols
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> startup_stm32f10x_hd.o(.text)
 </UL>
-<P><STRONG><a name="[19d]"></a>SystemCoreClockUpdate</STRONG> (Thumb, 142 bytes, Stack size 8 bytes, system_stm32f10x.o(.text), UNUSED)
+<P><STRONG><a name="[19e]"></a>SystemCoreClockUpdate</STRONG> (Thumb, 142 bytes, Stack size 8 bytes, system_stm32f10x.o(.text), UNUSED)
 
 <P><STRONG><a name="[110]"></a>GPIO_DeInit</STRONG> (Thumb, 224 bytes, Stack size 8 bytes, stm32f10x_gpio.o(.text), UNUSED)
 <BR><BR>[Calls]<UL><LI><a href="#[109]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;assert_failed
@@ -1794,7 +1798,7 @@ Global Symbols
 <LI><a href="#[155]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;led_display_init
 </UL>
 
-<P><STRONG><a name="[19e]"></a>GPIO_StructInit</STRONG> (Thumb, 16 bytes, Stack size 0 bytes, stm32f10x_gpio.o(.text), UNUSED)
+<P><STRONG><a name="[19f]"></a>GPIO_StructInit</STRONG> (Thumb, 16 bytes, Stack size 0 bytes, stm32f10x_gpio.o(.text), UNUSED)
 
 <P><STRONG><a name="[114]"></a>GPIO_ReadInputDataBit</STRONG> (Thumb, 170 bytes, Stack size 16 bytes, stm32f10x_gpio.o(.text), UNUSED)
 <BR><BR>[Calls]<UL><LI><a href="#[109]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;assert_failed
@@ -1820,6 +1824,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[ec]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vApplicationTickHook
 <LI><a href="#[16b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;w5500_cs_deselect
 <LI><a href="#[169]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;w5500_spi_init
+<LI><a href="#[159]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;led_display
 </UL>
 
 <P><STRONG><a name="[119]"></a>GPIO_ResetBits</STRONG> (Thumb, 86 bytes, Stack size 16 bytes, stm32f10x_gpio.o(.text))
@@ -1830,6 +1835,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[ec]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vApplicationTickHook
 <LI><a href="#[16a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;w5500_cs_select
 <LI><a href="#[155]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;led_display_init
+<LI><a href="#[159]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;led_display
 </UL>
 
 <P><STRONG><a name="[11a]"></a>GPIO_WriteBit</STRONG> (Thumb, 188 bytes, Stack size 16 bytes, stm32f10x_gpio.o(.text), UNUSED)
@@ -1864,7 +1870,7 @@ Global Symbols
 <BR><BR>[Calls]<UL><LI><a href="#[109]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;assert_failed
 </UL>
 
-<P><STRONG><a name="[19f]"></a>RCC_DeInit</STRONG> (Thumb, 64 bytes, Stack size 0 bytes, stm32f10x_rcc.o(.text), UNUSED)
+<P><STRONG><a name="[1a0]"></a>RCC_DeInit</STRONG> (Thumb, 64 bytes, Stack size 0 bytes, stm32f10x_rcc.o(.text), UNUSED)
 
 <P><STRONG><a name="[122]"></a>RCC_HSEConfig</STRONG> (Thumb, 100 bytes, Stack size 8 bytes, stm32f10x_rcc.o(.text), UNUSED)
 <BR><BR>[Calls]<UL><LI><a href="#[109]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;assert_failed
@@ -1900,7 +1906,7 @@ Global Symbols
 <BR><BR>[Calls]<UL><LI><a href="#[109]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;assert_failed
 </UL>
 
-<P><STRONG><a name="[1a0]"></a>RCC_GetSYSCLKSource</STRONG> (Thumb, 10 bytes, Stack size 0 bytes, stm32f10x_rcc.o(.text), UNUSED)
+<P><STRONG><a name="[1a1]"></a>RCC_GetSYSCLKSource</STRONG> (Thumb, 10 bytes, Stack size 0 bytes, stm32f10x_rcc.o(.text), UNUSED)
 
 <P><STRONG><a name="[12a]"></a>RCC_HCLKConfig</STRONG> (Thumb, 66 bytes, Stack size 16 bytes, stm32f10x_rcc.o(.text), UNUSED)
 <BR><BR>[Calls]<UL><LI><a href="#[109]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;assert_failed
@@ -1997,7 +2003,7 @@ Global Symbols
 <BR><BR>[Calls]<UL><LI><a href="#[109]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;assert_failed
 </UL>
 
-<P><STRONG><a name="[1a1]"></a>RCC_ClearFlag</STRONG> (Thumb, 18 bytes, Stack size 0 bytes, stm32f10x_rcc.o(.text), UNUSED)
+<P><STRONG><a name="[1a2]"></a>RCC_ClearFlag</STRONG> (Thumb, 18 bytes, Stack size 0 bytes, stm32f10x_rcc.o(.text), UNUSED)
 
 <P><STRONG><a name="[13b]"></a>RCC_GetITStatus</STRONG> (Thumb, 64 bytes, Stack size 16 bytes, stm32f10x_rcc.o(.text), UNUSED)
 <BR><BR>[Calls]<UL><LI><a href="#[109]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;assert_failed
@@ -2026,9 +2032,9 @@ Global Symbols
 <LI><a href="#[140]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RCC_GetClocksFreq
 </UL>
 
-<P><STRONG><a name="[1a2]"></a>SPI_StructInit</STRONG> (Thumb, 24 bytes, Stack size 0 bytes, stm32f10x_spi.o(.text), UNUSED)
+<P><STRONG><a name="[1a3]"></a>SPI_StructInit</STRONG> (Thumb, 24 bytes, Stack size 0 bytes, stm32f10x_spi.o(.text), UNUSED)
 
-<P><STRONG><a name="[1a3]"></a>I2S_StructInit</STRONG> (Thumb, 20 bytes, Stack size 0 bytes, stm32f10x_spi.o(.text), UNUSED)
+<P><STRONG><a name="[1a4]"></a>I2S_StructInit</STRONG> (Thumb, 20 bytes, Stack size 0 bytes, stm32f10x_spi.o(.text), UNUSED)
 
 <P><STRONG><a name="[141]"></a>SPI_Cmd</STRONG> (Thumb, 78 bytes, Stack size 16 bytes, stm32f10x_spi.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = SPI_Cmd
@@ -2388,7 +2394,7 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[157]"></a>init_task</STRONG> (Thumb, 60 bytes, Stack size 24 bytes, main.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 184<LI>Call Chain = init_task &rArr; xTaskCreate &rArr; pvPortMalloc &rArr; xTaskResumeAll &rArr; xTaskIncrementTick &rArr; vApplicationTickHook &rArr; GPIO_ResetBits
+<BR><BR>[Stack]<UL><LI>Max Depth = 192<LI>Call Chain = init_task &rArr; xTaskCreate &rArr; pvPortMalloc &rArr; xTaskResumeAll &rArr; xTaskIncrementTick &rArr; vApplicationTickHook &rArr; led_display &rArr; GPIO_ResetBits
 </UL>
 <BR>[Calls]<UL><LI><a href="#[e8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vTaskDelete
 <LI><a href="#[e6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;xTaskCreate
@@ -2397,7 +2403,7 @@ Global Symbols
 <BR>[Address Reference Count : 1]<UL><LI> main.o(.text)
 </UL>
 <P><STRONG><a name="[158]"></a>create_init_task</STRONG> (Thumb, 40 bytes, Stack size 16 bytes, main.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 176<LI>Call Chain = create_init_task &rArr; xTaskCreate &rArr; pvPortMalloc &rArr; xTaskResumeAll &rArr; xTaskIncrementTick &rArr; vApplicationTickHook &rArr; GPIO_ResetBits
+<BR><BR>[Stack]<UL><LI>Max Depth = 184<LI>Call Chain = create_init_task &rArr; xTaskCreate &rArr; pvPortMalloc &rArr; xTaskResumeAll &rArr; xTaskIncrementTick &rArr; vApplicationTickHook &rArr; led_display &rArr; GPIO_ResetBits
 </UL>
 <BR>[Calls]<UL><LI><a href="#[e8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vTaskDelete
 <LI><a href="#[e6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;xTaskCreate
@@ -2406,20 +2412,21 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[ec]"></a>vApplicationTickHook</STRONG> (Thumb, 84 bytes, Stack size 8 bytes, main.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = vApplicationTickHook &rArr; GPIO_ResetBits
+<BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = vApplicationTickHook &rArr; led_display &rArr; GPIO_ResetBits
 </UL>
 <BR>[Calls]<UL><LI><a href="#[15a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DHCP_time_handler
-<LI><a href="#[159]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;led_cnt
+<LI><a href="#[159]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;led_display
 <LI><a href="#[119]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_ResetBits
 <LI><a href="#[118]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_SetBits
 </UL>
 <BR>[Called By]<UL><LI><a href="#[eb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;xTaskIncrementTick
 </UL>
 
-<P><STRONG><a name="[5a]"></a>main</STRONG> (Thumb, 40 bytes, Stack size 24 bytes, main.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 200<LI>Call Chain = main &rArr; vTaskStartScheduler &rArr; xTaskCreate &rArr; pvPortMalloc &rArr; xTaskResumeAll &rArr; xTaskIncrementTick &rArr; vApplicationTickHook &rArr; GPIO_ResetBits
+<P><STRONG><a name="[5a]"></a>main</STRONG> (Thumb, 52 bytes, Stack size 24 bytes, main.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 208<LI>Call Chain = main &rArr; vTaskStartScheduler &rArr; xTaskCreate &rArr; pvPortMalloc &rArr; xTaskResumeAll &rArr; xTaskIncrementTick &rArr; vApplicationTickHook &rArr; led_display &rArr; GPIO_ResetBits
 </UL>
-<BR>[Calls]<UL><LI><a href="#[108]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;NVIC_PriorityGroupConfig
+<BR>[Calls]<UL><LI><a href="#[10b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;NVIC_SetVectorTable
+<LI><a href="#[108]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;NVIC_PriorityGroupConfig
 <LI><a href="#[f8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vTaskStartScheduler
 <LI><a href="#[158]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;create_init_task
 <LI><a href="#[135]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RCC_APB2PeriphClockCmd
@@ -2445,18 +2452,6 @@ Global Symbols
 <P><STRONG><a name="[1b]"></a>DebugMon_Handler</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, stm32f10x_it.o(.text))
 <BR>[Address Reference Count : 1]<UL><LI> startup_stm32f10x_hd.o(RESET)
 </UL>
-<P><STRONG><a name="[15c]"></a>delay_nus</STRONG> (Thumb, 28 bytes, Stack size 0 bytes, delay.o(.text))
-<BR><BR>[Called By]<UL><LI><a href="#[15b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;i2c_Delay
-</UL>
-
-<P><STRONG><a name="[1a4]"></a>delay_20us</STRONG> (Thumb, 14 bytes, Stack size 0 bytes, delay.o(.text), UNUSED)
-
-<P><STRONG><a name="[1a5]"></a>delay_5us</STRONG> (Thumb, 16 bytes, Stack size 0 bytes, delay.o(.text), UNUSED)
-
-<P><STRONG><a name="[17d]"></a>delay_nms</STRONG> (Thumb, 32 bytes, Stack size 0 bytes, delay.o(.text), UNUSED)
-<BR><BR>[Called By]<UL><LI><a href="#[17c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;led_display_test
-</UL>
-
 <P><STRONG><a name="[154]"></a>led_init</STRONG> (Thumb, 32 bytes, Stack size 8 bytes, bsp_led.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 48<LI>Call Chain = led_init &rArr; GPIO_Init
 </UL>
@@ -2573,7 +2568,7 @@ Global Symbols
 <LI><a href="#[15f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;i2c_start
 <LI><a href="#[15d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;i2c_stop
 </UL>
-<BR>[Called By]<UL><LI><a href="#[181]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ee_read_bytes_os
+<BR>[Called By]<UL><LI><a href="#[182]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ee_read_bytes_os
 </UL>
 
 <P><STRONG><a name="[168]"></a>ee_write_byts</STRONG> (Thumb, 142 bytes, Stack size 32 bytes, bsp_eeprom_24xx.o(.text))
@@ -2584,7 +2579,7 @@ Global Symbols
 <LI><a href="#[15f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;i2c_start
 <LI><a href="#[15d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;i2c_stop
 </UL>
-<BR>[Called By]<UL><LI><a href="#[180]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ee_write_bytes_os
+<BR>[Called By]<UL><LI><a href="#[181]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ee_write_bytes_os
 </UL>
 
 <P><STRONG><a name="[169]"></a>w5500_spi_init</STRONG> (Thumb, 194 bytes, Stack size 32 bytes, bsp_w5500_port.o(.text))
@@ -2659,7 +2654,7 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[174]"></a>w5500_ip_assign</STRONG> (Thumb, 72 bytes, Stack size 16 bytes, bsp_w5500_port.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 176<LI>Call Chain = w5500_ip_assign &rArr; xTaskCreate &rArr; pvPortMalloc &rArr; xTaskResumeAll &rArr; xTaskIncrementTick &rArr; vApplicationTickHook &rArr; GPIO_ResetBits
+<BR><BR>[Stack]<UL><LI>Max Depth = 184<LI>Call Chain = w5500_ip_assign &rArr; xTaskCreate &rArr; pvPortMalloc &rArr; xTaskResumeAll &rArr; xTaskIncrementTick &rArr; vApplicationTickHook &rArr; led_display &rArr; GPIO_ResetBits
 </UL>
 <BR>[Calls]<UL><LI><a href="#[e6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;xTaskCreate
 <LI><a href="#[178]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;getDNSfromDHCP
@@ -2699,15 +2694,39 @@ Global Symbols
 <BR><BR>[Calls]<UL><LI><a href="#[17d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;delay_nms
 </UL>
 
-<P><STRONG><a name="[159]"></a>led_cnt</STRONG> (Thumb, 534 bytes, Stack size 0 bytes, bsp_led_display.o(.text))
-<BR><BR>[Called By]<UL><LI><a href="#[ec]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vApplicationTickHook
+<P><STRONG><a name="[17e]"></a>led_set_number</STRONG> (Thumb, 776 bytes, Stack size 0 bytes, bsp_led_display.o(.text))
+<BR><BR>[Called By]<UL><LI><a href="#[159]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;led_display
+</UL>
+
+<P><STRONG><a name="[1a5]"></a>set_led_content</STRONG> (Thumb, 144 bytes, Stack size 0 bytes, bsp_led_display.o(.text), UNUSED)
+
+<P><STRONG><a name="[159]"></a>led_display</STRONG> (Thumb, 102 bytes, Stack size 8 bytes, bsp_led_display.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = led_display &rArr; GPIO_ResetBits
+</UL>
+<BR>[Calls]<UL><LI><a href="#[17e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;led_set_number
+<LI><a href="#[119]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_ResetBits
+<LI><a href="#[118]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_SetBits
+</UL>
+<BR>[Called By]<UL><LI><a href="#[ec]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vApplicationTickHook
+</UL>
+
+<P><STRONG><a name="[15c]"></a>delay_nus</STRONG> (Thumb, 28 bytes, Stack size 0 bytes, bsp_delay.o(.text))
+<BR><BR>[Called By]<UL><LI><a href="#[15b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;i2c_Delay
+</UL>
+
+<P><STRONG><a name="[1a6]"></a>delay_20us</STRONG> (Thumb, 14 bytes, Stack size 0 bytes, bsp_delay.o(.text), UNUSED)
+
+<P><STRONG><a name="[1a7]"></a>delay_5us</STRONG> (Thumb, 16 bytes, Stack size 0 bytes, bsp_delay.o(.text), UNUSED)
+
+<P><STRONG><a name="[17d]"></a>delay_nms</STRONG> (Thumb, 32 bytes, Stack size 0 bytes, bsp_delay.o(.text), UNUSED)
+<BR><BR>[Called By]<UL><LI><a href="#[17c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;led_display_test
 </UL>
 
 <P><STRONG><a name="[64]"></a>task_modbus</STRONG> (Thumb, 18 bytes, Stack size 0 bytes, task_modbus.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 192<LI>Call Chain = task_modbus &rArr; eMBPoll &rArr; xMBPortEventGet &rArr; sys_arch_mbox_fetch &rArr; xQueueReceive &rArr; xTaskResumeAll &rArr; xTaskIncrementTick &rArr; vApplicationTickHook &rArr; GPIO_ResetBits
+<BR><BR>[Stack]<UL><LI>Max Depth = 200<LI>Call Chain = task_modbus &rArr; eMBPoll &rArr; xMBPortEventGet &rArr; sys_arch_mbox_fetch &rArr; xQueueReceive &rArr; xTaskResumeAll &rArr; xTaskIncrementTick &rArr; vApplicationTickHook &rArr; led_display &rArr; GPIO_ResetBits
 </UL>
 <BR>[Calls]<UL><LI><a href="#[b7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;eMBPoll
-<LI><a href="#[17e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;eMBEnable
+<LI><a href="#[17f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;eMBEnable
 <LI><a href="#[b4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;eMBTCPInit
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> main.o(.text)
@@ -2732,8 +2751,8 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[b0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;xMBTCPPortGetRequest
 </UL>
 
-<P><STRONG><a name="[67]"></a>w5500_tcp_thread</STRONG> (Thumb, 176 bytes, Stack size 16 bytes, task_w5500.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 152<LI>Call Chain = w5500_tcp_thread &rArr; xMBPortEventPost &rArr; xQueueGenericSend &rArr; xTaskResumeAll &rArr; xTaskIncrementTick &rArr; vApplicationTickHook &rArr; GPIO_ResetBits
+<P><STRONG><a name="[67]"></a>w5500_tcp_thread</STRONG> (Thumb, 186 bytes, Stack size 16 bytes, task_w5500.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 160<LI>Call Chain = w5500_tcp_thread &rArr; xMBPortEventPost &rArr; xQueueGenericSend &rArr; xTaskResumeAll &rArr; xTaskIncrementTick &rArr; vApplicationTickHook &rArr; led_display &rArr; GPIO_ResetBits
 </UL>
 <BR>[Calls]<UL><LI><a href="#[aa]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;xMBPortEventPost
 <LI><a href="#[78]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;getSn_RX_RSR
@@ -2743,44 +2762,44 @@ Global Symbols
 <LI><a href="#[71]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;connect
 <LI><a href="#[6e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;socket
 <LI><a href="#[6b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;close
-<LI><a href="#[17f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;read_server_ip
+<LI><a href="#[180]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;read_server_ip
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> bsp_w5500_port.o(.text)
 </UL>
-<P><STRONG><a name="[180]"></a>ee_write_bytes_os</STRONG> (Thumb, 28 bytes, Stack size 16 bytes, eeprom_mem.o(.text))
+<P><STRONG><a name="[181]"></a>ee_write_bytes_os</STRONG> (Thumb, 28 bytes, Stack size 16 bytes, eeprom_mem.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 72<LI>Call Chain = ee_write_bytes_os &rArr; ee_write_byts &rArr; i2c_send_byte &rArr; i2c_Delay
 </UL>
 <BR>[Calls]<UL><LI><a href="#[65]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vPortExitCritical
 <LI><a href="#[66]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vPortEnterCritical
 <LI><a href="#[168]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ee_write_byts
 </UL>
-<BR>[Called By]<UL><LI><a href="#[182]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;update_server_ip
+<BR>[Called By]<UL><LI><a href="#[183]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;update_server_ip
 <LI><a href="#[156]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;eeprom_first_burn
 </UL>
 
-<P><STRONG><a name="[181]"></a>ee_read_bytes_os</STRONG> (Thumb, 28 bytes, Stack size 16 bytes, eeprom_mem.o(.text))
+<P><STRONG><a name="[182]"></a>ee_read_bytes_os</STRONG> (Thumb, 28 bytes, Stack size 16 bytes, eeprom_mem.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 64<LI>Call Chain = ee_read_bytes_os &rArr; ee_read_byts &rArr; i2c_read_byte &rArr; i2c_Delay
 </UL>
 <BR>[Calls]<UL><LI><a href="#[65]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vPortExitCritical
 <LI><a href="#[66]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vPortEnterCritical
 <LI><a href="#[167]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ee_read_byts
 </UL>
-<BR>[Called By]<UL><LI><a href="#[17f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;read_server_ip
+<BR>[Called By]<UL><LI><a href="#[180]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;read_server_ip
 <LI><a href="#[156]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;eeprom_first_burn
 </UL>
 
-<P><STRONG><a name="[182]"></a>update_server_ip</STRONG> (Thumb, 54 bytes, Stack size 24 bytes, eeprom_mem.o(.text))
+<P><STRONG><a name="[183]"></a>update_server_ip</STRONG> (Thumb, 54 bytes, Stack size 24 bytes, eeprom_mem.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 96<LI>Call Chain = update_server_ip &rArr; ee_write_bytes_os &rArr; ee_write_byts &rArr; i2c_send_byte &rArr; i2c_Delay
 </UL>
-<BR>[Calls]<UL><LI><a href="#[180]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ee_write_bytes_os
+<BR>[Calls]<UL><LI><a href="#[181]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ee_write_bytes_os
 </UL>
 <BR>[Called By]<UL><LI><a href="#[156]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;eeprom_first_burn
 </UL>
 
-<P><STRONG><a name="[17f]"></a>read_server_ip</STRONG> (Thumb, 48 bytes, Stack size 24 bytes, eeprom_mem.o(.text))
+<P><STRONG><a name="[180]"></a>read_server_ip</STRONG> (Thumb, 48 bytes, Stack size 24 bytes, eeprom_mem.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 88<LI>Call Chain = read_server_ip &rArr; ee_read_bytes_os &rArr; ee_read_byts &rArr; i2c_read_byte &rArr; i2c_Delay
 </UL>
-<BR>[Calls]<UL><LI><a href="#[181]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ee_read_bytes_os
+<BR>[Calls]<UL><LI><a href="#[182]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ee_read_bytes_os
 </UL>
 <BR>[Called By]<UL><LI><a href="#[67]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;w5500_tcp_thread
 </UL>
@@ -2788,9 +2807,9 @@ Global Symbols
 <P><STRONG><a name="[156]"></a>eeprom_first_burn</STRONG> (Thumb, 98 bytes, Stack size 24 bytes, eeprom_mem.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 120<LI>Call Chain = eeprom_first_burn &rArr; update_server_ip &rArr; ee_write_bytes_os &rArr; ee_write_byts &rArr; i2c_send_byte &rArr; i2c_Delay
 </UL>
-<BR>[Calls]<UL><LI><a href="#[182]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;update_server_ip
-<LI><a href="#[181]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ee_read_bytes_os
-<LI><a href="#[180]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ee_write_bytes_os
+<BR>[Calls]<UL><LI><a href="#[183]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;update_server_ip
+<LI><a href="#[182]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ee_read_bytes_os
+<LI><a href="#[181]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ee_write_bytes_os
 <LI><a href="#[166]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ee_check_connect
 </UL>
 <BR>[Called By]<UL><LI><a href="#[153]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;bsp_init
@@ -2803,27 +2822,27 @@ Global Symbols
 <LI><a href="#[9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;eMBFuncReportSlaveID
 </UL>
 
-<P><STRONG><a name="[1a6]"></a>__aeabi_memcpy4</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, memcpya.o(.text), UNUSED)
+<P><STRONG><a name="[1a8]"></a>__aeabi_memcpy4</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, memcpya.o(.text), UNUSED)
 
-<P><STRONG><a name="[1a7]"></a>__aeabi_memcpy8</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, memcpya.o(.text), UNUSED)
+<P><STRONG><a name="[1a9]"></a>__aeabi_memcpy8</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, memcpya.o(.text), UNUSED)
 
 <P><STRONG><a name="[69]"></a>__scatterload</STRONG> (Thumb, 28 bytes, Stack size 0 bytes, init.o(.text))
-<BR><BR>[Calls]<UL><LI><a href="#[183]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__main_after_scatterload
+<BR><BR>[Calls]<UL><LI><a href="#[184]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__main_after_scatterload
 </UL>
 <BR>[Called By]<UL><LI><a href="#[68]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_main_scatterload
 </UL>
 
-<P><STRONG><a name="[1a8]"></a>__scatterload_rt2</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, init.o(.text), UNUSED)
+<P><STRONG><a name="[1aa]"></a>__scatterload_rt2</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, init.o(.text), UNUSED)
 
-<P><STRONG><a name="[1a9]"></a>__decompress</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, __dczerorl2.o(.text), UNUSED)
+<P><STRONG><a name="[1ab]"></a>__decompress</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, __dczerorl2.o(.text), UNUSED)
 
-<P><STRONG><a name="[1aa]"></a>__decompress1</STRONG> (Thumb, 86 bytes, Stack size unknown bytes, __dczerorl2.o(.text), UNUSED)
+<P><STRONG><a name="[1ac]"></a>__decompress1</STRONG> (Thumb, 86 bytes, Stack size unknown bytes, __dczerorl2.o(.text), UNUSED)
 
-<P><STRONG><a name="[1ab]"></a>__scatterload_copy</STRONG> (Thumb, 14 bytes, Stack size unknown bytes, handlers.o(i.__scatterload_copy), UNUSED)
+<P><STRONG><a name="[1ad]"></a>__scatterload_copy</STRONG> (Thumb, 14 bytes, Stack size unknown bytes, handlers.o(i.__scatterload_copy), UNUSED)
 
-<P><STRONG><a name="[1ac]"></a>__scatterload_null</STRONG> (Thumb, 2 bytes, Stack size unknown bytes, handlers.o(i.__scatterload_null), UNUSED)
+<P><STRONG><a name="[1ae]"></a>__scatterload_null</STRONG> (Thumb, 2 bytes, Stack size unknown bytes, handlers.o(i.__scatterload_null), UNUSED)
 
-<P><STRONG><a name="[1ad]"></a>__scatterload_zeroinit</STRONG> (Thumb, 14 bytes, Stack size unknown bytes, handlers.o(i.__scatterload_zeroinit), UNUSED)
+<P><STRONG><a name="[1af]"></a>__scatterload_zeroinit</STRONG> (Thumb, 14 bytes, Stack size unknown bytes, handlers.o(i.__scatterload_zeroinit), UNUSED)
 <P>
 <H3>
 Local Symbols
@@ -2937,7 +2956,7 @@ Local Symbols
 </UL>
 
 <P><STRONG><a name="[e7]"></a>prvDeleteTCB</STRONG> (Thumb, 18 bytes, Stack size 8 bytes, tasks.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 88<LI>Call Chain = prvDeleteTCB &rArr; vPortFree &rArr; xTaskResumeAll &rArr; xTaskIncrementTick &rArr; vApplicationTickHook &rArr; GPIO_ResetBits
+<BR><BR>[Stack]<UL><LI>Max Depth = 96<LI>Call Chain = prvDeleteTCB &rArr; vPortFree &rArr; xTaskResumeAll &rArr; xTaskIncrementTick &rArr; vApplicationTickHook &rArr; led_display &rArr; GPIO_ResetBits
 </UL>
 <BR>[Calls]<UL><LI><a href="#[df]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vPortFree
 </UL>
@@ -2966,7 +2985,7 @@ Local Symbols
 </UL>
 
 <P><STRONG><a name="[f7]"></a>prvCheckTasksWaitingTermination</STRONG> (Thumb, 60 bytes, Stack size 8 bytes, tasks.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 96<LI>Call Chain = prvCheckTasksWaitingTermination &rArr; prvDeleteTCB &rArr; vPortFree &rArr; xTaskResumeAll &rArr; xTaskIncrementTick &rArr; vApplicationTickHook &rArr; GPIO_ResetBits
+<BR><BR>[Stack]<UL><LI>Max Depth = 104<LI>Call Chain = prvCheckTasksWaitingTermination &rArr; prvDeleteTCB &rArr; vPortFree &rArr; xTaskResumeAll &rArr; xTaskIncrementTick &rArr; vApplicationTickHook &rArr; led_display &rArr; GPIO_ResetBits
 </UL>
 <BR>[Calls]<UL><LI><a href="#[e7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;prvDeleteTCB
 <LI><a href="#[e9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uxListRemove
@@ -2977,7 +2996,7 @@ Local Symbols
 </UL>
 
 <P><STRONG><a name="[5f]"></a>prvIdleTask</STRONG> (Thumb, 32 bytes, Stack size 0 bytes, tasks.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 96<LI>Call Chain = prvIdleTask &rArr; prvCheckTasksWaitingTermination &rArr; prvDeleteTCB &rArr; vPortFree &rArr; xTaskResumeAll &rArr; xTaskIncrementTick &rArr; vApplicationTickHook &rArr; GPIO_ResetBits
+<BR><BR>[Stack]<UL><LI>Max Depth = 104<LI>Call Chain = prvIdleTask &rArr; prvCheckTasksWaitingTermination &rArr; prvDeleteTCB &rArr; vPortFree &rArr; xTaskResumeAll &rArr; xTaskIncrementTick &rArr; vApplicationTickHook &rArr; led_display &rArr; GPIO_ResetBits
 </UL>
 <BR>[Calls]<UL><LI><a href="#[f7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;prvCheckTasksWaitingTermination
 </UL>

@@ -60,15 +60,21 @@ void vApplicationTickHook (void)
 {
         static u32 ms_cnt = 0;
         ms_cnt++;
+        led_display();
         if ((ms_cnt % 1000) == 0) {
                 STATE_LED_TOGGLE();
-                led_cnt();
                 DHCP_time_handler();
         }
 }
 
+#define APP1_VETOR_TABLE_ADDR   0x3000
+#define APP2_VETOR_TABLE_ADDR   0x1C000
+
 int main(void)
 {
+        
+        NVIC_SetVectorTable(NVIC_VectTab_FLASH, APP1_VETOR_TABLE_ADDR);
+        
         RCC_APB2PeriphClockCmd( RCC_APB2Periph_GPIOA |
                                 RCC_APB2Periph_GPIOB |
                                 RCC_APB2Periph_GPIOC |
@@ -80,8 +86,8 @@ int main(void)
                                 ENABLE );
 
         // NVIC Priority Group In freeRTOS Must Set To NVIC_PriorityGroup_4
-        NVIC_PriorityGroupConfig(NVIC_PriorityGroup_4);
-
+        NVIC_PriorityGroupConfig(NVIC_PriorityGroup_4);               
+        
         RCC_ClocksTypeDef rcc_clock_freq;
 
         RCC_GetClocksFreq(&rcc_clock_freq);

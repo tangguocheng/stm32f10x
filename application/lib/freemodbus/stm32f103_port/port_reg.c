@@ -2,7 +2,7 @@
 
 static volatile u8 write_unlock = 0;
 
-eMBErrorCode    eMBRegInputCB( UCHAR * pucRegBuffer, USHORT usAddress,
+eMBErrorCode eMBRegInputCB( UCHAR * pucRegBuffer, USHORT usAddress,
                                USHORT usNRegs )
 {
         return (MB_ENOERR);
@@ -10,19 +10,19 @@ eMBErrorCode    eMBRegInputCB( UCHAR * pucRegBuffer, USHORT usAddress,
 
 
 eMBErrorCode eMBRegHoldingCB( UCHAR * pucRegBuffer, USHORT usAddress,
-                                 USHORT usNRegs, eMBRegisterMode eMode )
+                              USHORT usNRegs, eMBRegisterMode eMode )
 {
         return (MB_ENOERR);
 }
 
 eMBErrorCode eMBRegCoilsCB( UCHAR * pucRegBuffer, USHORT usAddress,
-                               USHORT usNCoils, eMBRegisterMode eMode )
+                            USHORT usNCoils, eMBRegisterMode eMode )
 {
         return (MB_ENOERR);
 }
 
 eMBErrorCode eMBRegDiscreteCB( UCHAR * pucRegBuffer, USHORT usAddress,
-                                  USHORT usNDiscrete )
+                               USHORT usNDiscrete )
 {
         return (MB_ENOERR);
 }
@@ -36,29 +36,30 @@ eMBErrorCode eMBRegDiscreteCB( UCHAR * pucRegBuffer, USHORT usAddress,
 #define MB_REBOOT_CODE          0x68
 #define MB_PASSWD_ADDR          0xFFF0
 #define MB_PASSWD_DATA          {0x00,0x00,0x00,0x00}
-// user define 
+// user define
 eMBException eMBFuncUserDefine( UCHAR * pucFrame, USHORT * usLen )
 {
-        switch (pucFrame[MB_PDU_FUNC_OFF]){
-                case MB_PASSWD_CODE:{
+        switch (pucFrame[MB_PDU_FUNC_OFF]) {
+        case MB_PASSWD_CODE: 
+                if (*usLen == (1 + 2 + 4)) {
                         u16 addr = pucFrame[MB_PDU_DATA_OFF] << 8u;
                         addr |= pucFrame[MB_PDU_DATA_OFF + 1];
-                        if (addr == MB_PASSWD_ADDR) {   // todo: check password data
+                        if (addr == MB_PASSWD_ADDR) {                   // todo: check password data
                                 pucFrame[MB_PDU_DATA_OFF] = 0x01;
-                                write_unlock = 1;       // write enable
+                                write_unlock = 1;                       // write enable
                         } else {
                                 pucFrame[MB_PDU_DATA_OFF] = 0x00;
                         }
                         *usLen = 2;
                 }
-                        break;
-                case MB_DOWNLOAD_CODE:
+        break;
+        case MB_DOWNLOAD_CODE:
                 break;
-                
-                case MB_UPDATE_OP_CODE:
+
+        case MB_UPDATE_OP_CODE:
                 break;
-                
-                case MB_REBOOT_CODE:
+
+        case MB_REBOOT_CODE:
                 break;
         }
 

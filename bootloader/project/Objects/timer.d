@@ -28,4 +28,3 @@
 .\objects\timer.o: ..\lib\st_lib\fwlib\inc\stm32f10x_usart.h
 .\objects\timer.o: ..\lib\st_lib\fwlib\inc\stm32f10x_wwdg.h
 .\objects\timer.o: ..\lib\st_lib\fwlib\inc\misc.h
-.\objects\timer.o: ..\src\BSP\w5500_port.h

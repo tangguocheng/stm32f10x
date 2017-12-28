@@ -45,5 +45,5 @@
 .\objects\bsp_w5500_port.o: ..\lib\ioLibrary_Driver-master\Internet\DHCP\dhcp.h
 .\objects\bsp_w5500_port.o: ..\src\proj_conf.h
 .\objects\bsp_w5500_port.o: ..\src\BSP\bsp_w5500_port.h
-.\objects\bsp_w5500_port.o: ..\src\BSP\delay.h
+.\objects\bsp_w5500_port.o: ..\src\BSP\bsp_delay.h
 .\objects\bsp_w5500_port.o: ..\src\task\task_w5500.h

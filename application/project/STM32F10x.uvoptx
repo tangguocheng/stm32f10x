@@ -81,21 +81,26 @@
       <Books>
         <Book>
           <Number>0</Number>
-          <Title>Base Board Schematics (MCBSTM32E)</Title>
-          <Path>C:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.0.0\Documents\mcbstm32e-base-board-schematics.pdf</Path>
+          <Title>Quick Start Guide (MCBSTM32E)</Title>
+          <Path>C:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Boards\Keil\MCBSTM32E\Documentation\STM32E_QSG.pdf</Path>
         </Book>
         <Book>
           <Number>1</Number>
-          <Title>Display Board Schematics (MCBSTM32E)</Title>
-          <Path>C:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.0.0\Documents\mcbstm32e-display-board-schematics.pdf</Path>
+          <Title>Base Board Schematics (MCBSTM32E)</Title>
+          <Path>C:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Boards\Keil\MCBSTM32E\Documentation\mcbstm32e-base-board-schematics.pdf</Path>
         </Book>
         <Book>
           <Number>2</Number>
-          <Title>User Manual (MCBSTM32E)</Title>
-          <Path>C:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.0.0\Documents\mcbstm32e.chm</Path>
+          <Title>Display Board Schematics (MCBSTM32E)</Title>
+          <Path>C:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Boards\Keil\MCBSTM32E\Documentation\mcbstm32e-display-board-schematics.pdf</Path>
         </Book>
         <Book>
           <Number>3</Number>
+          <Title>User Manual (MCBSTM32E)</Title>
+          <Path>C:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Boards\Keil\MCBSTM32E\Documentation\mcbstm32e.chm</Path>
+        </Book>
+        <Book>
+          <Number>4</Number>
           <Title>MCBSTM32E Evaluation Board Web Page (MCBSTM32E)</Title>
           <Path>http://www.keil.com/mcbstm32e/</Path>
         </Book>
@@ -351,7 +356,7 @@
 
   <Group>
     <GroupName>freeModbus_lib</GroupName>
-    <tvExp>1</tvExp>
+    <tvExp>0</tvExp>
     <tvExpOptDlg>0</tvExpOptDlg>
     <cbSel>0</cbSel>
     <RteFlg>0</RteFlg>
@@ -476,7 +481,7 @@
 
   <Group>
     <GroupName>FreeRTOS</GroupName>
-    <tvExp>1</tvExp>
+    <tvExp>0</tvExp>
     <tvExpOptDlg>0</tvExpOptDlg>
     <cbSel>0</cbSel>
     <RteFlg>0</RteFlg>
@@ -696,6 +701,19 @@
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
+    <File>
+      <GroupNumber>6</GroupNumber>
+      <FileNumber>33</FileNumber>
+      <FileType>1</FileType>
+      <tvExp>0</tvExp>
+      <Focus>0</Focus>
+      <tvExpOptDlg>0</tvExpOptDlg>
+      <bDave2>0</bDave2>
+      <PathWithFileName>..\lib\st_lib\fwlib\src\stm32f10x_flash.c</PathWithFileName>
+      <FilenameWithoutPath>stm32f10x_flash.c</FilenameWithoutPath>
+      <RteFlg>0</RteFlg>
+      <bShared>0</bShared>
+    </File>
   </Group>
 
   <Group>
@@ -706,7 +724,7 @@
     <RteFlg>0</RteFlg>
     <File>
       <GroupNumber>7</GroupNumber>
-      <FileNumber>33</FileNumber>
+      <FileNumber>34</FileNumber>
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
@@ -719,7 +737,7 @@
     </File>
     <File>
       <GroupNumber>7</GroupNumber>
-      <FileNumber>34</FileNumber>
+      <FileNumber>35</FileNumber>
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
@@ -738,19 +756,6 @@
     <tvExpOptDlg>0</tvExpOptDlg>
     <cbSel>0</cbSel>
     <RteFlg>0</RteFlg>
-    <File>
-      <GroupNumber>8</GroupNumber>
-      <FileNumber>35</FileNumber>
-      <FileType>1</FileType>
-      <tvExp>0</tvExp>
-      <Focus>0</Focus>
-      <tvExpOptDlg>0</tvExpOptDlg>
-      <bDave2>0</bDave2>
-      <PathWithFileName>..\src\BSP\delay.c</PathWithFileName>
-      <FilenameWithoutPath>delay.c</FilenameWithoutPath>
-      <RteFlg>0</RteFlg>
-      <bShared>0</bShared>
-    </File>
     <File>
       <GroupNumber>8</GroupNumber>
       <FileNumber>36</FileNumber>
@@ -816,6 +821,19 @@
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
+    <File>
+      <GroupNumber>8</GroupNumber>
+      <FileNumber>41</FileNumber>
+      <FileType>1</FileType>
+      <tvExp>0</tvExp>
+      <Focus>0</Focus>
+      <tvExpOptDlg>0</tvExpOptDlg>
+      <bDave2>0</bDave2>
+      <PathWithFileName>..\src\BSP\bsp_delay.c</PathWithFileName>
+      <FilenameWithoutPath>bsp_delay.c</FilenameWithoutPath>
+      <RteFlg>0</RteFlg>
+      <bShared>0</bShared>
+    </File>
   </Group>
 
   <Group>
@@ -826,7 +844,7 @@
     <RteFlg>0</RteFlg>
     <File>
       <GroupNumber>9</GroupNumber>
-      <FileNumber>41</FileNumber>
+      <FileNumber>42</FileNumber>
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
@@ -839,7 +857,7 @@
     </File>
     <File>
       <GroupNumber>9</GroupNumber>
-      <FileNumber>42</FileNumber>
+      <FileNumber>43</FileNumber>
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
@@ -860,7 +878,7 @@
     <RteFlg>0</RteFlg>
     <File>
       <GroupNumber>10</GroupNumber>
-      <FileNumber>43</FileNumber>
+      <FileNumber>44</FileNumber>
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
@@ -874,14 +892,48 @@
   </Group>
 
   <Group>
-    <GroupName>todo</GroupName>
+    <GroupName>IAP</GroupName>
     <tvExp>1</tvExp>
     <tvExpOptDlg>0</tvExpOptDlg>
     <cbSel>0</cbSel>
     <RteFlg>0</RteFlg>
     <File>
       <GroupNumber>11</GroupNumber>
-      <FileNumber>44</FileNumber>
+      <FileNumber>45</FileNumber>
+      <FileType>1</FileType>
+      <tvExp>0</tvExp>
+      <Focus>0</Focus>
+      <tvExpOptDlg>0</tvExpOptDlg>
+      <bDave2>0</bDave2>
+      <PathWithFileName>..\src\STM_FLASH\stm_flash.c</PathWithFileName>
+      <FilenameWithoutPath>stm_flash.c</FilenameWithoutPath>
+      <RteFlg>0</RteFlg>
+      <bShared>0</bShared>
+    </File>
+    <File>
+      <GroupNumber>11</GroupNumber>
+      <FileNumber>46</FileNumber>
+      <FileType>1</FileType>
+      <tvExp>0</tvExp>
+      <Focus>0</Focus>
+      <tvExpOptDlg>0</tvExpOptDlg>
+      <bDave2>0</bDave2>
+      <PathWithFileName>..\src\IAP\IAP.c</PathWithFileName>
+      <FilenameWithoutPath>IAP.c</FilenameWithoutPath>
+      <RteFlg>0</RteFlg>
+      <bShared>0</bShared>
+    </File>
+  </Group>
+
+  <Group>
+    <GroupName>todo</GroupName>
+    <tvExp>1</tvExp>
+    <tvExpOptDlg>0</tvExpOptDlg>
+    <cbSel>0</cbSel>
+    <RteFlg>0</RteFlg>
+    <File>
+      <GroupNumber>12</GroupNumber>
+      <FileNumber>47</FileNumber>
       <FileType>5</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>

@@ -14,10 +14,10 @@
 
 #define MEM_ORIGIN_START                MEM_START_ADDR
 
-#define MEM_INITFL_ADDR                 MEM_ORIGIN_START + 2                    // 初始化标志
+#define MEM_INITFL_ADDR                 MEM_ORIGIN_START + 2                    
 #define MEM_INITFL_DATA1                0x5A
 #define MEM_INITFL_DATA2                0xA5
-#define MEM_INITFL_LEN                  0x02                            // 初始化标志长度
+#define MEM_INITFL_LEN                  0x02                            
 #define MEM_SERVER_IP_ADDR              (MEM_INITFL_ADDR + MEM_INITFL_LEN)      // server infomation
 #define MEM_SUBNET_MASK_ADDR            (MEM_SERVER_IP_ADDR + (4 + 2))
 #define MEM_LOCAL_IP_ADDR               (MEM_SUBNET_MASK_ADDR + 4)

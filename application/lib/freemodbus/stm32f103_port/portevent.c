@@ -26,8 +26,7 @@ void vMBPortEventClose( void )
 {
         void *ret_msg;
         if( xMailBox != NULL ) {
-                while( uxQueueMessagesWaiting( xMailBox ) != 0 )
-                {
+                while( uxQueueMessagesWaiting( xMailBox ) != 0 ) {
                         xQueueReceive( xMailBox, &ret_msg, MS_TO_TICKS(1) );
                 }
                 vQueueDelete( xMailBox );
@@ -44,44 +43,34 @@ BOOL xMBPortEventPost( eMBEventType eEvent )
 
 u32 sys_arch_mbox_fetch( QueueHandle_t mbox, void **msg, u32 timeout )
 {
-    void *ret_msg;
-    portBASE_TYPE xStatus;
-    portTickType xTicksStart, xTicksEnd, xTicksElapsed;
-    u32 timespent;
+        void *ret_msg;
+        portBASE_TYPE xStatus;
+        portTickType xTicksStart, xTicksEnd, xTicksElapsed;
+        u32 timespent;
 
-    xTicksStart = xTaskGetTickCount();
-    if(timeout == 0)
-    {
-        do
-        {
-            xStatus = xQueueReceive( mbox, &ret_msg, MS_TO_TICKS(100) );
+        xTicksStart = xTaskGetTickCount();
+        if(timeout == 0) {
+                do {
+                        xStatus = xQueueReceive( mbox, &ret_msg, MS_TO_TICKS(100) );
+                } while( xStatus != pdTRUE );
+        } else {
+                xStatus = xQueueReceive( mbox, &ret_msg, MS_TO_TICKS(timeout) );
         }
-        while( xStatus != pdTRUE );
-    }
-    else
-    {
-        xStatus = xQueueReceive( mbox, &ret_msg, MS_TO_TICKS(timeout) );
-    }
 
-    if( xStatus == pdTRUE )
-    {
-        if( msg )
-        {
-            *msg = ret_msg;
+        if( xStatus == pdTRUE ) {
+                if( msg ) {
+                        *msg = ret_msg;
+                }
+                xTicksEnd = xTaskGetTickCount(  );
+                xTicksElapsed = xTicksEnd - xTicksStart;
+                timespent = TICKS_TO_MS( xTicksElapsed );
+        } else {
+                if( msg ) {
+                        *msg = NULL;
+                }
+                timespent = SYS_ARCH_TIMEOUT;
         }
-        xTicksEnd = xTaskGetTickCount(  );
-        xTicksElapsed = xTicksEnd - xTicksStart;
-        timespent = TICKS_TO_MS( xTicksElapsed );
-    }
-    else
-    {
-        if( msg )
-        {
-            *msg = NULL;
-        }
-        timespent = SYS_ARCH_TIMEOUT;
-    }
-    return timespent;
+        return timespent;
 }
 
 BOOL xMBPortEventGet( eMBEventType * eEvent )

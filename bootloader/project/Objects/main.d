@@ -31,4 +31,5 @@
 .\objects\main.o: ..\src\proj_conf.h
 .\objects\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdarg.h
 .\objects\main.o: ..\src\BSP\bsp_led.h
-.\objects\main.o: ..\src\BSP\w5500_port.h
+.\objects\main.o: ..\src\APP\eeprom_mem.h
+.\objects\main.o: ..\src\BSP\bsp_led_display.h

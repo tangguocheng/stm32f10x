@@ -1,8 +1,1 @@
-- w5500 dhcp 获取IP
-- socket 连接服务器
-- 等待服务器下发升级指令，否则跳转到应用代码(初期调试流程可为，检测升级按键，数码管倒计时)
-- 升级协议仍然走Modbus TCP,端口号502
-- Modbus TCP 自己实现
-- 升级逻辑最后做
-
-stm32f103vct6 256k flash 48k ram
+- 新的bootloader只引导应用程序启动
