@@ -1,0 +1,13 @@
+.\flash\obj\heap_2.o: ..\..\User\FreeRTOS\Source\portable\MemMang\heap_2.c
+.\flash\obj\heap_2.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
+.\flash\obj\heap_2.o: ..\..\User\FreeRTOS\Source\include\FreeRTOS.h
+.\flash\obj\heap_2.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h
+.\flash\obj\heap_2.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+.\flash\obj\heap_2.o: ..\..\User\FreeRTOS\Source\include\FreeRTOSConfig.h
+.\flash\obj\heap_2.o: ..\..\User\FreeRTOS\Source\include\projdefs.h
+.\flash\obj\heap_2.o: ..\..\User\FreeRTOS\Source\include\portable.h
+.\flash\obj\heap_2.o: ..\..\User\FreeRTOS\Source\include\deprecated_definitions.h
+.\flash\obj\heap_2.o: ..\..\User\FreeRTOS\Source\portable\RVDS\ARM_CM3\portmacro.h
+.\flash\obj\heap_2.o: ..\..\User\FreeRTOS\Source\include\mpu_wrappers.h
+.\flash\obj\heap_2.o: ..\..\User\FreeRTOS\Source\include\task.h
+.\flash\obj\heap_2.o: ..\..\User\FreeRTOS\Source\include\list.h
