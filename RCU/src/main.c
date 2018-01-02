@@ -26,7 +26,6 @@ void bsp_init(void)
 {
         led_init();
         Uart1_init(9600,1,0);
-        Uart3_init(9600,2,0);
         board_gpio_init();
 //        led_display_init();
 //        eeprom_first_burn();
@@ -46,7 +45,11 @@ void init_task(void * param)
 //        xTaskCreate( task_modbus, "task_modbus", configMINIMAL_STACK_SIZE, NULL, configMODBUS_PRIORITIES, &xHandle );
 //        configASSERT( xHandle );
 
-        xTaskCreate( task_485, "task_485", configMINIMAL_STACK_SIZE, NULL, configMODBUS_PRIORITIES, &xHandle );
+        xTaskCreate( task_485_send, "task_485_send", configMINIMAL_STACK_SIZE, NULL, configMODBUS_PRIORITIES, &xHandle );
+        configASSERT( xHandle );
+        
+        
+        xTaskCreate( task_485_poll, "task_485_poll", configMINIMAL_STACK_SIZE, NULL, configMODBUS_PRIORITIES - 1, &xHandle );
         configASSERT( xHandle );
         
         vTaskDelete( NULL );

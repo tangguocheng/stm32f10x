@@ -22,7 +22,6 @@
 ".\objects\bsp_delay.o"
 ".\objects\bsp_uart1.o"
 ".\objects\bsp_board_gpio.o"
-".\objects\bsp_uart3.o"
 ".\objects\task_485.o"
 ".\objects\crc16.o"
 --library_type=microlib --strict --scatter ".\Objects\STM32F10x.sct"

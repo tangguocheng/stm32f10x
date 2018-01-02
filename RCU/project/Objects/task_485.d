@@ -38,6 +38,7 @@
 .\objects\task_485.o: ..\lib\FreeRTOS\Source\include\mpu_wrappers.h
 .\objects\task_485.o: ..\lib\FreeRTOS\Source\include\task.h
 .\objects\task_485.o: ..\lib\FreeRTOS\Source\include\list.h
+.\objects\task_485.o: ..\lib\FreeRTOS\Source\include\queue.h
 .\objects\task_485.o: ..\src\BSP\bsp_uart1.h
 .\objects\task_485.o: ..\src\APP\CRC16.h
 .\objects\task_485.o: ..\src\BSP\bsp_board_gpio.h

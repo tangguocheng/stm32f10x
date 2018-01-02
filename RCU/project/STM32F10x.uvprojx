@@ -1090,11 +1090,6 @@
               <FileType>1</FileType>
               <FilePath>..\src\BSP\bsp_board_gpio.c</FilePath>
             </File>
-            <File>
-              <FileName>bsp_uart3.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\src\BSP\bsp_uart3.c</FilePath>
-            </File>
           </Files>
         </Group>
         <Group>
