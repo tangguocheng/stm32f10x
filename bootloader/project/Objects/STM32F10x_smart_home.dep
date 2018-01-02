@@ -1,5 +1,5 @@
 Dependencies for Project 'STM32F10x', Target 'smart_home': (DO NOT MODIFY !)
-F (..\src\APP\eeprom_mem.c)(0x5A445EAA)(--c99 -c --cpu Cortex-M3 -D__MICROLIB -g -O2 --apcs=interwork -I..\src -I..\lib\st_lib\cmsis -I..\lib\st_lib\cmsis\startup -I..\lib\st_lib\fwlib\inc -I..\src\BSP -I..\src\APP-I E:\woosiyuan\smarthome\stm32f10x\bootloader\project\RTE-I C:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include-I C:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="515" -DSTM32F10X_HD -DUSE_STDPERIPH_DRIVER -DUSE_FULL_ASSERT-o .\objects\eeprom_mem.o --omf_browse .\objects\eeprom_mem.crf --depend .\objects\eeprom_mem.d)
+F (..\src\APP\eeprom_mem.c)(0x5A4B0266)(--c99 -c --cpu Cortex-M3 -D__MICROLIB -g -O2 --apcs=interwork -I..\src -I..\lib\st_lib\cmsis -I..\lib\st_lib\cmsis\startup -I..\lib\st_lib\fwlib\inc -I..\src\BSP -I..\src\APP-I E:\woosiyuan\smarthome\stm32f10x\bootloader\project\RTE-I C:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include-I C:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="515" -DSTM32F10X_HD -DUSE_STDPERIPH_DRIVER -DUSE_FULL_ASSERT-o .\objects\eeprom_mem.o --omf_browse .\objects\eeprom_mem.crf --depend .\objects\eeprom_mem.d)
 I (..\lib\st_lib\cmsis\stm32f10x.h)(0x5A4448EF)
 I (..\lib\st_lib\cmsis\core_cm3.h)(0x5A4448EF)
 I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x54C245B8)

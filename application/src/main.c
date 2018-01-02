@@ -5,7 +5,7 @@
 #include "proj_conf.h"
 #include <stdarg.h>
 #include "semphr.h"
-
+#include "IAP.h"
 #include "bsp_led.h"
 #include "task_w5500.h"
 #include "task_modbus.h"
@@ -67,13 +67,10 @@ void vApplicationTickHook (void)
         }
 }
 
-#define APP1_VETOR_TABLE_ADDR   0x3000
-#define APP2_VETOR_TABLE_ADDR   0x1C000
-
 int main(void)
 {
         
-        NVIC_SetVectorTable(NVIC_VectTab_FLASH, APP1_VETOR_TABLE_ADDR);
+        iap_init(); // must call this function befor interrupt enabled
         
         RCC_APB2PeriphClockCmd( RCC_APB2Periph_GPIOA |
                                 RCC_APB2Periph_GPIOB |

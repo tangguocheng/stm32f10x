@@ -47,7 +47,6 @@ void ee_read_bytes_os(u8 *write_buf, u16 addr, u16 buf_len)
         EEPROM_EXIT_CRITICAL();
 }
 
-
 void ee_recevor_usr_app(u32 *usr_app)
 {
         u8 eeprom_data[10];
@@ -58,8 +57,6 @@ void ee_recevor_usr_app(u32 *usr_app)
                         ee_read_bytes_os(eeprom_data,MEM_USER_APP_ADDR,0x04);
                         *usr_app = *(u32 *)&eeprom_data[0];
                 }
-        } else {
-
         }
 }
 

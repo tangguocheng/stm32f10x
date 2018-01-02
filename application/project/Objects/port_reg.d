@@ -43,3 +43,4 @@
 .\objects\port_reg.o: ..\lib\freemodbus\modbus\include\mbport.h
 .\objects\port_reg.o: ..\lib\freemodbus\modbus\include\mbproto.h
 .\objects\port_reg.o: ..\lib\freemodbus\modbus\include\mbframe.h
+.\objects\port_reg.o: ..\src\IAP\IAP.h

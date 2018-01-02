@@ -28,8 +28,6 @@
 .\objects\eeprom_mem.o: ..\lib\st_lib\fwlib\inc\stm32f10x_usart.h
 .\objects\eeprom_mem.o: ..\lib\st_lib\fwlib\inc\stm32f10x_wwdg.h
 .\objects\eeprom_mem.o: ..\lib\st_lib\fwlib\inc\misc.h
-.\objects\eeprom_mem.o: ..\src\BSP\bsp_eeprom_24xx.h
-.\objects\eeprom_mem.o: ..\src\BSP\bsp_w5500_port.h
 .\objects\eeprom_mem.o: ..\lib\FreeRTOS\Source\include\freeRTOS.h
 .\objects\eeprom_mem.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h
 .\objects\eeprom_mem.o: ..\src\FreeRTOSConfig.h
@@ -40,3 +38,7 @@
 .\objects\eeprom_mem.o: ..\lib\FreeRTOS\Source\include\mpu_wrappers.h
 .\objects\eeprom_mem.o: ..\lib\FreeRTOS\Source\include\task.h
 .\objects\eeprom_mem.o: ..\lib\FreeRTOS\Source\include\list.h
+.\objects\eeprom_mem.o: ..\src\IAP\IAP.h
+.\objects\eeprom_mem.o: ..\src\BSP\bsp_eeprom_24xx.h
+.\objects\eeprom_mem.o: ..\src\BSP\bsp_w5500_port.h
+.\objects\eeprom_mem.o: ..\src\APP\eeprom_mem.h

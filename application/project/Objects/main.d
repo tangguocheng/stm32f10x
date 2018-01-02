@@ -42,6 +42,7 @@
 .\objects\main.o: ..\src\proj_conf.h
 .\objects\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdarg.h
 .\objects\main.o: ..\lib\FreeRTOS\Source\include\semphr.h
+.\objects\main.o: ..\src\IAP\IAP.h
 .\objects\main.o: ..\src\BSP\bsp_led.h
 .\objects\main.o: ..\src\task\task_w5500.h
 .\objects\main.o: ..\src\task\task_modbus.h

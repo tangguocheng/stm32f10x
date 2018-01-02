@@ -211,11 +211,11 @@ typedef enum
 
 #define FLASH_WRProt_AllPages          ((uint32_t)0xFFFFFFFF) /*!< Write protection of all Pages */
 
-#define IS_FLASH_WRPROT_PAGE(PAGE)     (((PAGE) != 0x00000000))
+#define IS_FLASH_WRPROT_PAGE(PAGE) (((PAGE) != 0x00000000))
 
-#define IS_FLASH_ADDRESS(ADDRESS)      (((ADDRESS) >= 0x08000000) && ((ADDRESS) < 0x080FFFFF))
+#define IS_FLASH_ADDRESS(ADDRESS) (((ADDRESS) >= 0x08000000) && ((ADDRESS) < 0x080FFFFF))
 
-#define IS_OB_DATA_ADDRESS(ADDRESS)    (((ADDRESS) == 0x1FFFF804) || ((ADDRESS) == 0x1FFFF806))
+#define IS_OB_DATA_ADDRESS(ADDRESS) (((ADDRESS) == 0x1FFFF804) || ((ADDRESS) == 0x1FFFF806))
 
 /**
   * @}
@@ -225,9 +225,9 @@ typedef enum
   * @{
   */
 
-#define OB_IWDG_SW                      ((uint16_t)0x0001)  /*!< Software IWDG selected */
-#define OB_IWDG_HW                      ((uint16_t)0x0000)  /*!< Hardware IWDG selected */
-#define IS_OB_IWDG_SOURCE(SOURCE)       (((SOURCE) == OB_IWDG_SW) || ((SOURCE) == OB_IWDG_HW))
+#define OB_IWDG_SW                     ((uint16_t)0x0001)  /*!< Software IWDG selected */
+#define OB_IWDG_HW                     ((uint16_t)0x0000)  /*!< Hardware IWDG selected */
+#define IS_OB_IWDG_SOURCE(SOURCE) (((SOURCE) == OB_IWDG_SW) || ((SOURCE) == OB_IWDG_HW))
 
 /**
   * @}

@@ -28,6 +28,8 @@ eMBErrorCode eMBRegDiscreteCB( UCHAR * pucRegBuffer, USHORT usAddress,
 }
 
 #include "mbframe.h"
+#include "IAP.h"
+
 #define MB_PASSWD_CODE          0x65
 #define MB_DOWNLOAD_CODE        0x66
 #define MB_UPDATE_OP_CODE       0x67
@@ -57,9 +59,19 @@ eMBException eMBFuncUserDefine( UCHAR * pucFrame, USHORT * usLen )
                 break;
 
         case MB_UPDATE_OP_CODE:
+                if (*usLen == 2) {
+                        if (pucFrame[MB_PDU_DATA_OFF] == 0x01)
+                                iap_start();
+                        else if (pucFrame[MB_PDU_DATA_OFF] == 0x02) {
+                                iap_done();
+                                pucFrame[MB_PDU_DATA_OFF + 1] = 0x01;
+                                *usLen = 3;
+                        }
+                }
                 break;
 
         case MB_REBOOT_CODE:
+                iap_soft_reset();
                 break;
         }
 
