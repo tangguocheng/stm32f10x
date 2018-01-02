@@ -83,10 +83,10 @@ namespace ModbusTCPUpdate
             }
             else
             {
-                if (tcp_listen_thread != null && tcp_listen_thread.IsAlive) tcp_listen_thread.Abort();
-                if (tcp_client_receive != null && tcp_client_receive.IsAlive) tcp_client_receive.Abort();
-                if (tcp_server_send != null && tcp_server_send.IsAlive) tcp_server_send.Abort();
-                if (device_update_thread != null && device_update_thread.IsAlive) device_update_thread.Abort();
+                //if (tcp_listen_thread != null && tcp_listen_thread.IsAlive) tcp_listen_thread.Abort();
+                //if (tcp_client_receive != null && tcp_client_receive.IsAlive) tcp_client_receive.Abort();
+                //if (tcp_server_send != null && tcp_server_send.IsAlive) tcp_server_send.Abort();
+                //if (device_update_thread != null && device_update_thread.IsAlive) device_update_thread.Abort();
 
                 serverSocket.Close();
                 add_infomation("关闭：" + ip + ":" + myport.ToString());
@@ -107,80 +107,23 @@ namespace ModbusTCPUpdate
 
                     add_infomation("客户端：" + client_ip + " 已连接。");
 
-                    //tcp_client_receive = new Thread(client_thread_receive);
-                    //tcp_client_receive.Start(client);
-
                     if (!lb_tcp_client.Items.Contains(client_ip))
                     {
                         lb_tcp_client.Items.Add(client_ip);
                         client_socket.Add(client);
                     }
+
+                    foreach (Socket clt in client_socket)
+                    {
+
+                    }
                 }
-                catch (Exception)
+                catch (Exception e)
                 {
-                    //add_infomation(e.Message);
+                    add_infomation(e.Message);
                     return;
                 }
-
-
             }
-        }
-
-        private void client_thread_receive(object clientSocket)
-        {
-            Socket myClientSocket = (Socket)clientSocket;
-            byte[] result = new byte[1024];
-            while (true)
-            {
-                try
-                {
-                    //通过clientSocket接收数据  
-                    int receiveNumber = myClientSocket.Receive(result);
-                    add_infomation("Rx[" + myClientSocket.RemoteEndPoint.ToString() + "]: " + Encoding.ASCII.GetString(result, 0, receiveNumber));
-                    new Thread(server_thread_response).Start(myClientSocket);
-                    tcp_server_send = new Thread(server_thread_response);
-                    tcp_server_send.Start(myClientSocket);
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine(ex.Message);
-                    myClientSocket.Shutdown(SocketShutdown.Both);
-                    myClientSocket.Close();
-                    break;
-                }
-            }
-        }
-
-        private void server_thread_response(object clientSocket)
-        {
-            Socket myClientSocket = (Socket)clientSocket;
-            while (true)
-            {
-
-            }
-        }
-
-        private void TcpServer_OnDataReceived(byte[] object1)
-        {
-            BeginInvoke(new Action<byte[]>(ShowModbusData), object1);
-        }
-
-        private void ShowModbusData(byte[] modbus)
-        {
-            string transaction_id = BitConverter.ToString(modbus, 0, 2);
-            string protocol_id = BitConverter.ToString(modbus, 2, 2); ;
-            string length = BitConverter.ToString(modbus, 4, 1); ;
-            string unit_id = BitConverter.ToString(modbus, 5, 1); ;
-            string Fcode = BitConverter.ToString(modbus, 6, 1); ;
-            string data = BitConverter.ToString(modbus, 7); ;
-
-            txb_info.AppendText(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff") + " :" + Environment.NewLine +
-                "transaction_id: " + transaction_id + Environment.NewLine +
-                "protocol_id: " + protocol_id + Environment.NewLine +
-                "length: " + length + Environment.NewLine +
-                "unit_id: " + unit_id + Environment.NewLine +
-                "Fcode: " + Fcode + Environment.NewLine +
-                "data: " + data + Environment.NewLine);
         }
 
         private bool check_passwd()
@@ -394,7 +337,10 @@ namespace ModbusTCPUpdate
                 if (result)
                     add_infomation("升级完成，线程退出...");
                 else
+                {
+                    pgb_update_status.Value = 0;
                     add_infomation("升级失败，线程退出...");
+                }
             }
         }
 

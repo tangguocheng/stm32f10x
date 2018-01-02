@@ -31,6 +31,7 @@
             this.btx_open_server = new System.Windows.Forms.Button();
             this.function_area = new System.Windows.Forms.TabControl();
             this.tab_update = new System.Windows.Forms.TabPage();
+            this.btn_device_reboot = new System.Windows.Forms.Button();
             this.pgb_update_status = new System.Windows.Forms.ProgressBar();
             this.btn_update_start = new System.Windows.Forms.Button();
             this.btn_open_file = new System.Windows.Forms.Button();
@@ -44,7 +45,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.txb_server_port = new System.Windows.Forms.TextBox();
             this.txb_server_ip = new System.Windows.Forms.TextBox();
-            this.btn_device_reboot = new System.Windows.Forms.Button();
             this.function_area.SuspendLayout();
             this.tab_update.SuspendLayout();
             this.groupBox4.SuspendLayout();
@@ -71,7 +71,7 @@
             this.function_area.Multiline = true;
             this.function_area.Name = "function_area";
             this.function_area.SelectedIndex = 0;
-            this.function_area.Size = new System.Drawing.Size(919, 269);
+            this.function_area.Size = new System.Drawing.Size(919, 255);
             this.function_area.TabIndex = 3;
             // 
             // tab_update
@@ -85,10 +85,20 @@
             this.tab_update.Location = new System.Drawing.Point(4, 22);
             this.tab_update.Name = "tab_update";
             this.tab_update.Padding = new System.Windows.Forms.Padding(3);
-            this.tab_update.Size = new System.Drawing.Size(911, 243);
+            this.tab_update.Size = new System.Drawing.Size(911, 229);
             this.tab_update.TabIndex = 1;
             this.tab_update.Text = "固件更新";
             this.tab_update.UseVisualStyleBackColor = true;
+            // 
+            // btn_device_reboot
+            // 
+            this.btn_device_reboot.Location = new System.Drawing.Point(177, 203);
+            this.btn_device_reboot.Name = "btn_device_reboot";
+            this.btn_device_reboot.Size = new System.Drawing.Size(75, 23);
+            this.btn_device_reboot.TabIndex = 8;
+            this.btn_device_reboot.Text = "重启设备";
+            this.btn_device_reboot.UseVisualStyleBackColor = true;
+            this.btn_device_reboot.Click += new System.EventHandler(this.btn_device_reboot_Click);
             // 
             // pgb_update_status
             // 
@@ -163,7 +173,7 @@
             this.groupBox2.Size = new System.Drawing.Size(376, 100);
             this.groupBox2.TabIndex = 5;
             this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "已连接客户端列表";
+            this.groupBox2.Text = "客户端列表";
             // 
             // lb_tcp_client
             // 
@@ -224,24 +234,15 @@
             this.txb_server_ip.TabIndex = 2;
             this.txb_server_ip.Text = "127.0.0.1";
             // 
-            // btn_device_reboot
-            // 
-            this.btn_device_reboot.Location = new System.Drawing.Point(177, 203);
-            this.btn_device_reboot.Name = "btn_device_reboot";
-            this.btn_device_reboot.Size = new System.Drawing.Size(75, 23);
-            this.btn_device_reboot.TabIndex = 8;
-            this.btn_device_reboot.Text = "重启设备";
-            this.btn_device_reboot.UseVisualStyleBackColor = true;
-            this.btn_device_reboot.Click += new System.EventHandler(this.btn_device_reboot_Click);
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(919, 269);
+            this.ClientSize = new System.Drawing.Size(919, 255);
             this.Controls.Add(this.function_area);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "updateTool";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             this.Load += new System.EventHandler(this.Form1_Load);
             this.function_area.ResumeLayout(false);
