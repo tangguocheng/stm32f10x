@@ -8,12 +8,12 @@
 void task_modbus(void *param)
 {
         (void)param;
-        
-        eMBTCPInit(SOCK_TCP);   
-        eMBEnable();	
-        
+
+        eMBTCPInit(SOCK_TCP);
+        eMBEnable();
+
         while (1) {
                 eMBPoll();
 //                vTaskDelay(100 * portTICK_PERIOD_MS);
-        }        
+        }
 }

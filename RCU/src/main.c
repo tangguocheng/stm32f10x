@@ -39,15 +39,11 @@ void init_task(void * param)
         
         bsp_init();
         
-//        xTaskCreate( w5500_dhcp_thread, "dhcp_thread", configMINIMAL_STACK_SIZE, NULL, configDHCP_PRIORITIES, &xHandle );
-//        configASSERT( xHandle );
-//        
-//        xTaskCreate( task_modbus, "task_modbus", configMINIMAL_STACK_SIZE, NULL, configMODBUS_PRIORITIES, &xHandle );
-//        configASSERT( xHandle );
-
         xTaskCreate( task_485_send, "task_485_send", configMINIMAL_STACK_SIZE, NULL, configMODBUS_PRIORITIES, &xHandle );
         configASSERT( xHandle );
         
+        xTaskCreate( task_485_receive, "task_485_receive", configMINIMAL_STACK_SIZE, NULL, configMODBUS_PRIORITIES, &xHandle );
+        configASSERT( xHandle );
         
         xTaskCreate( task_485_poll, "task_485_poll", configMINIMAL_STACK_SIZE, NULL, configMODBUS_PRIORITIES - 1, &xHandle );
         configASSERT( xHandle );

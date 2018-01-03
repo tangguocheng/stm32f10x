@@ -36,9 +36,9 @@ void w5500_dhcp_thread(void* param)
                 default:
                         break;
                 }
-                
+
                 vTaskDelay(100 * portTICK_PERIOD_MS);
-        }        
+        }
 }
 
 static u16 tcp_rec_data_len = 0;
@@ -55,7 +55,7 @@ void get_tcp_rev_data(u8 **ppucMBTCPFrame, u16 *usTCPLength)
 void w5500_tcp_thread(void* param)
 {
         (void)param;
-        u8 server_ip[4] = SERVER_IP;	
+        u8 server_ip[4] = SERVER_IP;
         u16 server_port = SERVER_PORT;
         read_server_ip(server_ip,&server_port);
         u8 socket_first_burn = 0;
@@ -66,12 +66,12 @@ void w5500_tcp_thread(void* param)
                         if(getSn_IR(SOCK_TCP) & Sn_IR_CON) {
                                 setSn_IR(SOCK_TCP,Sn_IR_CON);
                         }
-                        
+
                         if (socket_first_burn == 1) {
                                 socket_first_burn = 0;
                                 // send system information to server
                         }
-                        
+
                         if((tcp_rec_data_len = getSn_RX_RSR(SOCK_TCP)) > 0) {
                                 if(tcp_rec_data_len > DATA_BUF_SIZE) tcp_rec_data_len = DATA_BUF_SIZE;
                                 ret = recv(SOCK_TCP,w5500_buffer,tcp_rec_data_len);
@@ -84,8 +84,8 @@ void w5500_tcp_thread(void* param)
                         close(SOCK_TCP);
                         break;
                 case SOCK_INIT :
-                        socket_first_burn = 1;                        
-                        connect(SOCK_TCP, server_ip, server_port);			
+                        socket_first_burn = 1;
+                        connect(SOCK_TCP, server_ip, server_port);
                         break;
                 case SOCK_CLOSED:
                         socket(SOCK_TCP,Sn_MR_TCP,LOCAL_PORT,Sn_MR_ND);

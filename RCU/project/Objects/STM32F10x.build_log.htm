@@ -5,7 +5,7 @@
 <h2>Tool Versions:</h2>
 IDE-Version: ¦ÌVision V5.15
 Copyright (C) 2015 ARM Ltd and ARM Germany GmbH. All rights reserved.
-License Information: tgc Microsoft, Microsoft, LIC=LJWII-T1A34-NS6YQ-NADPS-P41UQ-URS0R
+License Information: rfx Microsoft, Microsoft, LIC=2TTNN-Y26QS-23EM4-FI5X6-04QU1-DDSP5
  
 Tool Versions:
 Toolchain:       MDK-ARM Professional  Version: 5.15.0
@@ -21,18 +21,27 @@ Target DLL:      CMSIS_AGDI.dll V1.21.12.0
 Dialog DLL:      TCM.DLL V1.14.5.0
  
 <h2>Project:</h2>
-E:\work\STM32F103\RCU\project\STM32F10x.uvprojx
-Project File Date:  01/01/2018
+E:\woosiyuan\smarthome\stm32f10x\RCU\project\STM32F10x.uvprojx
+Project File Date:  01/03/2018
 
 <h2>Output:</h2>
 *** Using Compiler 'V5.05 update 2 (build 169)', folder: 'C:\Keil_v5\ARM\ARMCC\Bin'
 Build target 'smart_home'
-After Build - User command #1: fromelf.exe --bin -o "E:\work\STM32F103\RCU\project\Objects\STM32F10x.bin" "E:\work\STM32F103\RCU\project\Objects\STM32F10x.axf"
-".\Objects\STM32F10x.axf" - 0 Error(s), 0 Warning(s).
+compiling task_485.c...
+..\src\task\task_485.c(344): warning:  #550-D: variable "rtl" was set but never used
+                                  BaseType_t rtl = pdFALSE;
+..\src\task\task_485.c(19): warning:  #550-D: variable "read_state_word" was set but never used
+  static u8 read_state_word = 0;
+..\src\task\task_485.c: 2 warnings, 0 errors
+linking...
+Program Size: Code=22580 RO-data=336 RW-data=188 ZI-data=19996  
+FromELF: creating hex file...
+After Build - User command #1: fromelf.exe --bin -o "E:\woosiyuan\smarthome\stm32f10x\RCU\project\Objects\STM32F10x.bin" "E:\woosiyuan\smarthome\stm32f10x\RCU\project\Objects\STM32F10x.axf"
+".\Objects\STM32F10x.axf" - 0 Error(s), 2 Warning(s).
 
 <h2>Collection of Component include folders:</h2>
-  E:\work\STM32F103\RCU\project\RTE
-  C:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.0.0\Device\Include
+  E:\woosiyuan\smarthome\stm32f10x\RCU\project\RTE
+  C:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include
 
 <h2>Collection of Component Files used:</h2>
 </pre>

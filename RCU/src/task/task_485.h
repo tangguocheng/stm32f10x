@@ -15,8 +15,10 @@
 
 void task_485_poll(void* param);
 void task_485_send(void* param);
+void task_485_receive(void* param);
 void receive_protocol_data(u8 data);
 void time_scheduler(void);
 void gpio_input_process(void);
+
 #endif
 
