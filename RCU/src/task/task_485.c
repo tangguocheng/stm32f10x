@@ -93,9 +93,8 @@ void time_scheduler(void)
                 protocol_data[0] = 0xd8;
                 protocol_data[3] = 0;
                 protocol_data[5] = data_04 & (~BIT3);
-                protocol_data[7] = protocol_data[0] ^ protocol_data[1] ^
-                                   protocol_data[2] ^ protocol_data[3] ^
-                                   protocol_data[4] ^ protocol_data[5] ^
+                protocol_data[7] = protocol_data[0] ^ protocol_data[1] ^ protocol_data[2] ^ 
+                                   protocol_data[3] ^ protocol_data[4] ^ protocol_data[5] ^
                                    protocol_data[6] ;
 
                 protocol_data_wait_sent[idx].data_len = 8;
@@ -234,10 +233,10 @@ void gpio_input_process(void)
                         protocol_data[0] = 0xd8;
                         protocol_data[3] = BIT3 | BIT4;
                         protocol_data[5] = BIT1;
-                        protocol_data[7] = protocol_data[0] ^ protocol_data[1] ^
-                                           protocol_data[2] ^ protocol_data[3] ^
-                                           protocol_data[4] ^ protocol_data[5] ^
+                        protocol_data[7] = protocol_data[0] ^ protocol_data[1] ^ protocol_data[2] ^ 
+                                           protocol_data[3] ^ protocol_data[4] ^ protocol_data[5] ^
                                            protocol_data[6] ;
+
                         protocol_data_wait_sent[idx].data_len = 8;
                         void* ptr = &protocol_data_wait_sent[idx];
                         rtl = send_queue_item(1,ptr);
@@ -264,9 +263,8 @@ void gpio_input_process(void)
                 protocol_data[0] = 0xd8;
                 protocol_data[3] = 0;
                 protocol_data[4] = 0;
-                protocol_data[7] = protocol_data[0] ^ protocol_data[1] ^
-                                   protocol_data[2] ^ protocol_data[3] ^
-                                   protocol_data[4] ^ protocol_data[5] ^
+                protocol_data[7] = protocol_data[0] ^ protocol_data[1] ^ protocol_data[2] ^ 
+                                   protocol_data[3] ^ protocol_data[4] ^ protocol_data[5] ^
                                    protocol_data[6] ;
                 protocol_data_wait_sent[idx].data_len = 8;
                 void* ptr = &protocol_data_wait_sent[idx];
@@ -341,7 +339,6 @@ void task_485_receive(void* param)
                 static struct portocol_data_frame *rx = NULL;
                 if ( xQueueReceive(receive_485_queue, &rx, portMAX_DELAY) == pdTRUE ) {
                         if (rx->pro_id == WK8001_PROTOCOL) {
-                                BaseType_t rtl = pdFALSE;
                                 switch (rx->data[0]) {
                                 case 0x12:
                                         data_02 = rx->data[1];
@@ -352,13 +349,12 @@ void task_485_receive(void* param)
                                                 u8* protocol_data = protocol_data_wait_sent[idx].data;
                                                 protocol_data[0] = 0xd8;
                                                 protocol_data[3] = (RL_STATE(4) ? data_02 | BIT1 : data_02 & (~BIT1));
-                                                protocol_data[7] = protocol_data[0] ^ protocol_data[1] ^
-                                                                   protocol_data[2] ^ protocol_data[3] ^
-                                                                   protocol_data[4] ^ protocol_data[5] ^
+                                                protocol_data[7] = protocol_data[0] ^ protocol_data[1] ^ protocol_data[2] ^ 
+                                                                   protocol_data[3] ^ protocol_data[4] ^ protocol_data[5] ^
                                                                    protocol_data[6] ;
                                                 protocol_data_wait_sent[idx].data_len = 8;
                                                 void* ptr = &protocol_data_wait_sent[idx];
-                                                rtl = send_queue_item(0,ptr);
+                                                send_queue_item(0,ptr);
                                         }
                                         if (rx->data[1] & BIT2) {
                                                 RL_TOGGLE(6);
@@ -367,13 +363,12 @@ void task_485_receive(void* param)
                                                 u8* protocol_data = protocol_data_wait_sent[idx].data;
                                                 protocol_data[0] = 0xd8;
                                                 protocol_data[3] = (RL_STATE(6) ? data_02 | BIT1 : data_02 & (~BIT1));
-                                                protocol_data[7] = protocol_data[0] ^ protocol_data[1] ^
-                                                                   protocol_data[2] ^ protocol_data[3] ^
-                                                                   protocol_data[4] ^ protocol_data[5] ^
+                                                protocol_data[7] = protocol_data[0] ^ protocol_data[1] ^ protocol_data[2] ^ 
+                                                                   protocol_data[3] ^ protocol_data[4] ^ protocol_data[5] ^
                                                                    protocol_data[6] ;
                                                 protocol_data_wait_sent[idx].data_len = 8;
                                                 void* ptr = &protocol_data_wait_sent[idx];
-                                                rtl = send_queue_item(0,ptr);
+                                                send_queue_item(0,ptr);
                                         }
                                         if (rx->data[1] & BIT3) {
                                                 RL_TOGGLE(3);
@@ -382,13 +377,12 @@ void task_485_receive(void* param)
                                                 u8* protocol_data = protocol_data_wait_sent[idx].data;
                                                 protocol_data[0] = 0xd8;
                                                 protocol_data[3] = (RL_STATE(3) ? data_02 | BIT1 : data_02 & (~BIT1));
-                                                protocol_data[7] = protocol_data[0] ^ protocol_data[1] ^
-                                                                   protocol_data[2] ^ protocol_data[3] ^
-                                                                   protocol_data[4] ^ protocol_data[5] ^
+                                                protocol_data[7] = protocol_data[0] ^ protocol_data[1] ^ protocol_data[2] ^ 
+                                                                   protocol_data[3] ^ protocol_data[4] ^ protocol_data[5] ^
                                                                    protocol_data[6] ;
                                                 protocol_data_wait_sent[idx].data_len = 8;
                                                 void* ptr = &protocol_data_wait_sent[idx];
-                                                rtl = send_queue_item(0,ptr);
+                                                send_queue_item(0,ptr);
                                         }
 
                                         if (rx->data[1] & BIT4) {
@@ -400,13 +394,12 @@ void task_485_receive(void* param)
 
                                                 protocol_data[3] = (RL_STATE(2) ? data_02 | BIT4 : data_02 & (~BIT4));
                                                 protocol_data[5] = (RL_STATE(2) ? data_04 | BIT1 : data_04 & (~BIT1));
-                                                protocol_data[7] = protocol_data[0] ^ protocol_data[1] ^
-                                                                   protocol_data[2] ^ protocol_data[3] ^
-                                                                   protocol_data[4] ^ protocol_data[5] ^
+                                                protocol_data[7] = protocol_data[0] ^ protocol_data[1] ^ protocol_data[2] ^ 
+                                                                   protocol_data[3] ^ protocol_data[4] ^ protocol_data[5] ^
                                                                    protocol_data[6] ;
                                                 protocol_data_wait_sent[idx].data_len = 8;
                                                 void* ptr = &protocol_data_wait_sent[idx];
-                                                rtl = send_queue_item(0,ptr);
+                                                send_queue_item(0,ptr);
                                         }
 
                                         if (rx->data[1] & BIT5) {
@@ -419,6 +412,7 @@ void task_485_receive(void* param)
                                                 ((GPIO_ReadOutputDataBit(GPIOE,GPIO_Pin_4 ) == Bit_SET) ? GPIO_ResetBits(GPIOE,GPIO_Pin_4) : GPIO_SetBits(GPIOE,GPIO_Pin_4));
                                         }
                                         break;
+                                        
                                 case 0x14:
                                         data_04 = rx->data[1];
                                         if (rx->data[1] & BIT1) {
@@ -428,9 +422,8 @@ void task_485_receive(void* param)
                                                 u8* protocol_data = protocol_data_wait_sent[idx].data;
                                                 protocol_data[0] = 0xd8;
                                                 protocol_data[5] = (RL_STATE(2) ? data_04 | BIT1 | BIT4: data_04 & (~BIT1) & (~BIT4));
-                                                protocol_data[7] = protocol_data[0] ^ protocol_data[1] ^
-                                                                   protocol_data[2] ^ protocol_data[3] ^
-                                                                   protocol_data[4] ^ protocol_data[5] ^
+                                                protocol_data[7] = protocol_data[0] ^ protocol_data[1] ^ protocol_data[2] ^ 
+                                                                   protocol_data[3] ^ protocol_data[4] ^ protocol_data[5] ^
                                                                    protocol_data[6] ;
                                                 protocol_data_wait_sent[idx].data_len = 8;
                                                 void* ptr = &protocol_data_wait_sent[idx];
@@ -440,17 +433,15 @@ void task_485_receive(void* param)
                                         if (rx->data[1] & BIT2) {
                                                 if (light_state_word == 0) {
                                                         RL_ON(2);RL_ON(7);RL_ON(8);RL_ON(9);RL_ON(10);
-                                                        light_state_word = 1;
-                                                        read_state_word = 0;
+                                                        light_state_word = 1;read_state_word = 0;
                                                         u8 idx = get_avalid_frame(protocol_data_wait_sent,SEND_FRAME_LEN);
                                                         protocol_data_wait_sent[idx].use = 1;;
                                                         u8* protocol_data = protocol_data_wait_sent[idx].data;
                                                         protocol_data[0] = 0xd8;
                                                         protocol_data[3] = data_02 | BIT4;
                                                         protocol_data[5] = data_04 | BIT1 | BIT4;
-                                                        protocol_data[7] = protocol_data[0] ^ protocol_data[1] ^
-                                                                           protocol_data[2] ^ protocol_data[3] ^
-                                                                           protocol_data[4] ^ protocol_data[5] ^
+                                                        protocol_data[7] = protocol_data[0] ^ protocol_data[1] ^ protocol_data[2] ^ 
+                                                                           protocol_data[3] ^ protocol_data[4] ^ protocol_data[5] ^
                                                                            protocol_data[6] ;
                                                         protocol_data_wait_sent[idx].data_len = 8;
                                                         void* ptr = &protocol_data_wait_sent[idx];
@@ -464,9 +455,8 @@ void task_485_receive(void* param)
                                                         protocol_data[0] = 0xd8;
                                                         protocol_data[3] = data_02 | BIT4;
                                                         protocol_data[5] = data_04 | BIT1 | BIT4;
-                                                        protocol_data[7] = protocol_data[0] ^ protocol_data[1] ^
-                                                                           protocol_data[2] ^ protocol_data[3] ^
-                                                                           protocol_data[4] ^ protocol_data[5] ^
+                                                        protocol_data[7] = protocol_data[0] ^ protocol_data[1] ^ protocol_data[2] ^ 
+                                                                           protocol_data[3] ^ protocol_data[4] ^ protocol_data[5] ^
                                                                            protocol_data[6] ;
                                                         protocol_data_wait_sent[idx].data_len = 8;
                                                         void* ptr = &protocol_data_wait_sent[idx];
