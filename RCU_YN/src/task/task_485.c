@@ -295,7 +295,7 @@ void gpio_input_process(void)
                 if ( PD12 == Bit_RESET ) {
                         RL_ON(1);RL_ON(2);RL_ON(9);RL_ON(10);
                         GPIO_ResetBits(GPIOE,GPIO_Pin_0);
-                        RL_ON(16);
+                        RL_ON(14);RL_ON(16);
                         start_delay_D12 = BIT1;
                         delay_off_time_D12 = 2000;
                         GPIO_SetBits(GPIOE,GPIO_Pin_0);
@@ -320,15 +320,20 @@ void gpio_input_process(void)
                 } else if (PD12 == Bit_SET) {
                         start_delay_D12 = BIT2;
                         delay_off_time_D12 = 60000;
+                        RL_ON(15);RL_ON(17);
                 }
         }
 
         if (delay_off_time_D12)
                 delay_off_time_D12--;
-
+        
+        if ((delay_off_time_D12 == 58000) && (start_delay_D12 == BIT2)) {
+                RL_OFF(15);RL_OFF(17);
+        }
+                
         if ((start_delay_D12 != 0) && (delay_off_time_D12 == 0)) {
                 if (start_delay_D12 == BIT1) {
-                        RL_OFF(16);
+                        RL_OFF(14);RL_OFF(16);
                         start_delay_D12 = 0;
                 } else if (start_delay_D12 == BIT2){
                         RL_OFF(1);RL_OFF(6);RL_OFF(10);
@@ -336,9 +341,7 @@ void gpio_input_process(void)
                         RL_OFF(3);RL_OFF(8);RL_OFF(12);
                         RL_OFF(4);RL_OFF(9);RL_OFF(13);
                         RL_OFF(5);GPIO_ResetBits(GPIOE,GPIO_Pin_0);
-                        start_delay_D12 = BIT3;
-                        delay_off_time_D12 = 2000;
-                        RL_ON(15);RL_ON(17);
+
                         
                         u8 idx = get_avalid_frame(protocol_data_wait_sent,SEND_FRAME_LEN);
                         protocol_data_wait_sent[idx].use = 1;;
@@ -382,10 +385,7 @@ void gpio_input_process(void)
                         key_disable_0x14 |= (BIT1 | BIT2 | BIT3);
                         key_disable_0x15 |= (BIT1 | BIT2 | BIT3);
                         key_disable_0x16 |= (BIT1 | BIT2);
-                } else if (start_delay_D12 == BIT3){
-                        RL_OFF(15);RL_OFF(17);
-                        start_delay_D12 = 0;
-                }                
+                }              
         }
 
 
