@@ -5,7 +5,7 @@
 <h2>Tool Versions:</h2>
 IDE-Version: ¦ÌVision V5.15
 Copyright (C) 2015 ARM Ltd and ARM Germany GmbH. All rights reserved.
-License Information: rfx Microsoft, Microsoft, LIC=2TTNN-Y26QS-23EM4-FI5X6-04QU1-DDSP5
+License Information: tgc Microsoft, Microsoft, LIC=LJWII-T1A34-NS6YQ-NADPS-P41UQ-URS0R
  
 Tool Versions:
 Toolchain:       MDK-ARM Professional  Version: 5.15.0
@@ -17,29 +17,37 @@ Library Manager: ArmAr.exe V5.05 update 2 (build 169)
 Hex Converter:   FromElf.exe V5.05 update 2 (build 169)
 CPU DLL:         SARMCM3.DLL V5.15.0
 Dialog DLL:      DCM.DLL V1.13.2.0
-Target DLL:      CMSIS_AGDI.dll V1.21.12.0
+Target DLL:      STLink\ST-LINKIII-KEIL_SWO.dll V2.0.15.0_KEIL
 Dialog DLL:      TCM.DLL V1.14.5.0
  
 <h2>Project:</h2>
-E:\woosiyuan\smarthome\stm32f10x\RCU\project\STM32F10x.uvprojx
-Project File Date:  01/03/2018
+E:\work\STM32F103\RCU\project\STM32F10x.uvprojx
+Project File Date:  01/06/2018
 
 <h2>Output:</h2>
 *** Using Compiler 'V5.05 update 2 (build 169)', folder: 'C:\Keil_v5\ARM\ARMCC\Bin'
 Build target 'smart_home'
 compiling task_485.c...
-..\src\task\task_485.c(19): warning:  #550-D: variable "read_state_word" was set but never used
-  static u8 read_state_word = 0;
-..\src\task\task_485.c: 1 warning, 0 errors
+..\src\task\task_485.c(20): warning:  #177-D: variable "wk8001_time_start_2" was declared but never referenced
+  static u8 wk8001_time_start_2 = 0;
+..\src\task\task_485.c(21): warning:  #177-D: variable "wk8001_time_cnt_2" was declared but never referenced
+  static u16 wk8001_time_cnt_2 = 0;
+..\src\task\task_485.c(24): warning:  #550-D: variable "sleep_state_word" was set but never used
+  static u8 sleep_state_word = 0;
+..\src\task\task_485.c(89): warning:  #177-D: variable "wk8001_flag_2" was declared but never referenced
+  static u8 wk8001_flag_2 = 0;
+..\src\task\task_485.c(454): warning:  #177-D: variable "last_data45" was declared but never referenced
+  static u8 last_data45 = 3;
+..\src\task\task_485.c: 5 warnings, 0 errors
 linking...
-Program Size: Code=22572 RO-data=336 RW-data=188 ZI-data=19996  
+Program Size: Code=24516 RO-data=336 RW-data=216 ZI-data=19992  
 FromELF: creating hex file...
-After Build - User command #1: fromelf.exe --bin -o "E:\woosiyuan\smarthome\stm32f10x\RCU\project\Objects\STM32F10x.bin" "E:\woosiyuan\smarthome\stm32f10x\RCU\project\Objects\STM32F10x.axf"
-".\Objects\STM32F10x.axf" - 0 Error(s), 1 Warning(s).
+After Build - User command #1: fromelf.exe --bin -o "E:\work\STM32F103\RCU\project\Objects\STM32F10x.bin" "E:\work\STM32F103\RCU\project\Objects\STM32F10x.axf"
+".\Objects\STM32F10x.axf" - 0 Error(s), 5 Warning(s).
 
 <h2>Collection of Component include folders:</h2>
-  E:\woosiyuan\smarthome\stm32f10x\RCU\project\RTE
-  C:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include
+  E:\work\STM32F103\RCU\project\RTE
+  C:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.0.0\Device\Include
 
 <h2>Collection of Component Files used:</h2>
 </pre>
