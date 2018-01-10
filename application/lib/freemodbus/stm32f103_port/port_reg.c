@@ -39,6 +39,8 @@ eMBErrorCode eMBRegDiscreteCB( UCHAR * pucRegBuffer, USHORT usAddress,
 #define MB_PASSWD_ADDR          0xFFF0
 #define MB_PASSWD_DATA          {0x00,0x00,0x00,0x00}
 // user define
+static u8 rece_cnt = 0;
+#include "bsp_led_display.h"
 eMBException eMBFuncUserDefine( UCHAR * pucFrame, USHORT * usLen )
 {
         switch (pucFrame[MB_PDU_FUNC_OFF]) {
@@ -55,7 +57,23 @@ eMBException eMBFuncUserDefine( UCHAR * pucFrame, USHORT * usLen )
                         *usLen = 2;
                 }
         break;
+                
         case MB_DOWNLOAD_CODE:
+                rece_cnt++;
+                if (rece_cnt > 99)
+                        rece_cnt = 0;
+                set_led_content(LED_TYPE_NUM,rece_cnt);
+                if (*usLen == (1 + 2 + 4)) {
+                        u16 addr = pucFrame[MB_PDU_DATA_OFF] << 8u;
+                        addr |= pucFrame[MB_PDU_DATA_OFF + 1];
+                        if (addr == MB_PASSWD_ADDR) {                   // todo: check password data
+                                pucFrame[MB_PDU_DATA_OFF] = 0x01;
+                                write_unlock = 1;                       // write enable
+                        } else {
+                                pucFrame[MB_PDU_DATA_OFF] = 0x00;
+                        }
+                        *usLen = 2;
+                }    
                 break;
 
         case MB_UPDATE_OP_CODE:

@@ -15,7 +15,7 @@ BOOL xMBTCPPortInit(USHORT usTCPPort )
 
 void vMBTCPPortClose(void)
 {
-        close(SOCK_TCP);
+//        close(SOCK_TCP);
         vMBPortEventClose();
 }
 

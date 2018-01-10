@@ -33,3 +33,4 @@
 .\objects\main.o: ..\src\BSP\bsp_led.h
 .\objects\main.o: ..\src\APP\eeprom_mem.h
 .\objects\main.o: ..\src\BSP\bsp_led_display.h
+.\objects\main.o: ..\src\BSP\bsp_timer.h

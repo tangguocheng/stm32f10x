@@ -40,3 +40,17 @@ C:\Users\Administrator\Desktop\STM32F103\pc_tools\ModbusTCPUpdate\ModbusTCPUpdat
 C:\Users\Administrator\Desktop\STM32F103\pc_tools\ModbusTCPUpdate\ModbusTCPUpdate\ModbusTCPUpdate\obj\Debug\ModbusTCPUpdate.csproj.CoreCompileInputs.cache
 C:\Users\Administrator\Desktop\STM32F103\pc_tools\ModbusTCPUpdate\ModbusTCPUpdate\ModbusTCPUpdate\obj\Debug\ModbusTCPUpdate.exe
 C:\Users\Administrator\Desktop\STM32F103\pc_tools\ModbusTCPUpdate\ModbusTCPUpdate\ModbusTCPUpdate\obj\Debug\ModbusTCPUpdate.pdb
+E:\work\STM32F103\pc_tools\ModbusTCPUpdate\ModbusTCPUpdate\ModbusTCPUpdate\bin\Debug\ModbusTCPUpdate.exe.config
+E:\work\STM32F103\pc_tools\ModbusTCPUpdate\ModbusTCPUpdate\ModbusTCPUpdate\bin\Debug\ModbusTCPUpdate.exe
+E:\work\STM32F103\pc_tools\ModbusTCPUpdate\ModbusTCPUpdate\ModbusTCPUpdate\bin\Debug\ModbusTCPUpdate.pdb
+E:\work\STM32F103\pc_tools\ModbusTCPUpdate\ModbusTCPUpdate\ModbusTCPUpdate\bin\Debug\HslCommunication.dll
+E:\work\STM32F103\pc_tools\ModbusTCPUpdate\ModbusTCPUpdate\ModbusTCPUpdate\bin\Debug\Newtonsoft.Json.dll
+E:\work\STM32F103\pc_tools\ModbusTCPUpdate\ModbusTCPUpdate\ModbusTCPUpdate\bin\Debug\HslCommunication.xml
+E:\work\STM32F103\pc_tools\ModbusTCPUpdate\ModbusTCPUpdate\ModbusTCPUpdate\bin\Debug\Newtonsoft.Json.xml
+E:\work\STM32F103\pc_tools\ModbusTCPUpdate\ModbusTCPUpdate\ModbusTCPUpdate\obj\Debug\ModbusTCPUpdate.csprojResolveAssemblyReference.cache
+E:\work\STM32F103\pc_tools\ModbusTCPUpdate\ModbusTCPUpdate\ModbusTCPUpdate\obj\Debug\ModbusTCPUpdate.Form1.resources
+E:\work\STM32F103\pc_tools\ModbusTCPUpdate\ModbusTCPUpdate\ModbusTCPUpdate\obj\Debug\ModbusTCPUpdate.Properties.Resources.resources
+E:\work\STM32F103\pc_tools\ModbusTCPUpdate\ModbusTCPUpdate\ModbusTCPUpdate\obj\Debug\ModbusTCPUpdate.csproj.GenerateResource.Cache
+E:\work\STM32F103\pc_tools\ModbusTCPUpdate\ModbusTCPUpdate\ModbusTCPUpdate\obj\Debug\ModbusTCPUpdate.csproj.CoreCompileInputs.cache
+E:\work\STM32F103\pc_tools\ModbusTCPUpdate\ModbusTCPUpdate\ModbusTCPUpdate\obj\Debug\ModbusTCPUpdate.exe
+E:\work\STM32F103\pc_tools\ModbusTCPUpdate\ModbusTCPUpdate\ModbusTCPUpdate\obj\Debug\ModbusTCPUpdate.pdb

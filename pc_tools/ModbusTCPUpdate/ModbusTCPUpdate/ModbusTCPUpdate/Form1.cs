@@ -107,7 +107,7 @@ namespace ModbusTCPUpdate
 
                     add_infomation("客户端：" + client_ip + " 已连接。");
 
-                    if (!lb_tcp_client.Items.Contains(client_ip))
+                    //if (!lb_tcp_client.Items.Contains(client_ip))
                     {
                         lb_tcp_client.Items.Add(client_ip);
                         client_socket.Add(client);

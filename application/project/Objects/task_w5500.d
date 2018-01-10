@@ -50,4 +50,5 @@
 .\objects\task_w5500.o: ..\lib\freemodbus\modbus\include\mbproto.h
 .\objects\task_w5500.o: ..\src\proj_conf.h
 .\objects\task_w5500.o: ..\src\BSP\bsp_w5500_port.h
+.\objects\task_w5500.o: ..\src\BSP\bsp_led_display.h
 .\objects\task_w5500.o: ..\src\APP\eeprom_mem.h

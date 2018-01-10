@@ -97,68 +97,68 @@ static u8 wk8001_flag_1 = 0;
 static u8 wk8001_flag_2 = 0;
 void time_scheduler(void)
 {
-        if (time_scheduler_time) {
-                time_scheduler_flag = 1;
-                time_scheduler_time--;
-        }
+//        if (time_scheduler_time) {
+//                time_scheduler_flag = 1;
+//                time_scheduler_time--;
+//        }
 
-        if ((time_scheduler_start == 1) && (time_scheduler_time == 0) && (time_scheduler_flag == 1)) {
-                time_scheduler_flag = 0;
-                time_scheduler_start = 0;
-                u8 idx = get_avalid_frame(protocol_data_wait_sent,SEND_FRAME_LEN);
-                protocol_data_wait_sent[idx].use = 1;;
-                u8* protocol_data = protocol_data_wait_sent[idx].data;
-                protocol_data[0] = 0xd8;
-                data_04 = data_04 & (~BIT2);
-                protocol_data[3] = data_02;
-                protocol_data[5] = data_04;
-                protocol_data[7] = protocol_data[0] ^ protocol_data[1] ^ protocol_data[2] ^ 
-                                   protocol_data[3] ^ protocol_data[4] ^ protocol_data[5] ^
-                                   protocol_data[6] ;
+//        if ((time_scheduler_start == 1) && (time_scheduler_time == 0) && (time_scheduler_flag == 1)) {
+//                time_scheduler_flag = 0;
+//                time_scheduler_start = 0;
+//                u8 idx = get_avalid_frame(protocol_data_wait_sent,SEND_FRAME_LEN);
+//                protocol_data_wait_sent[idx].use = 1;
+//                u8* protocol_data = protocol_data_wait_sent[idx].data;
+//                protocol_data[0] = 0xd8;
+//                data_04 = data_04 & (~BIT2);
+//                protocol_data[3] = data_02;
+//                protocol_data[5] = data_04;
+//                protocol_data[7] = protocol_data[0] ^ protocol_data[1] ^ protocol_data[2] ^ 
+//                                   protocol_data[3] ^ protocol_data[4] ^ protocol_data[5] ^
+//                                   protocol_data[6] ;
 
-                protocol_data_wait_sent[idx].data_len = 8;
-                void* ptr = &protocol_data_wait_sent[idx];
-                send_queue_item(1,ptr);
-        }
-        
-        if (wk8001_time_cnt) {
-                wk8001_flag_1 = 1;
-                wk8001_time_cnt--;
-        }
-        
-        if (wk8001_time_cnt == 0 && (wk8001_flag_1 == 1)) {
-                wk8001_flag_1 = 0;
-                if (wk8001_time_start & BIT1) {
-                        wk8001_time_start &= ~BIT1;
-                        RL_OFF(11);RL_OFF(12);RL_OFF(13);
-                } else if (wk8001_time_start & BIT2){
-                        wk8001_time_start &= ~BIT2;
-                        RL_ON(11);RL_OFF(12);RL_OFF(13);
-                } else if (wk8001_time_start & BIT3){
-                        wk8001_time_start &= ~BIT3;
-                        RL_OFF(11);RL_ON(12);RL_OFF(13);
-                } else if (wk8001_time_start & BIT4){
-                        wk8001_time_start &= ~BIT4;
-                        RL_OFF(11);RL_OFF(12);RL_ON(13);
-                }
-        }
-        
-        if (wk8001_time_cnt_2) {
-                wk8001_flag_2 = 1;
-                wk8001_time_cnt_2--;
-        }
-        
-        if (wk8001_time_cnt_2 == 0 && (wk8001_flag_2 == 1)) {
-                wk8001_flag_2 = 0;
-                if (wk8001_time_start_2 & BIT1) {
-                        RL_ON(11);RL_OFF(12);RL_OFF(13);
-                } else if (wk8001_time_start_2 & BIT2){
-                        RL_OFF(11);RL_OFF(12);RL_ON(13);
-                } else if (wk8001_time_start_2 & BIT3){
-                        RL_OFF(11);RL_OFF(12);RL_ON(13);
-                }
-        }        
-        
+//                protocol_data_wait_sent[idx].data_len = 8;
+//                void* ptr = &protocol_data_wait_sent[idx];
+//                send_queue_item(1,ptr);
+//        }
+//        
+//        if (wk8001_time_cnt) {
+//                wk8001_flag_1 = 1;
+//                wk8001_time_cnt--;
+//        }
+//        
+//        if (wk8001_time_cnt == 0 && (wk8001_flag_1 == 1)) {
+//                wk8001_flag_1 = 0;
+//                if (wk8001_time_start & BIT1) {
+//                        wk8001_time_start &= ~BIT1;
+//                        RL_OFF(11);RL_OFF(12);RL_OFF(13);
+//                } else if (wk8001_time_start & BIT2){
+//                        wk8001_time_start &= ~BIT2;
+//                        RL_ON(11);RL_OFF(12);RL_OFF(13);
+//                } else if (wk8001_time_start & BIT3){
+//                        wk8001_time_start &= ~BIT3;
+//                        RL_OFF(11);RL_ON(12);RL_OFF(13);
+//                } else if (wk8001_time_start & BIT4){
+//                        wk8001_time_start &= ~BIT4;
+//                        RL_OFF(11);RL_OFF(12);RL_ON(13);
+//                }
+//        }
+//        
+//        if (wk8001_time_cnt_2) {
+//                wk8001_flag_2 = 1;
+//                wk8001_time_cnt_2--;
+//        }
+//        
+//        if (wk8001_time_cnt_2 == 0 && (wk8001_flag_2 == 1)) {
+//                wk8001_flag_2 = 0;
+//                if (wk8001_time_start_2 & BIT1) {
+//                        RL_ON(11);RL_OFF(12);RL_OFF(13);
+//                } else if (wk8001_time_start_2 & BIT2){
+//                        RL_OFF(11);RL_OFF(12);RL_ON(13);
+//                } else if (wk8001_time_start_2 & BIT3){
+//                        RL_OFF(11);RL_OFF(12);RL_ON(13);
+//                }
+//        }        
+//        
         key_0x13_delay_proc();
         key_0x14_delay_proc();
         key_0x16_delay_proc();
@@ -181,7 +181,7 @@ void device_poll(void)
 {
         if (current_protocol == WK8001_PROTOCOL) {
                 u8 idx = get_avalid_frame(protocol_data_wait_sent,SEND_FRAME_LEN);
-                protocol_data_wait_sent[idx].use = 1;;
+                protocol_data_wait_sent[idx].use = 1;
                 u8* protocol_data = protocol_data_wait_sent[idx].data;
 
                 protocol_data[0] = 0x41;protocol_data[1] = 0x43;protocol_data[2] = 0x54;
@@ -197,7 +197,7 @@ void device_poll(void)
 
         } else if (current_protocol == SHANGHUI_PROTOCOL) {
                 u8 idx = get_avalid_frame(protocol_data_wait_sent,SEND_FRAME_LEN);
-                protocol_data_wait_sent[idx].use = 1;;
+                protocol_data_wait_sent[idx].use = 1;
                 u8* protocol_data = protocol_data_wait_sent[idx].data;
 
                 protocol_data[0] = 0x74;protocol_data[1] = 0xAA;protocol_data[2] = 0xDE;
@@ -294,21 +294,23 @@ void gpio_input_process(void)
                 last_PD12 = PD12;
                 if ( PD12 == Bit_RESET ) {
                         RL_ON(1);RL_ON(2);RL_ON(9);RL_ON(10);
-                        GPIO_ResetBits(GPIOE,GPIO_Pin_0);
+                        GPIO_SetBits(GPIOE,GPIO_Pin_0);
                         RL_ON(14);RL_ON(16);
                         start_delay_D12 = BIT1;
                         delay_off_time_D12 = 2000;
-                        GPIO_SetBits(GPIOE,GPIO_Pin_0);
                         
                         u8 idx = get_avalid_frame(protocol_data_wait_sent,SEND_FRAME_LEN);
-                        protocol_data_wait_sent[idx].use = 1;;
+                        protocol_data_wait_sent[idx].use = 1;
                         u8* protocol_data = protocol_data_wait_sent[idx].data;
                         protocol_data[0] = 0xd8;
                         data_01 |= BIT2;
                         data_03 |= (BIT1 | BIT2);
                         data_05 |= BIT2;
+                        
                         protocol_data[2] = data_01;
+                        protocol_data[3] = data_02;
                         protocol_data[4] = data_03;
+                        protocol_data[5] = data_04;
                         protocol_data[6] = data_05;
                         protocol_data[7] = protocol_data[0] ^ protocol_data[1] ^ protocol_data[2] ^ 
                                            protocol_data[3] ^ protocol_data[4] ^ protocol_data[5] ^
@@ -317,10 +319,31 @@ void gpio_input_process(void)
                         protocol_data_wait_sent[idx].data_len = 8;
                         void* ptr = &protocol_data_wait_sent[idx];
                         rtl = send_queue_item(1,ptr);
+                        
+                        idx = get_avalid_frame(protocol_data_wait_sent,SEND_FRAME_LEN);
+                        protocol_data_wait_sent[idx].use = 1;
+                        protocol_data = protocol_data_wait_sent[idx].data;
+                        protocol_data[0] = 0xd9;
+                        data_06 |= BIT1;                      
+                        protocol_data[1] = data_06;
+                        protocol_data[7] = protocol_data[0] ^ protocol_data[1] ^ protocol_data[2] ^ 
+                                           protocol_data[3] ^ protocol_data[4] ^ protocol_data[5] ^
+                                           protocol_data[6] ;
+
+                        protocol_data_wait_sent[idx].data_len = 8;
+                        ptr = &protocol_data_wait_sent[idx];
+                        rtl = send_queue_item(1,ptr);
+                        
+                        key_disable_0x11 = 0;
+                        key_disable_0x12 = 0;
+                        key_disable_0x13 = 0;
+                        key_disable_0x14 = 0;
+                        key_disable_0x15 = 0;
+                        key_disable_0x16 = 0;
                 } else if (PD12 == Bit_SET) {
                         start_delay_D12 = BIT2;
                         delay_off_time_D12 = 60000;
-                        RL_ON(15);RL_ON(17);
+                        RL_OFF(14);RL_OFF(15);RL_OFF(16);RL_OFF(17);
                 }
         }
 
@@ -328,6 +351,8 @@ void gpio_input_process(void)
                 delay_off_time_D12--;
         
         if ((delay_off_time_D12 == 58000) && (start_delay_D12 == BIT2)) {
+                RL_ON(15);RL_ON(17);      
+        } else if ((delay_off_time_D12 == 56000) && (start_delay_D12 == BIT2)) {
                 RL_OFF(15);RL_OFF(17);
         }
                 
@@ -341,10 +366,9 @@ void gpio_input_process(void)
                         RL_OFF(3);RL_OFF(8);RL_OFF(12);
                         RL_OFF(4);RL_OFF(9);RL_OFF(13);
                         RL_OFF(5);GPIO_ResetBits(GPIOE,GPIO_Pin_0);
-
-                        
+                       
                         u8 idx = get_avalid_frame(protocol_data_wait_sent,SEND_FRAME_LEN);
-                        protocol_data_wait_sent[idx].use = 1;;
+                        protocol_data_wait_sent[idx].use = 1;
                         u8* protocol_data = protocol_data_wait_sent[idx].data;
                         protocol_data[0] = 0xd8;
                         data_01 &= ~BIT2;
@@ -367,7 +391,7 @@ void gpio_input_process(void)
                         rtl = send_queue_item(1,ptr);
                         
                         idx = get_avalid_frame(protocol_data_wait_sent,SEND_FRAME_LEN);
-                        protocol_data_wait_sent[idx].use = 1;;
+                        protocol_data_wait_sent[idx].use = 1;
                         protocol_data = protocol_data_wait_sent[idx].data;
                         protocol_data[0] = 0xd9;
                         data_06 &= ~(BIT1 | BIT2);                      
@@ -380,6 +404,7 @@ void gpio_input_process(void)
                         ptr = &protocol_data_wait_sent[idx];
                         rtl = send_queue_item(1,ptr);
                         
+                        key_disable_0x11 |= BIT2;
                         key_disable_0x12 |= (BIT1 | BIT2 | BIT3);
                         key_disable_0x13 |= (BIT1 | BIT2 | BIT3);
                         key_disable_0x14 |= (BIT1 | BIT2 | BIT3);
@@ -391,14 +416,14 @@ void gpio_input_process(void)
 
         static u16 delay_off_time_A4 = 0;
         static u8 start_delay_A4 = 0;
-        if ((PA4 != last_PA4) && (PD12 != Bit_RESET)) {
+        if ((PA4 != last_PA4)) {
                 last_PA4 = PA4;
                 if ( (PD12 == Bit_SET) && (PA4 == Bit_RESET)) {
                         start_delay_A4 = 1;
                         delay_off_time_A4 = 60000;
                         RL_ON(2);
                         u8 idx = get_avalid_frame(protocol_data_wait_sent,SEND_FRAME_LEN);
-                        protocol_data_wait_sent[idx].use = 1;;
+                        protocol_data_wait_sent[idx].use = 1;
                         u8* protocol_data = protocol_data_wait_sent[idx].data;
                         protocol_data[0] = 0xd8;
                         data_01 |= BIT2;
@@ -423,7 +448,7 @@ void gpio_input_process(void)
                 start_delay_A4 = 0;
                 RL_OFF(2);
                 u8 idx = get_avalid_frame(protocol_data_wait_sent,SEND_FRAME_LEN);
-                protocol_data_wait_sent[idx].use = 1;;
+                protocol_data_wait_sent[idx].use = 1;
                 u8* protocol_data = protocol_data_wait_sent[idx].data;
                 protocol_data[0] = 0xd8;
                 data_01 &= (~BIT2);
@@ -492,12 +517,13 @@ void task_485_poll(void* param)
 
 void key_0x11(u8 rx_data)
 {
+        rx_data &= (~key_disable_0x11);
         if (rx_data & BIT1) { 
                 ((GPIO_ReadOutputDataBit(GPIOE,GPIO_Pin_1 ) == Bit_SET) ? GPIO_ResetBits(GPIOE,GPIO_Pin_1) : GPIO_SetBits(GPIOE,GPIO_Pin_1));
                 ((GPIO_ReadOutputDataBit(GPIOE,GPIO_Pin_2 ) == Bit_SET) ? GPIO_ResetBits(GPIOE,GPIO_Pin_2) : GPIO_SetBits(GPIOE,GPIO_Pin_2));
 
                 u8 idx = get_avalid_frame(protocol_data_wait_sent,SEND_FRAME_LEN);
-                protocol_data_wait_sent[idx].use = 1;;
+                protocol_data_wait_sent[idx].use = 1;
                 u8* protocol_data = protocol_data_wait_sent[idx].data;
                 protocol_data[0] = 0xd8;
                 if (GPIO_ReadOutputDataBit(GPIOE,GPIO_Pin_1 )  == Bit_RESET) {
@@ -548,13 +574,15 @@ void key_0x11(u8 rx_data)
                         PA5_enable = 0;
                         data_01 |= BIT3;
                         data_01 &= (~BIT1);
+                        GPIO_ResetBits(GPIOE,GPIO_Pin_1);
+                        GPIO_ResetBits(GPIOE,GPIO_Pin_2);
                 } else {
                         PA5_enable = 1;
                         data_01 &= (~BIT3);
                 }
 
                 u8 idx = get_avalid_frame(protocol_data_wait_sent,SEND_FRAME_LEN);
-                protocol_data_wait_sent[idx].use = 1;;
+                protocol_data_wait_sent[idx].use = 1;
                 u8* protocol_data = protocol_data_wait_sent[idx].data;
                 protocol_data[0] = 0xd8;
                 protocol_data[2] = data_01;
@@ -566,7 +594,6 @@ void key_0x11(u8 rx_data)
                                    protocol_data[3] ^ protocol_data[4] ^ protocol_data[5] ^
                                    protocol_data[6] ;
                 protocol_data_wait_sent[idx].data_len = 8;                                                
-                RL_TOGGLE(3);                                                
                 void* ptr = &protocol_data_wait_sent[idx];
                 send_queue_item(0,ptr);
         }
@@ -574,10 +601,11 @@ void key_0x11(u8 rx_data)
 
 void key_0x12(u8 rx_data)
 {
+        rx_data &= (~key_disable_0x12);
         if (rx_data & BIT1) {
                 RL_TOGGLE(3);
                 u8 idx = get_avalid_frame(protocol_data_wait_sent,SEND_FRAME_LEN);
-                protocol_data_wait_sent[idx].use = 1;;
+                protocol_data_wait_sent[idx].use = 1;
                 u8* protocol_data = protocol_data_wait_sent[idx].data;
                 protocol_data[0] = 0xd8;
               
@@ -604,7 +632,7 @@ void key_0x12(u8 rx_data)
         if (rx_data & BIT2) {
                 RL_TOGGLE(5);
                 u8 idx = get_avalid_frame(protocol_data_wait_sent,SEND_FRAME_LEN);
-                protocol_data_wait_sent[idx].use = 1;;
+                protocol_data_wait_sent[idx].use = 1;
                 u8* protocol_data = protocol_data_wait_sent[idx].data;
                 protocol_data[0] = 0xd8;
      
@@ -631,7 +659,7 @@ void key_0x12(u8 rx_data)
         if (rx_data & BIT3) {
                 RL_TOGGLE(4);
                 u8 idx = get_avalid_frame(protocol_data_wait_sent,SEND_FRAME_LEN);
-                protocol_data_wait_sent[idx].use = 1;;
+                protocol_data_wait_sent[idx].use = 1;
                 u8* protocol_data = protocol_data_wait_sent[idx].data;
                 protocol_data[0] = 0xd8;
                
@@ -667,38 +695,78 @@ void key_0x13_delay_proc(void)
                 key_0x13_delay_time--;
         }
         
+        u8 rtl = 0;
+        if ((key_0x13_delay_time == 8000) && (key_0x13_delay_flag == BIT1)) {
+                RL_OFF(16);
+        }
+        
+        if ((key_0x13_delay_time == 8000) && (key_0x13_delay_flag == BIT2)) {
+                RL_OFF(17);
+        }
+                
         if (key_0x13_delay_time == 0 && key_0x13_delay_start == 1) {
                 key_0x13_delay_start = 0;
-                if (key_0x13_delay_flag & BIT1) {
-                        key_0x13_delay_flag &= ~BIT1;
-                        RL_OFF(16);
+                if (key_0x13_delay_flag == BIT1) {
+                        key_0x13_delay_flag = 0;
+                        
+                        u8 idx = get_avalid_frame(protocol_data_wait_sent,SEND_FRAME_LEN);
+                        protocol_data_wait_sent[idx].use = 1;
+                        u8* protocol_data = protocol_data_wait_sent[idx].data;
+                        protocol_data[0] = 0xd8;
+                        data_03 &= (~BIT1);
+                        protocol_data[2] = data_01;
+                        protocol_data[3] = data_02;
+                        protocol_data[4] = data_03;
+                        protocol_data[5] = data_04;
+                        protocol_data[6] = data_05;
+                        protocol_data[7] = protocol_data[0] ^ protocol_data[1] ^ protocol_data[2] ^ 
+                        protocol_data[3] ^ protocol_data[4] ^ protocol_data[5] ^
+                        protocol_data[6] ;
+                        protocol_data_wait_sent[idx].data_len = 8;
+                        void* ptr = &protocol_data_wait_sent[idx];
+                        rtl = send_queue_item(1,ptr);
                 }
                 
-                if (key_0x13_delay_flag & BIT2) {
-                        key_0x13_delay_flag &= ~BIT2;
-                        RL_OFF(17);
+                if (key_0x13_delay_flag == BIT2) {
+                        key_0x13_delay_flag = 0;
+                        u8 idx = get_avalid_frame(protocol_data_wait_sent,SEND_FRAME_LEN);
+                        protocol_data_wait_sent[idx].use = 1;
+                        u8* protocol_data = protocol_data_wait_sent[idx].data;
+                        protocol_data[0] = 0xd8;
+                        data_03 &= (~BIT3);
+                        protocol_data[2] = data_01;
+                        protocol_data[3] = data_02;
+                        protocol_data[4] = data_03;
+                        protocol_data[5] = data_04;
+                        protocol_data[6] = data_05;
+                        protocol_data[7] = protocol_data[0] ^ protocol_data[1] ^ protocol_data[2] ^ 
+                        protocol_data[3] ^ protocol_data[4] ^ protocol_data[5] ^
+                        protocol_data[6] ;
+                        protocol_data_wait_sent[idx].data_len = 8;
+                        void* ptr = &protocol_data_wait_sent[idx];
+                        rtl = send_queue_item(1,ptr);
                 }
         }
+        portYIELD_FROM_ISR(rtl);
 }
 
 void key_0x13(u8 rx_data)
 {
+        rx_data &= (~key_disable_0x13);
         if (rx_data & BIT1) {
-                RL_TOGGLE(16);
                 u8 idx = get_avalid_frame(protocol_data_wait_sent,SEND_FRAME_LEN);
-                protocol_data_wait_sent[idx].use = 1;;
+                protocol_data_wait_sent[idx].use = 1;
                 u8* protocol_data = protocol_data_wait_sent[idx].data;
                 protocol_data[0] = 0xd8;
-              
-                if (RL_STATE(16)) {
-                        data_03 |= BIT1;
-                        data_03 &= (~BIT3);
-
-                } else {
-                        data_03 &= (~BIT1);
-                }
-                key_0x13_delay_flag |= BIT1;
-                key_0x13_delay_time = 2000;
+             
+                data_03 |= BIT1;
+                data_03 &= (~BIT3);
+                
+                RL_OFF(17);
+                RL_ON(16);
+                
+                key_0x13_delay_flag = BIT1;
+                key_0x13_delay_time = 10000;
                 
                 protocol_data[2] = data_01;
                 protocol_data[3] = data_02;
@@ -717,7 +785,7 @@ void key_0x13(u8 rx_data)
         if (rx_data & BIT2) {
                 RL_TOGGLE(10);
                 u8 idx = get_avalid_frame(protocol_data_wait_sent,SEND_FRAME_LEN);
-                protocol_data_wait_sent[idx].use = 1;;
+                protocol_data_wait_sent[idx].use = 1;
                 u8* protocol_data = protocol_data_wait_sent[idx].data;
                 protocol_data[0] = 0xd8;
      
@@ -742,19 +810,18 @@ void key_0x13(u8 rx_data)
         }
         
         if (rx_data & BIT3) {
-                RL_TOGGLE(17);
+                RL_ON(17);
+                RL_OFF(16);
                 u8 idx = get_avalid_frame(protocol_data_wait_sent,SEND_FRAME_LEN);
-                protocol_data_wait_sent[idx].use = 1;;
+                protocol_data_wait_sent[idx].use = 1;
                 u8* protocol_data = protocol_data_wait_sent[idx].data;
                 protocol_data[0] = 0xd8;
 
-                if (RL_STATE(17)) {
-                        data_03 |= BIT3;
-
-                } 
-                data_03 &= (~BIT1);
-                key_0x13_delay_flag |= BIT2;
-                key_0x13_delay_time = 2000;
+                data_03 |= BIT3;   
+                data_03 &=~BIT1;                        
+               
+                key_0x13_delay_flag = BIT2;
+                key_0x13_delay_time = 10000;
                 
                 protocol_data[2] = data_01;
                 protocol_data[3] = data_02;
@@ -781,17 +848,16 @@ void key_0x14_delay_proc(void)
                 key_0x14_delay_time--;
         }
         
-        if ((key_0x14_delay_flag & BIT1) && (key_0x14_delay_time == 8000)) {
-                        key_0x13_delay_flag &= ~BIT1;
+        if ((key_0x14_delay_flag == BIT1) && (key_0x14_delay_time == 8000)) {
                         RL_OFF(15); RL_OFF(17);
         } 
-                
+                        
         if ((key_0x14_delay_time == 0) && (key_0x14_delay_start == 1)) {
                 key_0x14_delay_start = 0;
-                if (key_0x14_delay_flag & BIT2) {
-                        key_0x13_delay_flag &= ~BIT2;
+                if (key_0x14_delay_flag == BIT1) {
+                        key_0x13_delay_flag = 0;
                         u8 idx = get_avalid_frame(protocol_data_wait_sent,SEND_FRAME_LEN);
-                        protocol_data_wait_sent[idx].use = 1;;
+                        protocol_data_wait_sent[idx].use = 1;
                         u8* protocol_data = protocol_data_wait_sent[idx].data;
                         protocol_data[0] = 0xd8;
                         
@@ -810,15 +876,21 @@ void key_0x14_delay_proc(void)
                         void* ptr = &protocol_data_wait_sent[idx];
                         send_queue_item(1,ptr);
                 }
+                
+                if (key_0x14_delay_flag == BIT2) {
+                        key_0x13_delay_flag = 0;
+                        RL_OFF(15);RL_OFF(17);                        
+                }
         }
 }
 
 void key_0x14(u8 rx_data)
 {
+        rx_data &= (~key_disable_0x14);
         if (rx_data & BIT1) {
                 RL_TOGGLE(6);
                 u8 idx = get_avalid_frame(protocol_data_wait_sent,SEND_FRAME_LEN);
-                protocol_data_wait_sent[idx].use = 1;;
+                protocol_data_wait_sent[idx].use = 1;
                 u8* protocol_data = protocol_data_wait_sent[idx].data;
                 protocol_data[0] = 0xd8;
               
@@ -849,20 +921,19 @@ void key_0x14(u8 rx_data)
                 RL_ON(6);
                 cozy_state_word = 0;
                 RL_ON(15);RL_ON(17);
-                key_0x14_delay_flag |= BIT1;
+
                 u8 idx = get_avalid_frame(protocol_data_wait_sent,SEND_FRAME_LEN);
-                protocol_data_wait_sent[idx].use = 1;;
+                protocol_data_wait_sent[idx].use = 1;
                 u8* protocol_data = protocol_data_wait_sent[idx].data;
                 protocol_data[0] = 0xd8;
                 
                 data_01 &= (~BIT2);
-                data_02 &= (~(BIT1 | BIT3));
-                data_03 &= (~(BIT1 | BIT3));
-                data_04 |= BIT2;
-                key_0x14_delay_flag |= BIT2;
-                key_0x14_delay_time = 10000;
-                data_04 &= (~(BIT1 | BIT3));
-                data_05 &= (~(BIT1 | BIT3));
+                data_02 &= (~(BIT1 | BIT2 | BIT3));
+                data_03 &= (~(BIT1 | BIT2 | BIT3));
+                data_04 |= BIT1 | BIT2;
+                
+                data_04 &= (~BIT3);
+                data_05 &= (~(BIT1 | BIT2 | BIT3));
                 protocol_data[2] = data_01;
                 protocol_data[3] = data_02;
                 protocol_data[4] = data_03;
@@ -877,7 +948,7 @@ void key_0x14(u8 rx_data)
                 send_queue_item(0,ptr);
                 
                 idx = get_avalid_frame(protocol_data_wait_sent,SEND_FRAME_LEN);
-                protocol_data_wait_sent[idx].use = 1;;
+                protocol_data_wait_sent[idx].use = 1;
                 protocol_data = protocol_data_wait_sent[idx].data;
                 protocol_data[0] = 0xd9;
                 data_06 &= (~(BIT1 | BIT2));                    
@@ -889,44 +960,52 @@ void key_0x14(u8 rx_data)
                 protocol_data_wait_sent[idx].data_len = 8;
                 ptr = &protocol_data_wait_sent[idx];
                 send_queue_item(0,ptr);
+                
+                key_0x14_delay_flag = BIT1;
+                key_0x14_delay_time = 10000;
         }
         
         if (rx_data & BIT3) {
                
                 u8 idx = get_avalid_frame(protocol_data_wait_sent,SEND_FRAME_LEN);
-                protocol_data_wait_sent[idx].use = 1;;
+                protocol_data_wait_sent[idx].use = 1;
                 u8* protocol_data = protocol_data_wait_sent[idx].data;
                 protocol_data[0] = 0xd8;
 
                 if (cozy_state_word == 0) {
                         RL_ON(9);RL_ON(10);
                         RL_OFF(2);RL_OFF(7);RL_OFF(8);
-                        RL_OFF(10);RL_OFF(11);RL_OFF(12);
+                        RL_OFF(6);RL_OFF(11);RL_OFF(12);
                         RL_OFF(13);
                         cozy_state_word = 1;
                         data_01 &= (~BIT2);
-                        data_02 &= (~(BIT1 | BIT3));
                         data_03 &= (~(BIT1 | BIT3));
+                        data_03 |= BIT2;
                         data_04 &= (~(BIT1 | BIT2));
                         data_04 |= BIT3;
                         data_05 &= (~(BIT1 | BIT3));
-                        data_06 &= (~(BIT1 | BIT2));
+                        data_05 |= BIT2;
+                        data_06 |= BIT2;
                         u8 idx = get_avalid_frame(protocol_data_wait_sent,SEND_FRAME_LEN);
-                        protocol_data_wait_sent[idx].use = 1;;
-                        protocol_data = protocol_data_wait_sent[idx].data;
+                        protocol_data_wait_sent[idx].use = 1;
+                        u8* protocol_data = protocol_data_wait_sent[idx].data;
                         protocol_data[0] = 0xd9;
                         protocol_data[1] = data_06;
                         protocol_data[7] = protocol_data[0] ^ protocol_data[1] ^ protocol_data[2] ^ 
                                            protocol_data[3] ^ protocol_data[4] ^ protocol_data[5] ^
                                            protocol_data[6] ;
-                        protocol_data_wait_sent[idx].data_len = 8;                                                
-                        RL_TOGGLE(3);                                                
+                        protocol_data_wait_sent[idx].data_len = 8;                                                                                             
                         void* ptr = &protocol_data_wait_sent[idx];
                         send_queue_item(0,ptr);
+                        RL_ON(15);RL_ON(17);
+                        key_0x14_delay_flag = BIT2;
+                        key_0x14_delay_time = 2000;
                 } else {
                         cozy_state_word = 0;
-                        RL_OFF(8);RL_OFF(9);
+                        RL_OFF(8);RL_OFF(9);RL_OFF(10);
+                        data_03 &= (~BIT2);
                         data_04 &= (~BIT3);
+                        data_05 &= (~BIT2);
                 }
                 
                 protocol_data[2] = data_01;
@@ -946,10 +1025,11 @@ void key_0x14(u8 rx_data)
 
 void key_0x15(u8 rx_data)
 {
+        rx_data &= (~key_disable_0x15);
         if (rx_data & BIT1) {
                 RL_TOGGLE(7);
                 u8 idx = get_avalid_frame(protocol_data_wait_sent,SEND_FRAME_LEN);
-                protocol_data_wait_sent[idx].use = 1;;
+                protocol_data_wait_sent[idx].use = 1;
                 u8* protocol_data = protocol_data_wait_sent[idx].data;
                 protocol_data[0] = 0xd8;
               
@@ -976,7 +1056,7 @@ void key_0x15(u8 rx_data)
         if (rx_data & BIT2) {
                 RL_TOGGLE(9);
                 u8 idx = get_avalid_frame(protocol_data_wait_sent,SEND_FRAME_LEN);
-                protocol_data_wait_sent[idx].use = 1;;
+                protocol_data_wait_sent[idx].use = 1;
                 u8* protocol_data = protocol_data_wait_sent[idx].data;
                 protocol_data[0] = 0xd8;
               
@@ -1003,7 +1083,7 @@ void key_0x15(u8 rx_data)
         if (rx_data & BIT3) {
                 RL_TOGGLE(8);
                 u8 idx = get_avalid_frame(protocol_data_wait_sent,SEND_FRAME_LEN);
-                protocol_data_wait_sent[idx].use = 1;;
+                protocol_data_wait_sent[idx].use = 1;
                 u8* protocol_data = protocol_data_wait_sent[idx].data;
                 protocol_data[0] = 0xd8;
               
@@ -1039,37 +1119,72 @@ void key_0x16_delay_proc(void)
                 key_0x16_delay_time--;
         }
         
+        if ((key_0x16_delay_time == 8000) && (key_0x16_delay_flag == BIT1)) {
+                 RL_OFF(14);
+        }
+        
+        if ((key_0x16_delay_time == 8000) && (key_0x16_delay_flag == BIT2)) {
+                 RL_OFF(15);
+        }
+        
         if (key_0x16_delay_time == 0 && key_0x16_delay_start == 1) {
                 key_0x16_delay_start = 0;
-                if (key_0x16_delay_flag & BIT1) {
-                        key_0x16_delay_flag &= ~BIT1;
-                        RL_OFF(14);
+                if (key_0x16_delay_flag == BIT1) {
+                        key_0x16_delay_flag = 0;
+                        u8 idx = get_avalid_frame(protocol_data_wait_sent,SEND_FRAME_LEN);
+                        protocol_data_wait_sent[idx].use = 1;
+                        u8* protocol_data = protocol_data_wait_sent[idx].data;
+                        protocol_data[0] = 0xd9;
+
+                        data_06 &= (~BIT1);
+
+                        protocol_data[1] = data_06;
+                        protocol_data[7] = protocol_data[0] ^ protocol_data[1] ^ protocol_data[2] ^ 
+                                           protocol_data[3] ^ protocol_data[4] ^ protocol_data[5] ^
+                                           protocol_data[6] ;
+                        protocol_data_wait_sent[idx].data_len = 8;                                                   
+
+                        void* ptr = &protocol_data_wait_sent[idx];
+                        send_queue_item(1,ptr);
                 }
                 
-                if (key_0x16_delay_flag & BIT2) {
-                        key_0x16_delay_flag &= ~BIT2;
-                        RL_OFF(15);
+                if (key_0x16_delay_flag == BIT2) {
+                        key_0x16_delay_flag = 0;
+                        u8 idx = get_avalid_frame(protocol_data_wait_sent,SEND_FRAME_LEN);
+                        protocol_data_wait_sent[idx].use = 1;
+                        u8* protocol_data = protocol_data_wait_sent[idx].data;
+                        protocol_data[0] = 0xd9;
+
+                        data_06 &= (~BIT2);
+
+                        protocol_data[1] = data_06;
+                        protocol_data[7] = protocol_data[0] ^ protocol_data[1] ^ protocol_data[2] ^ 
+                                           protocol_data[3] ^ protocol_data[4] ^ protocol_data[5] ^
+                                           protocol_data[6] ;
+                        protocol_data_wait_sent[idx].data_len = 8;                                                   
+
+                        void* ptr = &protocol_data_wait_sent[idx];
+                        send_queue_item(1,ptr);
                 }
         }
 }
 
 void key_0x16(u8 rx_data)
 {
+        rx_data &= (~key_disable_0x16);
         if (rx_data & BIT1) {
-                RL_TOGGLE(14);
+                RL_OFF(15); RL_ON(14);
+                key_0x16_delay_time = 10000;
+                key_0x16_delay_flag = BIT1;
+                
                 u8 idx = get_avalid_frame(protocol_data_wait_sent,SEND_FRAME_LEN);
-                protocol_data_wait_sent[idx].use = 1;;
+                protocol_data_wait_sent[idx].use = 1;
                 u8* protocol_data = protocol_data_wait_sent[idx].data;
                 protocol_data[0] = 0xd9;
               
-                if (RL_STATE(14)) {
-                        data_06 |= BIT1;
-                        data_06 &= (~BIT2);
-                        key_0x16_delay_flag |= BIT1;
-                } else {
-                        data_06 &= (~BIT1);
-                }
-                
+                data_06 |= BIT1;
+                data_06 &= (~BIT2);
+
                 protocol_data[1] = data_06;
                 protocol_data[7] = protocol_data[0] ^ protocol_data[1] ^ protocol_data[2] ^ 
                                    protocol_data[3] ^ protocol_data[4] ^ protocol_data[5] ^
@@ -1081,19 +1196,16 @@ void key_0x16(u8 rx_data)
         }
         
         if (rx_data & BIT2) {
-                RL_TOGGLE(15);
+                RL_ON(15); RL_OFF(14);
+                key_0x16_delay_time = 10000;
+                key_0x16_delay_flag = BIT2;
                 u8 idx = get_avalid_frame(protocol_data_wait_sent,SEND_FRAME_LEN);
-                protocol_data_wait_sent[idx].use = 1;;
+                protocol_data_wait_sent[idx].use = 1;
                 u8* protocol_data = protocol_data_wait_sent[idx].data;
                 protocol_data[0] = 0xd9;
               
-                if (RL_STATE(15)) {
-                        data_06 |= BIT2;
-                        data_06 &= (~BIT1);
-                        key_0x16_delay_flag |= BIT2;
-                } else {
-                        data_06 &= (~BIT2);
-                }
+                data_06 |= BIT2;
+                data_06 &= (~BIT1);
                 
                 protocol_data[1] = data_06;
                 protocol_data[7] = protocol_data[0] ^ protocol_data[1] ^ protocol_data[2] ^ 

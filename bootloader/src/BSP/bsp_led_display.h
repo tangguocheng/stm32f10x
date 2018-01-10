@@ -18,4 +18,5 @@ void led_display_init(void);
 void led_display_test(void);
 void set_led_content(u8 type, u8 value);
 void led_display(void);
+void time_cnt_down(void);
 #endif

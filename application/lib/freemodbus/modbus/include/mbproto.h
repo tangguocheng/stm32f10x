@@ -54,7 +54,10 @@ PR_BEGIN_EXTERN_C
 #define MB_FUNC_DIAG_GET_COM_EVENT_LOG        ( 12 )
 #define MB_FUNC_OTHER_REPORT_SLAVEID          ( 17 )
 #define MB_FUNC_ERROR                         ( 128 )
-#define MB_FUNC_USER_DEFINE                   ( 0x65 )
+#define MB_FUNC_USER_DEFINE_0x65              ( 0x65 )
+#define MB_FUNC_USER_DEFINE_0x66              ( 0x66 )
+#define MB_FUNC_USER_DEFINE_0x67              ( 0x67 )
+#define MB_FUNC_USER_DEFINE_0x68              ( 0x68 )
 /* ----------------------- Type definitions ---------------------------------*/
     typedef enum
 {

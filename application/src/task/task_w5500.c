@@ -7,6 +7,7 @@
 #include "mb.h"
 #include "proj_conf.h"
 #include "bsp_w5500_port.h"
+#include "bsp_led_display.h"
 #include "eeprom_mem.h"
 
 void w5500_tcp_thread(void* param);
@@ -57,12 +58,13 @@ void w5500_tcp_thread(void* param)
         (void)param;
         u8 server_ip[4] = SERVER_IP;	
         u16 server_port = SERVER_PORT;
-        read_server_ip(server_ip,&server_port);
+//        read_server_ip(server_ip,&server_port);
         u8 socket_first_burn = 0;
         while (1) {
                 int32_t ret;
                 switch(getSn_SR(SOCK_TCP)) {
                 case SOCK_ESTABLISHED :
+                        set_led_content(LED_TYPE_NUM,1);
                         if(getSn_IR(SOCK_TCP) & Sn_IR_CON) {
                                 setSn_IR(SOCK_TCP,Sn_IR_CON);
                         }
@@ -88,6 +90,7 @@ void w5500_tcp_thread(void* param)
                         connect(SOCK_TCP, server_ip, server_port);			
                         break;
                 case SOCK_CLOSED:
+                        set_led_content(LED_TYPE_NUM,2);
                         socket(SOCK_TCP,Sn_MR_TCP,LOCAL_PORT,Sn_MR_ND);
                         break;
                 default:

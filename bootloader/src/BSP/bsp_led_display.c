@@ -100,6 +100,17 @@ void led_display_test(void)
         delay_nms(1000);
 }
 
+void time_cnt_down(void)
+{
+        SHOW_NUMBER(3);
+        delay_nms(1000);
+        SHOW_NUMBER(2);
+        delay_nms(1000);
+        SHOW_NUMBER(1);
+        delay_nms(1000);
+        SHOW_NUMBER(0);
+}
+
 void led_set_number(u8 num)
 {
         switch (num) {
@@ -193,7 +204,7 @@ void set_led_content(u8 type, u8 value)
         }
 }
 
-#define switch_interval         50
+#define switch_interval         10
 
 void led_display(void)
 {

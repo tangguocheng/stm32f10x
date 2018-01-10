@@ -21,6 +21,7 @@ void bsp_init(void)
 {
         led_init();
         led_display_init();
+//        led_display_test();
         eeprom_first_burn();
 }
 
@@ -69,7 +70,6 @@ void vApplicationTickHook (void)
 
 int main(void)
 {
-        
         iap_init(); // must call this function befor interrupt enabled
         
         RCC_APB2PeriphClockCmd( RCC_APB2Periph_GPIOA |
@@ -98,7 +98,7 @@ int main(void)
         LOG_OUT(LOG_INFO "FreeRTOS Kernel V10.0.0\r\n");
         LOG_OUT(LOG_INFO "STM32LIB V3.5.0\r\n");
         LOG_OUT(LOG_INFO "Xunjian Robot Initialization...\r\n");
-
+        
         create_init_task();
 
         vTaskStartScheduler();

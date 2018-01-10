@@ -44,3 +44,4 @@
 .\objects\port_reg.o: ..\lib\freemodbus\modbus\include\mbproto.h
 .\objects\port_reg.o: ..\lib\freemodbus\modbus\include\mbframe.h
 .\objects\port_reg.o: ..\src\IAP\IAP.h
+.\objects\port_reg.o: ..\src\BSP\bsp_led_display.h

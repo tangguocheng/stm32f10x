@@ -7,7 +7,7 @@
 #define SOCK_DHCP               0
 #define SOCK_TCP                1
 
-#define SERVER_IP               {192,168,0,102}
+#define SERVER_IP               {192,168,31,27}
 #define SERVER_PORT             502
 #define LOCAL_PORT              6000
 

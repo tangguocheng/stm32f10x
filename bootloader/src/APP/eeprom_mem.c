@@ -56,7 +56,9 @@ void ee_recevor_usr_app(u32 *usr_app)
                 if ( (eeprom_data[0] == MEM_INITFL_DATA1) || (eeprom_data[1] == MEM_INITFL_DATA2) ) {
                         ee_read_bytes_os(eeprom_data,MEM_USER_APP_ADDR,0x04);
                         *usr_app = *(u32 *)&eeprom_data[0];
-                }
+                } 
+        } else {
+                *usr_app = (u32)(FLASH_BASE + 0x3000);
         }
 }
 

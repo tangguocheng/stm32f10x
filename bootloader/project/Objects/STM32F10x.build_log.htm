@@ -5,7 +5,7 @@
 <h2>Tool Versions:</h2>
 IDE-Version: ¦ÌVision V5.15
 Copyright (C) 2015 ARM Ltd and ARM Germany GmbH. All rights reserved.
-License Information: rfx Microsoft, Microsoft, LIC=2TTNN-Y26QS-23EM4-FI5X6-04QU1-DDSP5
+License Information: tgc Microsoft, Microsoft, LIC=LJWII-T1A34-NS6YQ-NADPS-P41UQ-URS0R
  
 Tool Versions:
 Toolchain:       MDK-ARM Professional  Version: 5.15.0
@@ -21,18 +21,35 @@ Target DLL:      CMSIS_AGDI.dll V1.21.12.0
 Dialog DLL:      TCM.DLL V1.14.5.0
  
 <h2>Project:</h2>
-E:\woosiyuan\smarthome\stm32f10x\bootloader\project\STM32F10x.uvprojx
-Project File Date:  12/28/2017
+E:\work\STM32F103\bootloader\project\STM32F10x.uvprojx
+Project File Date:  01/10/2018
 
 <h2>Output:</h2>
 *** Using Compiler 'V5.05 update 2 (build 169)', folder: 'C:\Keil_v5\ARM\ARMCC\Bin'
 Build target 'smart_home'
-After Build - User command #1: fromelf.exe --bin -o "E:\woosiyuan\smarthome\stm32f10x\bootloader\project\Objects\STM32F10x.bin" "E:\woosiyuan\smarthome\stm32f10x\bootloader\project\Objects\STM32F10x.axf"
-".\Objects\STM32F10x.axf" - 0 Error(s), 0 Warning(s).
+compiling main.c...
+compiling bsp_timer.c...
+..\src\BSP\bsp_timer.c(19): warning:  #188-D: enumerated type mixed with another type
+          nvic_struct.NVIC_IRQChannelCmd = enable;
+..\src\BSP\bsp_timer.c(22): warning:  #188-D: enumerated type mixed with another type
+          RCC_APB1PeriphClockCmd(
+CC_APB1Periph_TIM2, enable);
+..\src\BSP\bsp_timer.c(29): warning:  #188-D: enumerated type mixed with another type
+          TIM_ITConfig(
+IM2,
+IM_IT_Update,enable);
+..\src\BSP\bsp_timer.c(30): warning:  #188-D: enumerated type mixed with another type
+          TIM_Cmd(
+IM2, enable);
+..\src\BSP\bsp_timer.c: 4 warnings, 0 errors
+linking...
+Program Size: Code=6956 RO-data=336 RW-data=44 ZI-data=1028  
+After Build - User command #1: fromelf.exe --bin -o "E:\work\STM32F103\bootloader\project\Objects\STM32F10x.bin" "E:\work\STM32F103\bootloader\project\Objects\STM32F10x.axf"
+".\Objects\STM32F10x.axf" - 0 Error(s), 4 Warning(s).
 
 <h2>Collection of Component include folders:</h2>
-  E:\woosiyuan\smarthome\stm32f10x\bootloader\project\RTE
-  C:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include
+  E:\work\STM32F103\bootloader\project\RTE
+  C:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.0.0\Device\Include
 
 <h2>Collection of Component Files used:</h2>
 </pre>

@@ -33,7 +33,7 @@ void i2c_gpio_init(void)
 {
         GPIO_InitTypeDef GPIO_InitStructure;
 
-        RCC_APB2PeriphClockCmd(RCC_I2C_PORT, ENABLE);	/* 打开GPIO时钟 */
+        RCC_APB2PeriphClockCmd(RCC_I2C_PORT, ENABLE);	        /* 打开GPIO时钟 */
 
         GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
         GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_OD;	/* 开漏输出模式 */
@@ -232,7 +232,8 @@ u8 i2c_check_connect(u8 _Address)
         u8 ucAck;
 
         i2c_gpio_init();
-
+        delay_nms(100);
+        
         if (I2C_SDA_READ_STATE() && I2C_SCL_READ_STATE()) {
                 i2c_start();		/* 发送启动信号 */
 
