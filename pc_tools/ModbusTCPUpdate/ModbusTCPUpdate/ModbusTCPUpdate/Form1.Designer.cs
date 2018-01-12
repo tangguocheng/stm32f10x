@@ -232,7 +232,7 @@
             this.txb_server_ip.Name = "txb_server_ip";
             this.txb_server_ip.Size = new System.Drawing.Size(100, 21);
             this.txb_server_ip.TabIndex = 2;
-            this.txb_server_ip.Text = "127.0.0.1";
+            this.txb_server_ip.Text = "192.168.31.27";
             // 
             // Form1
             // 

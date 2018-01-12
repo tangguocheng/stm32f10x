@@ -124,7 +124,7 @@ static xMBFunctionHandler xFuncHandlers[MB_FUNC_HANDLERS_MAX] = {
 #endif
 #if MB_FUNC_USER_DEFINE_ENABLED > 0
         {MB_FUNC_USER_DEFINE_0x65, eMBFuncUserDefine},
-        {MB_FUNC_USER_DEFINE_0x66, eMBFuncUserDefine},
+//        {MB_FUNC_USER_DEFINE_0x66, eMBFuncUserDefine},
         {MB_FUNC_USER_DEFINE_0x67, eMBFuncUserDefine},
         {MB_FUNC_USER_DEFINE_0x68, eMBFuncUserDefine}
 #endif

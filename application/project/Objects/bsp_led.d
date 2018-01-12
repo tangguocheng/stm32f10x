@@ -28,3 +28,4 @@
 .\objects\bsp_led.o: ..\lib\st_lib\fwlib\inc\stm32f10x_usart.h
 .\objects\bsp_led.o: ..\lib\st_lib\fwlib\inc\stm32f10x_wwdg.h
 .\objects\bsp_led.o: ..\lib\st_lib\fwlib\inc\misc.h
+.\objects\bsp_led.o: ..\src\BSP\bsp_led.h

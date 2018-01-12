@@ -20,9 +20,9 @@ void assert_failed(unsigned char *file, unsigned int line)
 void bsp_init(void)
 {
         led_init();
-        led_display_init();
+//        led_display_init();
 //        led_display_test();
-        eeprom_first_burn();
+        eeprom_init();
 }
 
 void init_task(void * param)
@@ -61,9 +61,12 @@ void vApplicationTickHook (void)
 {
         static u32 ms_cnt = 0;
         ms_cnt++;
-        led_display();
-        if ((ms_cnt % 1000) == 0) {
+//        led_display();
+        if ((ms_cnt % 300) == 0) 
                 STATE_LED_TOGGLE();
+        
+        if ((ms_cnt % 1000) == 0) {
+//                STATE_LED_TOGGLE();
                 DHCP_time_handler();
         }
 }

@@ -1,9 +1,0 @@
-.\objects\mbfunccoils.o: ..\lib\freemodbus\modbus\functions\mbfunccoils.c
-.\objects\mbfunccoils.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
-.\objects\mbfunccoils.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
-.\objects\mbfunccoils.o: ..\lib\freemodbus\stm32f103_port\port.h
-.\objects\mbfunccoils.o: ..\lib\freemodbus\modbus\include\mb.h
-.\objects\mbfunccoils.o: ..\lib\freemodbus\modbus\include\mbport.h
-.\objects\mbfunccoils.o: ..\lib\freemodbus\modbus\include\mbproto.h
-.\objects\mbfunccoils.o: ..\lib\freemodbus\modbus\include\mbframe.h
-.\objects\mbfunccoils.o: ..\lib\freemodbus\modbus\include\mbconfig.h

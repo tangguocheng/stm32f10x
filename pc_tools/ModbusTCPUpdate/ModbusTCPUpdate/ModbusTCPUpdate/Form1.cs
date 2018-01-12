@@ -199,13 +199,13 @@ namespace ModbusTCPUpdate
             mb[7] = 0x66;
 
             UInt16 addr = last_addr;
-            last_addr = (UInt16)(last_addr + data.Length);
 
-            mb[8] = (byte)((addr >> 8) & 0xFF);
-            mb[9] = (byte)(addr & 0xFF);
+            mb[8] = (byte)(addr & 0xFF);
+            mb[9] = (byte)((addr >> 8) & 0xFF);
 
-            mb[10] = (byte)((data.Length >> 8) & 0xFF);
-            mb[11] = (byte)(data.Length & 0xFF);
+            mb[10] = (byte)(data.Length & 0xFF);
+            mb[11] = (byte)((data.Length >> 8) & 0xFF);
+            
 
             for (int i = 0; i < data.Length; i++)
             {
@@ -230,11 +230,16 @@ namespace ModbusTCPUpdate
                 byte[] receive_data = new byte[1024];
                 wait_update_clinet.Receive(receive_data);
                 //Todo: 检查从机返回数据
-                UInt16 length_echo = (UInt16)(((receive_data[10] << 8) & 0xFF00) | receive_data[11]);
+                UInt16 length_echo = (UInt16)(((receive_data[11] << 8) & 0xFF00) | receive_data[10]);
                 if ((receive_data[7] == 0x66) && (length_echo == data.Length))
+                {
+                    last_addr = (UInt16)(last_addr + data.Length);
                     result = true;
+                }
                 else
+                {
                     result = false;
+                }
             }
             catch (Exception e)
             {
@@ -247,8 +252,173 @@ namespace ModbusTCPUpdate
 
         private bool send_password()
         {
+            byte[] mb = new byte[14];
 
-            return true;
+            mb[0] = (byte)((update_count >> 8) & 0xFF);
+            mb[1] = (byte)(update_count & 0xFF);
+
+            update_count++;
+
+            mb[2] = 0x00;
+            mb[3] = 0x00;
+
+            UInt16 pdu_len = (UInt16)(1 + 7);
+            mb[4] = (byte)((pdu_len >> 8) & 0xFF);
+            mb[5] = (byte)(pdu_len & 0xFF);
+            mb[6] = 0x01;
+
+            mb[7] = 0x65;
+            mb[8] = 0xF0;
+            mb[9] = 0xFF;
+            mb[10] = 0x66;
+            mb[11] = 0x66;
+            mb[12] = 0x66;
+            mb[13] = 0x66;
+
+            bool result = true;
+            try
+            {
+                wait_update_clinet.Send(mb);
+            }
+            catch (Exception e)
+            {
+                result = false;
+                add_infomation("发送数据失败：" + e.Message);
+            }
+
+            try
+            {
+                wait_update_clinet.ReceiveTimeout = 3000;
+
+                byte[] receive_data = new byte[1024];
+                wait_update_clinet.Receive(receive_data);
+                //Todo: 检查从机返回数据
+                UInt16 length_echo = (UInt16)(((receive_data[10] << 8) & 0xFF00) | receive_data[11]);
+                if ((receive_data[7] == 0x65) && (receive_data[8] == 0x01))
+                    result = true;
+                else
+                    result = false;
+            }
+            catch (Exception e)
+            {
+                result = false;
+                add_infomation("接收数据失败：" + e.Message);
+            }
+            return result;
+        }
+
+        private bool send_update_enable()
+        {
+            byte[] mb = new byte[7 + 5];
+
+            mb[0] = (byte)((update_count >> 8) & 0xFF);
+            mb[1] = (byte)(update_count & 0xFF);
+
+            update_count++;
+
+            mb[2] = 0x00;
+            mb[3] = 0x00;
+
+            UInt16 pdu_len = (UInt16)(1 + 5);
+            mb[4] = (byte)((pdu_len >> 8) & 0xFF);
+            mb[5] = (byte)(pdu_len & 0xFF);
+            mb[6] = 0x01;
+
+            mb[7] = 0x67;
+            mb[8] = 0x01;
+            mb[9] = 0xFF;
+            mb[10] = 0x66;
+            mb[10] = 0x66;
+
+            bool result = true;
+            try
+            {
+                wait_update_clinet.Send(mb);
+            }
+            catch (Exception e)
+            {
+                result = false;
+                add_infomation("发送数据失败：" + e.Message);
+            }
+
+            try
+            {
+                wait_update_clinet.ReceiveTimeout = 3000;
+
+                byte[] receive_data = new byte[1024];
+                wait_update_clinet.Receive(receive_data);
+                //Todo: 检查从机返回数据
+                if (receive_data[7] == 0x67)
+                {
+                    add_infomation("当前软件版本：V" + receive_data[7].ToString() + "." + receive_data[8].ToString()
+                                     + "." + receive_data[9].ToString());
+                    result = true;
+                }
+                else
+                    result = false;
+
+            }
+            catch (Exception e)
+            {
+                result = false;
+                add_infomation("接收数据失败：" + e.Message);
+            }
+            return result;
+        }
+
+        private bool send_update_done()
+        {
+            byte[] mb = new byte[7 + 2];
+
+            mb[0] = (byte)((update_count >> 8) & 0xFF);
+            mb[1] = (byte)(update_count & 0xFF);
+
+            update_count++;
+
+            mb[2] = 0x00;
+            mb[3] = 0x00;
+
+            UInt16 pdu_len = (UInt16)(1 + 5);
+            mb[4] = (byte)((pdu_len >> 8) & 0xFF);
+            mb[5] = (byte)(pdu_len & 0xFF);
+            mb[6] = 0x01;
+
+            mb[7] = 0x67;
+            mb[8] = 0x02;
+
+            bool result = true;
+            try
+            {
+                wait_update_clinet.Send(mb);
+            }
+            catch (Exception e)
+            {
+                result = false;
+                add_infomation("发送数据失败：" + e.Message);
+            }
+
+            try
+            {
+                wait_update_clinet.ReceiveTimeout = 3000;
+
+                byte[] receive_data = new byte[1024];
+                wait_update_clinet.Receive(receive_data);
+                //Todo: 检查从机返回数据
+                if (receive_data[7] == 0x67)
+                {
+                    add_infomation("结束升级");
+                    result = true;
+                }
+                else
+                    result = false;
+
+            }
+            catch (Exception e)
+            {
+                result = false;
+                add_infomation("接收数据失败：" + e.Message);
+            }
+            return result;
         }
 
         private bool isUpdating = false;
@@ -292,10 +462,23 @@ namespace ModbusTCPUpdate
                     add_infomation("密码验证失败...");
                 }
 
+                add_infomation("使能升级...");
+                
+                if (send_update_enable())
+                {
+                    update_end = false;
+                    add_infomation("升级使能成功...");
+                }
+                else
+                {
+                    update_end = true;
+                    add_infomation("升级使能失败...");
+                }
+                
                 add_infomation("开始升级，请勿断电或重启设备及软件！");
 
                 bool result = false;
-
+                last_addr = 0;
                 while (update_end == false)
                 {
                     byte[] bin_data = bw.ReadBytes(256);
@@ -334,8 +517,11 @@ namespace ModbusTCPUpdate
                 bw.Close();
                 isUpdating = false;
                 btn_update_start.Enabled = true;
-                if (result)
+                if (result && send_update_done())
+                {
+                    update_end = false;
                     add_infomation("升级完成，线程退出...");
+                }
                 else
                 {
                     pgb_update_status.Value = 0;
@@ -355,7 +541,46 @@ namespace ModbusTCPUpdate
 
         private void btn_device_reboot_Click(object sender, EventArgs e)
         {
+            if (lb_tcp_client.SelectedItem == null)
+            {
+                add_infomation("请在设备列表中选择需要重启的设备！");
+                return;
+            }
+            else
+            {
+                wait_update_clinet = client_socket[lb_tcp_client.SelectedIndex];
+            }
 
+            add_infomation("选择设备：" + wait_update_clinet.RemoteEndPoint.ToString());
+
+            byte[] mb = new byte[7 + 1];
+
+            mb[0] = (byte)((update_count >> 8) & 0xFF);
+            mb[1] = (byte)(update_count & 0xFF);
+
+            update_count++;
+
+            mb[2] = 0x00;
+            mb[3] = 0x00;
+
+            UInt16 pdu_len = (UInt16)(1 + 1);
+            mb[4] = (byte)((pdu_len >> 8) & 0xFF);
+            mb[5] = (byte)(pdu_len & 0xFF);
+            mb[6] = 0x01;
+
+            mb[7] = 0x68;
+
+            add_infomation("重启设备...");
+
+            try
+            {
+                wait_update_clinet.Send(mb);
+            }
+            catch (Exception ex)
+            {
+                add_infomation("重启失败：" + ex.Message);
+            }
         }
+
     }
 }

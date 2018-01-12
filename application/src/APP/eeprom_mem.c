@@ -6,6 +6,8 @@
 #include "bsp_w5500_port.h"
 #include "eeprom_mem.h"
 
+
+
 void ee_write_bytes_os(u8 *write_buf, u16 addr, u16 buf_len)
 {
         EEPROM_ENTER_CRITICAL();
@@ -45,21 +47,21 @@ void read_server_ip(u8 *ip,u16 *port)
         *port = *(u16 *)(eeprom_data + 4);              // stm32 little endding
 }
 
-void ee_store_app_addr(u32 *usr_app)
+void eeprom_write_update_done(void)
 {
-        u8 eeprom_data[10];
-        ee_read_bytes_os(eeprom_data,MEM_USER_APP_ADDR,0x04);
-        *usr_app = *(u32 *)&eeprom_data[0];                
+        u8 eeprom_data[2];
+        eeprom_data[0] = (u8)(DONE_UPDATE_FLAG & 0xFF);
+        eeprom_data[1] = (u8)((DONE_UPDATE_FLAG >> 8 )& 0xFF);
+        ee_write_bytes_os(eeprom_data,MEM_UPDATE_FLAG_ADDR,0x02);
 }
 
-
-void ee_recevor_app_addr(u32 *usr_app)
+void eeprom_write_update_start(void)
 {
-        u8 eeprom_data[10];
-        ee_read_bytes_os(eeprom_data,MEM_USER_APP_ADDR,0x04);
-        *usr_app = *(u32 *)&eeprom_data[0];                
+        u8 eeprom_data[2];
+        eeprom_data[0] = (u8)(WAIT_UPDATE_FLAG & 0xFF);
+        eeprom_data[1] = (u8)((WAIT_UPDATE_FLAG >> 8 )& 0xFF);
+        ee_write_bytes_os(eeprom_data,MEM_UPDATE_FLAG_ADDR,0x02);
 }
-
 
 void eeprom_first_burn(void)
 {
@@ -86,4 +88,10 @@ void eeprom_first_burn(void)
 
         }
 }
+
+u8 eeprom_init(void)
+{
+        return (ee_check_connect());
+}
+
 
