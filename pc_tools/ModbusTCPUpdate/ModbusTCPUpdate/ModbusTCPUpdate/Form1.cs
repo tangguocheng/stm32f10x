@@ -44,7 +44,7 @@ namespace ModbusTCPUpdate
 
         private void add_infomation(string info)
         {
-            txb_info.AppendText(info + "\n");
+            txb_info.AppendText("[ " + System.DateTime.Now.TimeOfDay.ToString() + " ] " + info + "\n");
         }
 
         private void txb_info_TextChanged(object sender, EventArgs e)
@@ -83,11 +83,6 @@ namespace ModbusTCPUpdate
             }
             else
             {
-                //if (tcp_listen_thread != null && tcp_listen_thread.IsAlive) tcp_listen_thread.Abort();
-                //if (tcp_client_receive != null && tcp_client_receive.IsAlive) tcp_client_receive.Abort();
-                //if (tcp_server_send != null && tcp_server_send.IsAlive) tcp_server_send.Abort();
-                //if (device_update_thread != null && device_update_thread.IsAlive) device_update_thread.Abort();
-
                 serverSocket.Close();
                 add_infomation("关闭：" + ip + ":" + myport.ToString());
                 btx_open_server.Text = "打开";
@@ -155,7 +150,7 @@ namespace ModbusTCPUpdate
         }
 
         Socket wait_update_clinet = null;
-        private bool update_all_device = false;
+
         private void btn_update_start_Click(object sender, EventArgs e)
         {
             if (lb_tcp_client.SelectedItem == null)
@@ -420,15 +415,66 @@ namespace ModbusTCPUpdate
             }
             return result;
         }
+        private bool reboot_device()
+        {
+            if (lb_tcp_client.SelectedItem == null)
+            {
+                add_infomation("请在设备列表中选择需要重启的设备！");
+                return false;
+            }
+            else
+            {
+                wait_update_clinet = client_socket[lb_tcp_client.SelectedIndex];
+            }
+
+            add_infomation("选择设备：" + wait_update_clinet.RemoteEndPoint.ToString());
+
+            byte[] mb = new byte[7 + 1];
+
+            mb[0] = (byte)((update_count >> 8) & 0xFF);
+            mb[1] = (byte)(update_count & 0xFF);
+
+            update_count++;
+
+            mb[2] = 0x00;
+            mb[3] = 0x00;
+
+            UInt16 pdu_len = (UInt16)(1 + 1);
+            mb[4] = (byte)((pdu_len >> 8) & 0xFF);
+            mb[5] = (byte)(pdu_len & 0xFF);
+            mb[6] = 0x01;
+
+            mb[7] = 0x68;
+
+            add_infomation("重启设备...");
+
+            bool rtl = true;
+
+            try
+            {
+                wait_update_clinet.Send(mb);
+            }
+            catch (Exception ex)
+            {
+                add_infomation("重启失败：" + ex.Message);
+                rtl = false;
+            }
+
+            if (rtl)
+                add_infomation("重启成功，等待设备重连..." );
+
+            return (rtl);
+        }
 
         private bool isUpdating = false;
         private void update_device(object bin_file_path)
         {
             string file_path = (string)bin_file_path;
-
+            System.DateTime startTime;
             if (file_path != null)
             {
                 add_infomation("开始升级：" + file_path);
+                startTime = System.DateTime.Now;
                 isUpdating = true;
                 bw = new BinaryReader(new FileStream(file_path, FileMode.Open));
                 bool update_end = false;
@@ -520,7 +566,10 @@ namespace ModbusTCPUpdate
                 if (result && send_update_done())
                 {
                     update_end = false;
-                    add_infomation("升级完成，线程退出...");
+                    add_infomation("升级完成，耗时：" + (System.DateTime.Now - startTime).ToString() + ",线程退出...");
+
+                    if (ckb_auto_reboot.Checked)
+                        reboot_device();
                 }
                 else
                 {
@@ -541,45 +590,7 @@ namespace ModbusTCPUpdate
 
         private void btn_device_reboot_Click(object sender, EventArgs e)
         {
-            if (lb_tcp_client.SelectedItem == null)
-            {
-                add_infomation("请在设备列表中选择需要重启的设备！");
-                return;
-            }
-            else
-            {
-                wait_update_clinet = client_socket[lb_tcp_client.SelectedIndex];
-            }
-
-            add_infomation("选择设备：" + wait_update_clinet.RemoteEndPoint.ToString());
-
-            byte[] mb = new byte[7 + 1];
-
-            mb[0] = (byte)((update_count >> 8) & 0xFF);
-            mb[1] = (byte)(update_count & 0xFF);
-
-            update_count++;
-
-            mb[2] = 0x00;
-            mb[3] = 0x00;
-
-            UInt16 pdu_len = (UInt16)(1 + 1);
-            mb[4] = (byte)((pdu_len >> 8) & 0xFF);
-            mb[5] = (byte)(pdu_len & 0xFF);
-            mb[6] = 0x01;
-
-            mb[7] = 0x68;
-
-            add_infomation("重启设备...");
-
-            try
-            {
-                wait_update_clinet.Send(mb);
-            }
-            catch (Exception ex)
-            {
-                add_infomation("重启失败：" + ex.Message);
-            }
+            reboot_device();
         }
 
     }

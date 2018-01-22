@@ -1,0 +1,88 @@
+<html>
+<body>
+<pre>
+<h1>礦ision Build Log</h1>
+<h2>Tool Versions:</h2>
+IDE-Version: μVision V5.15
+Copyright (C) 2015 ARM Ltd and ARM Germany GmbH. All rights reserved.
+License Information: tgc Microsoft, Microsoft, LIC=LJWII-T1A34-NS6YQ-NADPS-P41UQ-URS0R
+ 
+Tool Versions:
+Toolchain:       MDK-ARM Professional  Version: 5.15.0
+Toolchain Path:  C:\Keil_v5\ARM\ARMCC\Bin
+C Compiler:      Armcc.exe V5.05 update 2 (build 169)
+Assembler:       Armasm.exe V5.05 update 2 (build 169)
+Linker/Locator:  ArmLink.exe V5.05 update 2 (build 169)
+Library Manager: ArmAr.exe V5.05 update 2 (build 169)
+Hex Converter:   FromElf.exe V5.05 update 2 (build 169)
+CPU DLL:         SARMCM3.DLL V5.15.0
+Dialog DLL:      DCM.DLL V1.13.2.0
+Target DLL:      CMSIS_AGDI.dll V1.21.12.0
+Dialog DLL:      TCM.DLL V1.14.5.0
+ 
+<h2>Project:</h2>
+E:\work\STM32F103\application_with_iap\project\STM32F10x.uvprojx
+Project File Date:  01/14/2018
+
+<h2>Output:</h2>
+*** Using Compiler 'V5.05 update 2 (build 169)', folder: 'C:\Keil_v5\ARM\ARMCC\Bin'
+Build target 'smart_home_app'
+compiling porttcp.c...
+..\src\BSP\bsp_w5500_port.h(9): warning:  #47-D: incompatible redefinition of macro "SOCK_UDP" (declared at line 1141 of "..\lib\ioLibrary_Driver-master\Ethernet\W5500/w5500.h")
+  #define SOCK_UDP                2
+..\lib\freemodbus\stm32f103_port\porttcp.c: 1 warning, 0 errors
+compiling bsp_w5500_port.c...
+..\src\BSP\bsp_w5500_port.h(9): warning:  #47-D: incompatible redefinition of macro "SOCK_UDP" (declared at line 1141 of "..\lib\ioLibrary_Driver-master\Ethernet\W5500/w5500.h")
+  #define SOCK_UDP                2
+..\src\BSP\bsp_w5500_port.c: 1 warning, 0 errors
+compiling task_modbus.c...
+compiling task_w5500.c...
+..\src\BSP\bsp_w5500_port.h(9): warning:  #47-D: incompatible redefinition of macro "SOCK_UDP" (declared at line 1141 of "..\lib\ioLibrary_Driver-master\Ethernet\W5500/w5500.h")
+  #define SOCK_UDP                2
+..\src\task\task_w5500.c(117): error:  #20: identifier "remote_ip" is undefined
+                                recvfrom(
+OCK_UDP,buff, len, remote_ip,&remote_port);               /*W5500???占??慊???来????*/
+..\src\task\task_w5500.c(117): error:  #20: identifier "remote_port" is undefined
+                                recvfrom(
+OCK_UDP,buff, len, remote_ip,&remote_port);               /*W5500???占??慊???来????*/
+..\src\task\task_w5500.c(128): error:  #20: identifier "uint16" is undefined
+        uint16 len=0;  
+..\src\task\task_w5500.c(129): error:  #20: identifier "SOCK_TCPS" is undefined
+        switch(
+etSn_SR(SOCK_TCPS))                                                                                                     /*??取socket??状态*/
+..\src\task\task_w5500.c(132): error:  #20: identifier "local_port" is undefined
+                        socket(SOCK_TCPS ,
+n_MR_TCP,local_port,Sn_MR_ND);          /*?蚩?socket*/
+..\src\task\task_w5500.c(148): error:  #20: identifier "buff" is undefined
+                                recv(SOCK_TCPS,buff,len);                                                                               /*????来??Client????*/
+..\src\task\task_w5500.c(150): warning:  #223-D: function "printf" declared implicitly
+                                printf("%s\r\n",buff);
+..\src\task\task_w5500.c(168): error:  #20: identifier "uint16" is undefined
+     uint16 len=0;      
+..\src\task\task_w5500.c(170): error:  #20: identifier "SOCK_TCPC" is undefined
+        switch(
+etSn_SR(SOCK_TCPC))                                                                                                      /*??取socket??状态*/
+..\src\task\task_w5500.c(173): error:  #20: identifier "local_port" is undefined
+                        socket(SOCK_TCPC,
+n_MR_TCP,local_port++,Sn_MR_ND);
+..\src\task\task_w5500.c(177): error:  #20: identifier "remote_ip" is undefined
+                        connect(SOCK_TCPC,remote_ip,remote_port);                /*socket连?臃?????*/ 
+..\src\task\task_w5500.c(177): error:  #20: identifier "remote_port" is undefined
+                        connect(SOCK_TCPC,remote_ip,remote_port);                /*socket连?臃?????*/ 
+..\src\task\task_w5500.c(189): error:  #20: identifier "buff" is undefined
+                                recv(SOCK_TCPC,buff,len);                                                                                /*????来??Server????*/
+..\src\task\task_w5500.c(191): warning:  #223-D: function "printf" declared implicitly
+                                printf("%s\r\n",buff);
+..\src\task\task_w5500.c: 3 warnings, 12 errors
+compiling eeprom_mem.c...
+".\Objects\STM32F10x.axf" - 12 Error(s), 5 Warning(s).
+
+<h2>Collection of Component include folders:</h2>
+  E:\work\STM32F103\application_with_iap\project\RTE
+  C:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.0.0\Device\Include
+
+<h2>Collection of Component Files used:</h2>
+Target not created.
+</pre>
+</body>
+</html>
