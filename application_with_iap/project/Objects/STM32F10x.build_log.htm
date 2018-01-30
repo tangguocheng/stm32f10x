@@ -22,67 +22,23 @@ Dialog DLL:      TCM.DLL V1.14.5.0
  
 <h2>Project:</h2>
 E:\work\STM32F103\application_with_iap\project\STM32F10x.uvprojx
-Project File Date:  01/14/2018
+Project File Date:  01/28/2018
 
 <h2>Output:</h2>
 *** Using Compiler 'V5.05 update 2 (build 169)', folder: 'C:\Keil_v5\ARM\ARMCC\Bin'
 Build target 'smart_home_app'
-compiling porttcp.c...
-..\src\BSP\bsp_w5500_port.h(9): warning:  #47-D: incompatible redefinition of macro "SOCK_UDP" (declared at line 1141 of "..\lib\ioLibrary_Driver-master\Ethernet\W5500/w5500.h")
-  #define SOCK_UDP                2
-..\lib\freemodbus\stm32f103_port\porttcp.c: 1 warning, 0 errors
-compiling bsp_w5500_port.c...
-..\src\BSP\bsp_w5500_port.h(9): warning:  #47-D: incompatible redefinition of macro "SOCK_UDP" (declared at line 1141 of "..\lib\ioLibrary_Driver-master\Ethernet\W5500/w5500.h")
-  #define SOCK_UDP                2
-..\src\BSP\bsp_w5500_port.c: 1 warning, 0 errors
-compiling task_modbus.c...
-compiling task_w5500.c...
-..\src\BSP\bsp_w5500_port.h(9): warning:  #47-D: incompatible redefinition of macro "SOCK_UDP" (declared at line 1141 of "..\lib\ioLibrary_Driver-master\Ethernet\W5500/w5500.h")
-  #define SOCK_UDP                2
-..\src\task\task_w5500.c(117): error:  #20: identifier "remote_ip" is undefined
-                                recvfrom(
-OCK_UDP,buff, len, remote_ip,&remote_port);               /*W5500???占??慊???来????*/
-..\src\task\task_w5500.c(117): error:  #20: identifier "remote_port" is undefined
-                                recvfrom(
-OCK_UDP,buff, len, remote_ip,&remote_port);               /*W5500???占??慊???来????*/
-..\src\task\task_w5500.c(128): error:  #20: identifier "uint16" is undefined
-        uint16 len=0;  
-..\src\task\task_w5500.c(129): error:  #20: identifier "SOCK_TCPS" is undefined
-        switch(
-etSn_SR(SOCK_TCPS))                                                                                                     /*??取socket??状态*/
-..\src\task\task_w5500.c(132): error:  #20: identifier "local_port" is undefined
-                        socket(SOCK_TCPS ,
-n_MR_TCP,local_port,Sn_MR_ND);          /*?蚩?socket*/
-..\src\task\task_w5500.c(148): error:  #20: identifier "buff" is undefined
-                                recv(SOCK_TCPS,buff,len);                                                                               /*????来??Client????*/
-..\src\task\task_w5500.c(150): warning:  #223-D: function "printf" declared implicitly
-                                printf("%s\r\n",buff);
-..\src\task\task_w5500.c(168): error:  #20: identifier "uint16" is undefined
-     uint16 len=0;      
-..\src\task\task_w5500.c(170): error:  #20: identifier "SOCK_TCPC" is undefined
-        switch(
-etSn_SR(SOCK_TCPC))                                                                                                      /*??取socket??状态*/
-..\src\task\task_w5500.c(173): error:  #20: identifier "local_port" is undefined
-                        socket(SOCK_TCPC,
-n_MR_TCP,local_port++,Sn_MR_ND);
-..\src\task\task_w5500.c(177): error:  #20: identifier "remote_ip" is undefined
-                        connect(SOCK_TCPC,remote_ip,remote_port);                /*socket连?臃?????*/ 
-..\src\task\task_w5500.c(177): error:  #20: identifier "remote_port" is undefined
-                        connect(SOCK_TCPC,remote_ip,remote_port);                /*socket连?臃?????*/ 
-..\src\task\task_w5500.c(189): error:  #20: identifier "buff" is undefined
-                                recv(SOCK_TCPC,buff,len);                                                                                /*????来??Server????*/
-..\src\task\task_w5500.c(191): warning:  #223-D: function "printf" declared implicitly
-                                printf("%s\r\n",buff);
-..\src\task\task_w5500.c: 3 warnings, 12 errors
-compiling eeprom_mem.c...
-".\Objects\STM32F10x.axf" - 12 Error(s), 5 Warning(s).
+compiling main.c...
+linking...
+Program Size: Code=31880 RO-data=1104 RW-data=628 ZI-data=27940  
+FromELF: creating hex file...
+After Build - User command #1: fromelf.exe --bin -o "E:\work\STM32F103\application_with_iap\project\Objects\STM32F10x.bin" "E:\work\STM32F103\application_with_iap\project\Objects\STM32F10x.axf"
+".\Objects\STM32F10x.axf" - 0 Error(s), 0 Warning(s).
 
 <h2>Collection of Component include folders:</h2>
   E:\work\STM32F103\application_with_iap\project\RTE
   C:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.0.0\Device\Include
 
 <h2>Collection of Component Files used:</h2>
-Target not created.
 </pre>
 </body>
 </html>

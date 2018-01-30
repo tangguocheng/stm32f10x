@@ -49,3 +49,9 @@
 .\objects\main.o: ..\src\BSP\bsp_led_display.h
 .\objects\main.o: ..\src\APP\eeprom_mem.h
 .\objects\main.o: ..\lib\ioLibrary_Driver-master\Internet\DHCP\dhcp.h
+.\objects\main.o: ..\src\BSP\bsp_w5500_port.h
+.\objects\main.o: ..\lib\ioLibrary_Driver-master\Ethernet\socket.h
+.\objects\main.o: ..\lib\ioLibrary_Driver-master\Ethernet\wizchip_conf.h
+.\objects\main.o: ..\lib\ioLibrary_Driver-master\Ethernet\W5500/w5500.h
+.\objects\main.o: ..\lib\ioLibrary_Driver-master\Ethernet\wizchip_conf.h
+.\objects\main.o: ..\src\APP\device_manager.h

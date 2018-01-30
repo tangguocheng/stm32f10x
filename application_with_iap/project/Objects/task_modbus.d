@@ -44,3 +44,7 @@
 .\objects\task_modbus.o: ..\lib\freemodbus\modbus\include\mbport.h
 .\objects\task_modbus.o: ..\lib\freemodbus\modbus\include\mbproto.h
 .\objects\task_modbus.o: ..\src\BSP\bsp_w5500_port.h
+.\objects\task_modbus.o: ..\lib\ioLibrary_Driver-master\Ethernet\socket.h
+.\objects\task_modbus.o: ..\lib\ioLibrary_Driver-master\Ethernet\wizchip_conf.h
+.\objects\task_modbus.o: ..\lib\ioLibrary_Driver-master\Ethernet\W5500/w5500.h
+.\objects\task_modbus.o: ..\lib\ioLibrary_Driver-master\Ethernet\wizchip_conf.h

@@ -12,6 +12,9 @@
 #include "bsp_led_display.h"
 #include "eeprom_mem.h"
 #include "IAP.h"
+#include "dhcp.h"
+#include "bsp_w5500_port.h"
+#include "device_manager.h"
 
 void assert_failed(unsigned char *file, unsigned int line)
 {
@@ -21,7 +24,8 @@ void assert_failed(unsigned char *file, unsigned int line)
 void bsp_init(void)
 {
         led_init();
-        eeprom_init();
+        
+        w5500_init();
 }
 
 void init_task(void * param)
@@ -29,11 +33,10 @@ void init_task(void * param)
         TaskHandle_t xHandle = NULL;
         
         LOG_OUT(LOG_INFO "Init Task Start...\r\n");
+                
+        bsp_init();
         
-        xTaskCreate( w5500_dhcp_thread, "dhcp_thread", configMINIMAL_STACK_SIZE, NULL, configDHCP_PRIORITIES, &xHandle );
-        configASSERT( xHandle );
-        
-        xTaskCreate( task_modbus, "task_modbus", configMINIMAL_STACK_SIZE, NULL, configMODBUS_PRIORITIES, &xHandle );
+        xTaskCreate( task_modbus, "task_modbus", 1024, NULL, configMODBUS_PRIORITIES, &xHandle );
         configASSERT( xHandle );
 
         vTaskDelete( NULL );
@@ -43,7 +46,7 @@ void create_init_task( void )
 {
         TaskHandle_t xHandle = NULL;
 
-        xTaskCreate( init_task, "init_task", configMINIMAL_STACK_SIZE, NULL, configMAX_PRIORITIES, &xHandle );
+        xTaskCreate( init_task, "init_task", 254, NULL, configMAX_PRIORITIES, &xHandle );
         configASSERT( xHandle );
         
         if( xHandle == NULL ) {
@@ -52,21 +55,21 @@ void create_init_task( void )
         }
 }
 
-#include "dhcp.h"
-
 void vApplicationTickHook (void)
 {
         static u32 ms_cnt = 0;
         ms_cnt++;
         
-        if ((ms_cnt % 2000) == 0) {
+        if ((ms_cnt % 1000) == 0) {
                 STATE_LED_TOGGLE();
         }
         
+#if USE_DHCP == 1        
         if ((ms_cnt % 1000) == 0) {
-//                STATE_LED_TOGGLE();
                 DHCP_time_handler();
         }
+#endif
+        devic_runtime_inc();
 }
 
 int main(void)
@@ -99,9 +102,9 @@ int main(void)
         LOG_OUT(LOG_INFO "FreeRTOS Kernel V10.0.0\r\n");
         LOG_OUT(LOG_INFO "STM32LIB V3.5.0\r\n");
         LOG_OUT(LOG_INFO "Xunjian Robot Initialization...\r\n");
-        
-        bsp_init();
-        
+                        
+        devic_info_init();
+                        
         create_init_task();
         
         vTaskStartScheduler();

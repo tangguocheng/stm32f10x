@@ -45,3 +45,4 @@
 .\objects\port_reg.o: ..\src\APP\eeprom_mem.h
 .\objects\port_reg.o: ..\lib\freemodbus\modbus\include\mbframe.h
 .\objects\port_reg.o: ..\src\IAP\IAP.h
+.\objects\port_reg.o: ..\src\APP\device_manager.h

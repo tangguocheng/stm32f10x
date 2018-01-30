@@ -32,6 +32,6 @@ BOOL xMBTCPPortGetRequest(UCHAR **ppucMBTCPFrame, USHORT *usTCPLength)
 
 BOOL xMBTCPPortSendResponse( const UCHAR * pucMBTCPFrame, USHORT usTCPLength )
 {
-        send(SOCK_TCP, (UCHAR * )pucMBTCPFrame, usTCPLength);
+        send(MODBUS_TCP_SOCKET, (UCHAR * )pucMBTCPFrame, usTCPLength);
         return TRUE;
 }

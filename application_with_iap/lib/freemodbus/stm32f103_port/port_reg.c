@@ -2,32 +2,40 @@
 #include "eeprom_mem.h"
 #include "mbframe.h"
 #include "IAP.h"
+#include "device_manager.h"
+
+u8 device_info[24] = {0,};
 
 static u8 write_unlock = 0;
 static u8 update_enable = 0;
+// ‰»Îºƒ¥Ê∆˜£¨÷ª∂¡
 eMBErrorCode eMBRegInputCB( UCHAR * pucRegBuffer, USHORT usAddress,
-                               USHORT usNRegs )
+                            USHORT usNRegs )
 {
-        return (MB_ENOERR);
+        return ((eMBErrorCode)device_data_process(MODBUS_REG, MODBUS_MODE_R, usAddress, pucRegBuffer, usNRegs));
 }
 
-
+// ±£≥÷ºƒ¥Ê∆˜£¨∂¡–¥
 eMBErrorCode eMBRegHoldingCB( UCHAR * pucRegBuffer, USHORT usAddress,
                               USHORT usNRegs, eMBRegisterMode eMode )
 {
-        return (MB_ENOERR);
+        u8 mode = ((eMode == MB_REG_READ) ? MODBUS_MODE_R : MODBUS_MODE_W);
+        return ((eMBErrorCode)device_data_process(MODBUS_REG, mode, usAddress, pucRegBuffer, usNRegs));
 }
 
+// œﬂ»¶£¨∂¡–¥
 eMBErrorCode eMBRegCoilsCB( UCHAR * pucRegBuffer, USHORT usAddress,
                             USHORT usNCoils, eMBRegisterMode eMode )
 {
-        return (MB_ENOERR);
+        u8 mode = ((eMode == MB_REG_READ) ? MODBUS_MODE_R : MODBUS_MODE_W);
+        return ((eMBErrorCode)device_data_process(MODBUS_COLI, mode, usAddress, pucRegBuffer, usNCoils));
 }
 
+// ¿Î…¢¡ø ‰»Î,÷ª∂¡
 eMBErrorCode eMBRegDiscreteCB( UCHAR * pucRegBuffer, USHORT usAddress,
                                USHORT usNDiscrete )
-{
-        return (MB_ENOERR);
+{        
+        return ((eMBErrorCode)device_data_process(MODBUS_COLI, MODBUS_MODE_R, usAddress, pucRegBuffer, usNDiscrete));
 }
 
 #define MB_PASSWD_CODE          0x65

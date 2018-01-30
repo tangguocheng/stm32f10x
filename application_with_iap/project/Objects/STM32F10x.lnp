@@ -42,6 +42,7 @@
 ".\objects\task_modbus.o"
 ".\objects\task_w5500.o"
 ".\objects\eeprom_mem.o"
+".\objects\device_manager.o"
 ".\objects\stm_flash.o"
 ".\objects\iap.o"
 --library_type=microlib --strict --scatter ".\Objects\STM32F10x.sct"

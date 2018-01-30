@@ -39,6 +39,11 @@
 .\objects\eeprom_mem.o: ..\lib\FreeRTOS\Source\include\task.h
 .\objects\eeprom_mem.o: ..\lib\FreeRTOS\Source\include\list.h
 .\objects\eeprom_mem.o: ..\src\IAP\IAP.h
+.\objects\eeprom_mem.o: ..\src\BSP\bsp_delay.h
 .\objects\eeprom_mem.o: ..\src\BSP\bsp_eeprom_24xx.h
 .\objects\eeprom_mem.o: ..\src\BSP\bsp_w5500_port.h
+.\objects\eeprom_mem.o: ..\lib\ioLibrary_Driver-master\Ethernet\socket.h
+.\objects\eeprom_mem.o: ..\lib\ioLibrary_Driver-master\Ethernet\wizchip_conf.h
+.\objects\eeprom_mem.o: ..\lib\ioLibrary_Driver-master\Ethernet\W5500/w5500.h
+.\objects\eeprom_mem.o: ..\lib\ioLibrary_Driver-master\Ethernet\wizchip_conf.h
 .\objects\eeprom_mem.o: ..\src\APP\eeprom_mem.h

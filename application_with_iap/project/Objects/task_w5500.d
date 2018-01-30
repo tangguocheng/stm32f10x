@@ -28,6 +28,7 @@
 .\objects\task_w5500.o: ..\lib\st_lib\fwlib\inc\stm32f10x_usart.h
 .\objects\task_w5500.o: ..\lib\st_lib\fwlib\inc\stm32f10x_wwdg.h
 .\objects\task_w5500.o: ..\lib\st_lib\fwlib\inc\misc.h
+.\objects\task_w5500.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
 .\objects\task_w5500.o: ..\lib\FreeRTOS\Source\include\FreeRTOS.h
 .\objects\task_w5500.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h
 .\objects\task_w5500.o: ..\src\FreeRTOSConfig.h
@@ -51,3 +52,4 @@
 .\objects\task_w5500.o: ..\src\proj_conf.h
 .\objects\task_w5500.o: ..\src\BSP\bsp_w5500_port.h
 .\objects\task_w5500.o: ..\src\APP\eeprom_mem.h
+.\objects\task_w5500.o: ..\src\APP\device_manager.h

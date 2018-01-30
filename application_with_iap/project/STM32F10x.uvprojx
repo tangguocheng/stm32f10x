@@ -672,6 +672,11 @@
               <FileType>1</FileType>
               <FilePath>..\src\APP\eeprom_mem.c</FilePath>
             </File>
+            <File>
+              <FileName>device_manager.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\src\APP\device_manager.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

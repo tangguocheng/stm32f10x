@@ -545,7 +545,7 @@ namespace ModbusTCPUpdate
                     int retry_cnt = 0;
 
                     result = false;
-                    while ((result == false) && (retry_cnt++ < 3))
+                    while ((result == false) && (retry_cnt++ < 5))
                     {
                         result = sent_update_to_device(bin_data);
                         if (result == false)

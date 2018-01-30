@@ -87,9 +87,21 @@ u8 w5500_spi_read_byte(void)
         return (w5500_spi_mode_send_byte(0xFF));
 }
 
+void w5500_enter_cri(void)
+{
+        vTaskSuspendAll();
+}
+
+void w5500_exit_cri(void)
+{
+        if (!xTaskResumeAll()) 
+                taskYIELD();
+}
+
 void ioLibrary_fun_register(void)
 {
-        reg_wizchip_cris_cbfunc(vPortEnterCritical, vPortExitCritical);
+//        reg_wizchip_cris_cbfunc(vPortEnterCritical, vPortExitCritical);
+        reg_wizchip_cris_cbfunc(w5500_enter_cri, w5500_exit_cri);
         reg_wizchip_cs_cbfunc(w5500_cs_select, w5500_cs_deselect);
         reg_wizchip_spi_cbfunc(w5500_spi_read_byte, w5500_spi_send_byte);
 }
@@ -106,6 +118,8 @@ wiz_NetInfo w5500_eth_info = {
         .dhcp = NETINFO_STATIC
 #endif
 };
+
+
 
 void network_init(void)
 {
@@ -142,20 +156,25 @@ void network_init(void)
 static TaskHandle_t tcp_task_handle = NULL;
 void w5500_ip_assign(void)
 {
+#if USE_DHCP == 1        
         getIPfromDHCP(w5500_eth_info.ip);
         getGWfromDHCP(w5500_eth_info.gw);
         getSNfromDHCP(w5500_eth_info.sn);
         getDNSfromDHCP(w5500_eth_info.dns);
         w5500_eth_info.dhcp = NETINFO_DHCP;
+#endif                
         /* Network initialization */
         network_init();      // apply from dhcp
+        
 #ifdef _MAIN_DEBUG_
         LOG_OUT(LOG_INFO "DHCP LEASED TIME : %ld Sec.\r\n", getDHCPLeasetime());
 #endif
+        
+#if USE_DHCP == 1            
         // start tcp thread
         if (tcp_task_handle == NULL)
-                xTaskCreate(w5500_tcp_thread, "tcp_task", configMINIMAL_STACK_SIZE, NULL, configTCP_PRIORITIES, &tcp_task_handle );
-
+                xTaskCreate(modbus_tcp_thread, "tcp_task", configMINIMAL_STACK_SIZE, NULL, configTCP_PRIORITIES, &tcp_task_handle );
+#endif 
 }
 
 void w5500_ip_conflict(void)
@@ -205,8 +224,18 @@ void w5500_init(void)
 #if USE_DHCP == 1
         DHCP_init(SOCK_DHCP, w5500_buffer);
         reg_dhcp_cbfunc(w5500_ip_assign, w5500_ip_assign, w5500_ip_conflict);
+#else
+        w5500_ip_assign();
+#endif      
+        
+        TaskHandle_t xHandle = NULL;
+#if USE_DHCP == 1
+        xTaskCreate( w5500_dhcp_thread, "dhcp_thread", configMINIMAL_STACK_SIZE, NULL, configDHCP_PRIORITIES, &xHandle ); 
 #endif
+        configASSERT(xHandle);   
 
+        xTaskCreate(w5500_udp_thread, "udp_task", configMINIMAL_STACK_SIZE * 2, NULL, configUDP_PRIORITIES, &xHandle );
+        configASSERT(xHandle);       
 }
 
 

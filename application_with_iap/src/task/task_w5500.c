@@ -1,4 +1,5 @@
 #include "stm32f10x.h"
+#include <string.h>
 #include "FreeRTOS.h"
 #include "task.h"
 #include "queue.h"
@@ -8,8 +9,103 @@
 #include "proj_conf.h"
 #include "bsp_w5500_port.h"
 #include "eeprom_mem.h"
+#include "device_manager.h"
 
-void w5500_tcp_thread(void* param);
+static u8 udp_server_ip[4] = {192,168,1,99};								
+
+static u16 tcp_rec_data_len = 0;
+
+void get_tcp_rev_data(u8 **ppucMBTCPFrame, u16 *usTCPLength)
+{
+        vPortEnterCritical();
+        *ppucMBTCPFrame = (u8 *)&w5500_buffer[0];
+        *usTCPLength = tcp_rec_data_len;
+        tcp_rec_data_len = 0;
+        vPortExitCritical();
+}
+
+void modbus_tcp_thread(void* param)
+{
+        (void)param;
+        while (1) {
+                int32_t ret;
+                switch(getSn_SR(MODBUS_TCP_SOCKET)) {
+                case SOCK_ESTABLISHED :
+                        if(getSn_IR(MODBUS_TCP_SOCKET) & Sn_IR_CON) {
+                                setSn_IR(MODBUS_TCP_SOCKET,Sn_IR_CON);
+         
+                        }
+                        
+                        if((tcp_rec_data_len = getSn_RX_RSR(MODBUS_TCP_SOCKET)) > 0) {
+                                if(tcp_rec_data_len > DATA_BUF_SIZE) tcp_rec_data_len = DATA_BUF_SIZE;
+                                ret = recv(MODBUS_TCP_SOCKET,w5500_buffer,tcp_rec_data_len);
+                                if (ret > 0) {
+                                        xMBPortEventPost(EV_FRAME_RECEIVED);
+                                }
+                        }
+                        break;
+                        
+                case SOCK_CLOSE_WAIT :
+                        close(MODBUS_TCP_SOCKET);
+                        break;
+                
+                case SOCK_INIT :           
+                        listen(MODBUS_TCP_SOCKET);                        
+//                        connect(MODBUS_TCP_SOCKET, udp_server_ip, MODBUS_TCP_PORT);   
+                        break;
+                
+                case SOCK_CLOSED:
+                        socket(MODBUS_TCP_SOCKET,Sn_MR_TCP,MODBUS_TCP_PORT,Sn_MR_ND);
+                        setSn_KPALVTR(MODBUS_TCP_SOCKET, 0x01);
+                        break;
+                
+                default:
+                        break;
+                }
+                                
+                vTaskDelay(20 / portTICK_PERIOD_MS);
+        }
+}
+
+void monitor_tcp_thread(void* param)
+{
+        u8 changed = 0;
+        u16 len = 0;
+        u8 buff[40];
+        while(1) {
+        switch(getSn_SR(MONITOR_TCP_SOCKET)) {
+                case SOCK_ESTABLISHED :
+                        if(getSn_IR(MONITOR_TCP_SOCKET) & Sn_IR_CON) {
+                                setSn_IR(MONITOR_TCP_SOCKET,Sn_IR_CON);
+                        }
+                        
+                        device_monitor(buff, &len, &changed);
+                        
+                        if (changed)
+                                send(MONITOR_TCP_SOCKET, (UCHAR *)buff, len);
+                        
+                        break;
+                        
+                case SOCK_CLOSE_WAIT :
+                        close(MONITOR_TCP_SOCKET);
+                        break;
+                
+                case SOCK_INIT :                       
+                        connect(MONITOR_TCP_SOCKET, udp_server_ip, MONITOR_TCP_PORT);
+                        break;
+                
+                case SOCK_CLOSED:
+                        socket(MONITOR_TCP_SOCKET, Sn_MR_TCP, MY_TCP_SERVER_PORT, Sn_MR_ND);
+                        setSn_KPALVTR(MONITOR_TCP_SOCKET, 0x01);
+                        break;
+                
+                default:
+                        break;
+                }
+                
+                vTaskDelay(20 / portTICK_PERIOD_MS);
+        }
+}
 
 void w5500_dhcp_thread(void* param)
 {
@@ -41,159 +137,86 @@ void w5500_dhcp_thread(void* param)
         }        
 }
 
-static u16 tcp_rec_data_len = 0;
-
-void get_tcp_rev_data(u8 **ppucMBTCPFrame, u16 *usTCPLength)
-{
-        vPortEnterCritical();
-        *ppucMBTCPFrame = (u8 *)&w5500_buffer[0];
-        *usTCPLength = tcp_rec_data_len;
-        tcp_rec_data_len = 0;
-        vPortExitCritical();
-}
-
-void w5500_tcp_thread(void* param)
-{
-        (void)param;
-        u8 server_ip[4] = SERVER_IP;	
-        u16 server_port = SERVER_PORT;
-//        read_server_ip(server_ip,&server_port);
-        u8 socket_first_burn = 0;
-        while (1) {
-                int32_t ret;
-                switch(getSn_SR(SOCK_TCP)) {
-                case SOCK_ESTABLISHED :
-                        if(getSn_IR(SOCK_TCP) & Sn_IR_CON) {
-                                setSn_IR(SOCK_TCP,Sn_IR_CON);
-                        }
-                        
-                        if (socket_first_burn == 1) {
-                                socket_first_burn = 0;
-                                // send system information to server
-                        }
-                        
-                        if((tcp_rec_data_len = getSn_RX_RSR(SOCK_TCP)) > 0) {
-                                if(tcp_rec_data_len > DATA_BUF_SIZE) tcp_rec_data_len = DATA_BUF_SIZE;
-                                ret = recv(SOCK_TCP,w5500_buffer,tcp_rec_data_len);
-                                if (ret > 0) {
-                                        xMBPortEventPost(EV_FRAME_RECEIVED);
-                                }
-                        }
-                        break;
-                case SOCK_CLOSE_WAIT :
-                        close(SOCK_TCP);
-                        break;
-                case SOCK_INIT :
-                        socket_first_burn = 1;                        
-                        connect(SOCK_TCP, server_ip, server_port);			
-                        break;
-                case SOCK_CLOSED:
-                        socket(SOCK_TCP,Sn_MR_TCP,LOCAL_PORT,Sn_MR_ND);
-                        break;
-                default:
-                        break;
-                }
-        }
-}
-
-
+TaskHandle_t modbus_tcp_thread_handle = NULL;  
+TaskHandle_t monitor_tcp_thread_handle = NULL; 
 void w5500_udp_thread(void* param)
 {
-	u16 len=0;
-	u8 buff[2048];                                                          /*定义一个2KB的缓存*/	
-	switch(getSn_SR(SOCK_UDP))                                                /*获取socket的状态*/
-	{
-		case SOCK_CLOSED:                                                        /*socket处于关闭状态*/
-			socket(SOCK_UDP,Sn_MR_UDP,LOCAL_PORT,0);                              /*初始化socket*/
-		  break;
-		
-		case SOCK_UDP:                                                           /*socket初始化完成*/
-			if(getSn_IR(SOCK_UDP) & Sn_IR_RECV)
-			{
-				setSn_IR(SOCK_UDP, Sn_IR_RECV);                                     /*清接收中断*/
-			}
-			if((len=getSn_RX_RSR(SOCK_UDP))>0)                                    /*接收到数据*/
-			{
-				recvfrom(SOCK_UDP,buff, len, remote_ip,&remote_port);               /*W5500接收计算机发送来的数据*/
-				buff[len-8]=0x00;                                                    /*添加字符串结束符*/
-				sendto(SOCK_UDP,buff,len-8, remote_ip, remote_port);                /*W5500把接收到的数据发送给Remote*/
-			}
-			break;
-	}
+	u16 len=0;                                                            
+	u8 buff[40];      
+        u16 remote_port = 5000;
+        if (modbus_tcp_thread_handle == NULL)                                                        
+                xTaskCreate(modbus_tcp_thread, "tcp_task", configMINIMAL_STACK_SIZE,NULL, configTCP_PRIORITIES, &modbus_tcp_thread_handle);
+                                               
+        while(1) {
+                switch(getSn_SR(MY_UDP_SOCKET)) {                                                                     
+                        case SOCK_CLOSED:                                             
+                                socket(MY_UDP_SOCKET,Sn_MR_UDP,UDP_PORT,0);              
+                        break;                                                      
+                                                                                      
+                        case SOCK_UDP:                                                
+                                if(getSn_IR(MY_UDP_SOCKET) & Sn_IR_RECV) {                                                     
+                                        setSn_IR(MY_UDP_SOCKET, Sn_IR_RECV);               
+                                }                                                     
+                                                                                      
+                                if((len = getSn_RX_RSR(MY_UDP_SOCKET))>0) {
+                                        if (len > 40) len = 40;
+                                        recvfrom(MY_UDP_SOCKET, buff, len, udp_server_ip, &remote_port);             
+                                        if (strstr((char *)buff,"SEARCH RCU") != NULL) { 
+                                                get_device_info(buff,(u8 *)&len);                                                
+                                                sendto(MY_UDP_SOCKET, buff, len, udp_server_ip, 9001);
+                                                // create modbus tcp thread
+                                                if (monitor_tcp_thread_handle == NULL)           
+                                                        xTaskCreate(monitor_tcp_thread, "monitor_task", configMINIMAL_STACK_SIZE,NULL, configMONITOR_TCP_PRIORITIES, &monitor_tcp_thread_handle);
 
+                                        } else if (len >= 24){
+                                                u8 building_num = buff[18];
+                                                u8 floor_num = buff[19];
+                                                u8 room_num = buff[20];
+                                                if (device_check_locate(building_num,floor_num,room_num)) {
+                                                        update_device_info(buff);
+                                                        // close socket
+                                                        close(MODBUS_TCP_SOCKET);
+                                                        close(MONITOR_TCP_SOCKET);
+                                                }
+                                        }                                               
+                                }
+                        break;
+                }
+                
+                vTaskDelay(1000 / portTICK_PERIOD_MS);
+        }
 }
 
 void do_tcp_server(void)
 {	
 	u16 len=0;  
-	switch(getSn_SR(SOCK_TCP))											            	/*获取socket的状态*/
+	switch(getSn_SR(MODBUS_TCP_SOCKET))									
 	{
-		case SOCK_CLOSED:													                  /*socket处于关闭状态*/
-			socket(SOCK_TCP ,Sn_MR_TCP,LOCAL_PORT,Sn_MR_ND);	        /*打开socket*/
+		case SOCK_CLOSED:												
+			socket(MODBUS_TCP_SOCKET ,Sn_MR_TCP,MY_TCP_SERVER_PORT,Sn_MR_ND);	        
 		  break;     
     
-		case SOCK_INIT:														                  /*socket已初始化状态*/
-			listen(SOCK_TCP);												                /*socket建立监听*/
+		case SOCK_INIT:													
+			listen(MODBUS_TCP_SOCKET);										
 		  break;
 		
-		case SOCK_ESTABLISHED:												              /*socket处于连接建立状态*/
-		
-			if(getSn_IR(SOCK_TCP) & Sn_IR_CON)
+		case SOCK_ESTABLISHED:												
+			if(getSn_IR(MODBUS_TCP_SOCKET) & Sn_IR_CON)
 			{
-				setSn_IR(SOCK_TCP, Sn_IR_CON);								          /*清除接收中断标志位*/
+				setSn_IR(MODBUS_TCP_SOCKET, Sn_IR_CON);								
 			}
-			len=getSn_RX_RSR(SOCK_TCP);									            /*定义len为已接收数据的长度*/
+			len=getSn_RX_RSR(MODBUS_TCP_SOCKET);									
 			if(len>0)
 			{
-				recv(SOCK_TCP,w5500_buffer,len);								              	/*接收来自Client的数据*/
+				recv(MODBUS_TCP_SOCKET,w5500_buffer,len);							
 
-				send(SOCK_TCP,w5500_buffer,len);									              /*向Client发送数据*/
-		  }
+				send(MODBUS_TCP_SOCKET,w5500_buffer,len);							
+                        }
 		  break;
 		
-		case SOCK_CLOSE_WAIT:												                /*socket处于等待关闭状态*/
-			close(SOCK_TCP);
+		case SOCK_CLOSE_WAIT:												
+			close(MODBUS_TCP_SOCKET);
 		  break;
-	}
-}
-
-/**
-*@brief		TCP Client回环演示函数。
-*@param		无
-*@return	无
-*/
-void do_tcp_client(void)
-{	
-        u16 len=0;	
-
-	switch(getSn_SR(SOCK_TCP))								  				         /*获取socket的状态*/
-	{
-		case SOCK_CLOSED:											        		         /*socket处于关闭状态*/
-			socket(SOCK_TCP,Sn_MR_TCP,local_port++,Sn_MR_ND);
-		  break;
-		
-		case SOCK_INIT:													        	         /*socket处于初始化状态*/
-			connect(SOCK_TCP,remote_ip,remote_port);                /*socket连接服务器*/ 
-		  break;
-		
-		case SOCK_ESTABLISHED: 												             /*socket处于连接建立状态*/
-			if(getSn_IR(SOCK_TCP) & Sn_IR_CON)
-			{
-				setSn_IR(SOCK_TCP, Sn_IR_CON); 							         /*清除接收中断标志位*/
-			}
-		
-			len=getSn_RX_RSR(SOCK_TCP); 								  	         /*定义len为已接收数据的长度*/
-			if(len>0)
-			{
-				recv(SOCK_TCP,w5500_buffer,len); 							   		         /*接收来自Server的数据*/
-				send(SOCK_TCP,w5500_buffer,len);								     	         /*向Server发送数据*/
-			}		  
-		  break;
-			
-		case SOCK_CLOSE_WAIT: 											    	         /*socket处于等待关闭状态*/
-			close(SOCK_TCP);
-		  break;
-
 	}
 }
 

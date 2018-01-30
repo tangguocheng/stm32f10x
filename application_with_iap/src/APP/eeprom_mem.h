@@ -18,17 +18,14 @@
 #define MEM_INITFL_DATA1                0x5A
 #define MEM_INITFL_DATA2                0xA5
 #define MEM_INITFL_LEN                  0x02                            
-#define MEM_SERVER_IP_ADDR              (MEM_INITFL_ADDR + MEM_INITFL_LEN)      // server infomationm:ip(4) + port(2)
-#define MEM_SUBNET_MASK_ADDR            (MEM_SERVER_IP_ADDR + (4 + 2))          
-#define MEM_LOCAL_IP_ADDR               (MEM_SUBNET_MASK_ADDR + 4)
-#define MEM_GATEWAY_IP_ADDR             (MEM_LOCAL_IP_ADDR + 4)
-#define MEM_HOME_ADDRESS_ADDR           (MEM_GATEWAY_IP_ADDR + 4)
-#define MEM_EXP_ADDR                    (MEM_HOME_ADDRESS_ADDR + 3)
-#define MEM_SERIAL_NUM_ADDR             (MEM_EXP_ADDR + 2)
+#define MEM_DHCP_ADDR                   (MEM_INITFL_ADDR + MEM_INITFL_LEN)      // server infomationm:ip(4) + port(2)
+#define MEM_GATEWAY_ADDR                (MEM_DHCP_ADDR + 4)
+#define MEM_LOCAL_IP_ADDR               (MEM_GATEWAY_ADDR + 4)
+#define MEM_SUBNET_MASK_ADDR            (MEM_LOCAL_IP_ADDR + 4)      
+#define MEM_HOME_ADDRESS_ADDR           (MEM_SUBNET_MASK_ADDR + 4)
+#define MEM_SERIAL_NUM_ADDR             (MEM_HOME_ADDRESS_ADDR + 3)
 #define MEM_FIRMWARE_VER_ADDR           (MEM_SERIAL_NUM_ADDR + 4)
-#define MEM_FIRMWARE_VER_DATA1          0xCA
-#define MEM_FIRMWARE_VER_DATA2          0xCA
-#define MEM_PASSWD_ADDR                 (MEM_FIRMWARE_VER_ADDR + 2)             // password 4byte
+#define MEM_PASSWD_ADDR                 (MEM_FIRMWARE_VER_ADDR + 3)             // password 4byte
 
 #define MEM_ORIGIN_END                  (MEM_PASSWD_ADDR + 4)
 
@@ -42,5 +39,7 @@ void ee_store_app_addr(u32 *usr_app);
 void ee_recevor_app_addr(u32 *usr_app);
 void eeprom_write_update_done(void);
 u8 eeprom_init(void);
+void ee_write_bytes_os(u8 *write_buf, u16 addr, u16 buf_len);
+void ee_read_bytes_os(u8 *write_buf, u16 addr, u16 buf_len);
 #endif
 
