@@ -255,10 +255,10 @@ void gpio_input_process(void)
 
         static u16 delay_off_time_D12 = 0;
         static u8 start_delay_D12 = 0;
-
-        if (PD12 != last_PD12) {
+        static u8 boot_D12_check = 0;
+        if ((PD12 != last_PD12) || boot_D12_check) {
                 last_PD12 = PD12;
-                if ( PD12 == Bit_RESET ) {
+                if (PD12 == Bit_RESET) {                        
                         start_delay_D12 = 0;
                         delay_off_time_D12 = 0;
                         RL_ON(1);RL_ON(2);RL_ON(3);
@@ -298,9 +298,14 @@ void gpio_input_process(void)
                         protocol_data_wait_sent[idx].data_len = 20;
                         ptr = &protocol_data_wait_sent[idx];
                         rtl = send_queue_item(1,ptr);
+                        
+                        if (rtl == pdFALSE)
+                                boot_D12_check = 1;
+                        else 
+                                boot_D12_check = 0;
                 } else if (PD12 == Bit_SET) {
                         key_disable |= (KEY_0x12 | KEY_0x14 | KEY_wkq);
-                        
+                        boot_D12_check = 0;
                         start_delay_D12 = 1;
                         delay_off_time_D12 = 60000;
                 }
