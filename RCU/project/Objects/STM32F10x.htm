@@ -3,7 +3,7 @@
 <title>Static Call Graph - [.\Objects\STM32F10x.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\Objects\STM32F10x.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5050169: Last Updated: Wed Jan 31 11:56:26 2018
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5050169: Last Updated: Wed Jan 31 15:11:36 2018
 <BR><P>
 <H3>Maximum Stack Usage =        208 bytes + Unknown(Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -1611,7 +1611,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[2f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART1_IRQHandler
 </UL>
 
-<P><STRONG><a name="[f7]"></a>gpio_input_process</STRONG> (Thumb, 1538 bytes, Stack size 40 bytes, task_485.o(.text))
+<P><STRONG><a name="[f7]"></a>gpio_input_process</STRONG> (Thumb, 1496 bytes, Stack size 40 bytes, task_485.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 168<LI>Call Chain = gpio_input_process &rArr; send_queue_item &rArr; xQueueGenericSend &rArr; vTaskPlaceOnEventList &rArr; prvAddCurrentTaskToDelayedList &rArr; vListInsert
 </UL>
 <BR>[Calls]<UL><LI><a href="#[b1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_ResetBits
@@ -1633,7 +1633,7 @@ Global Symbols
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> main.o(.text)
 </UL>
-<P><STRONG><a name="[4c]"></a>task_485_receive</STRONG> (Thumb, 3040 bytes, Stack size 0 bytes, task_485.o(.text))
+<P><STRONG><a name="[4c]"></a>task_485_receive</STRONG> (Thumb, 3034 bytes, Stack size 0 bytes, task_485.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 128<LI>Call Chain = task_485_receive &rArr; send_queue_item &rArr; xQueueGenericSend &rArr; vTaskPlaceOnEventList &rArr; prvAddCurrentTaskToDelayedList &rArr; vListInsert
 </UL>
 <BR>[Calls]<UL><LI><a href="#[b1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_ResetBits
